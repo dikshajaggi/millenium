@@ -1,0 +1,35 @@
+@import "../styles.scss";
+
+.search-btn {
+    border-color: var(--primary-color) !important;
+}
+
+.catgeory-wrapper {
+    margin: 4vh 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.search-width {
+    width: 40vw !important;
+}
+
+.product-wrapper {
+    width: 100%;
+}
+
+.card-label-style {
+    text-transform: capitalize;
+    cursor: pointer;
+}
+
+.style-link {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.category-heading {
+    text-transform: capitalize;
+}

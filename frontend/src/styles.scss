@@ -1,0 +1,11 @@
+// styles.scss
+
+$primary-color: #2B97A4;
+
+:root {
+  --primary-color: #{$primary-color};
+}
+
+.App {
+  height: 100vh;
+}

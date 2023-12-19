@@ -1,0 +1,31 @@
+pages ->
+    main ✔ 
+    specific category -> products ✔ 
+    specific product ✔ 
+    cart ✔ 
+    checkout  
+    login (formik)
+    sign-up (formik)
+
+admin ->
+    login
+    inventory
+
+pending ->
+    routing  ✔ 
+    cloudinary (storing all images on cloudinary) ✔ 
+    store confidential data in dotenv (for both backend and frontend)
+
+extra ->
+    verfication-code during sign up
+    send message and mail on placing order
+    login with google
+    https
+    testing 
+        unit
+        integration
+    SSR(server side rendering)
+    CI/CD pipeline (continuous integration/ continuous deployment)
+    
+
+
