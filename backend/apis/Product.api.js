@@ -22,7 +22,7 @@ router.get('/products/:id/:name', async (req, res) => {
   const productName = req.params.name;
 
   try {
-    const product = await Product.findOne({ id: productId });
+    const product = await Product.findOne({ _id: productId });
 
     if (!product) {
       // If the product with the given ID is not found

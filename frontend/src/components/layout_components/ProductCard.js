@@ -1,0 +1,18 @@
+import React from 'react'
+import product from "../../assests/products/product.png"
+
+const ProductCard = ({ data }) => {
+    return (
+        <div>
+            <div class="card" style={{ width: "18rem", marginBottom: "2vh" }}>
+                <img src={data.cloudinaryImage} class="card-img-top" alt="product" />
+                <div class="card-body">
+                    <h5 class="card-title">{data.name}</h5>
+                    <p class="card-text">{data.description}</p>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default ProductCard
