@@ -1,7 +1,6 @@
 // product.js
 import express from 'express';
 import Product from '../models/product.models.js';
-import mongoose from "mongoose"
 
 const router = express.Router();
 
@@ -52,6 +51,26 @@ router.get('/products/:cat', async (req, res) => {
     }
 
     res.status(200).json(products);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// search products
+
+router.get('/search', async (req, res) => {
+  try {
+    const { name } = req.query;
+
+    if (!name) {
+      return res.status(400).json({ error: 'Name parameter is required' });
+    }
+
+    // Perform a case-insensitive search based on the name
+    const products = await Product.find({ name: { $regex: new RegExp(name, 'i') } });
+
+    res.json(products);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });

@@ -6,9 +6,9 @@ const ProductCard = ({ data }) => {
         <div>
             <div class="card" style={{ width: "18rem", marginBottom: "2vh" }}>
                 <img src={data.cloudinaryImage} class="card-img-top" alt="product" />
-                <div class="card-body">
-                    <h5 class="card-title">{data.name}</h5>
-                    <p class="card-text">{data.description}</p>
+                <div class="card-body card-label-style">
+                    <h5 class="card-title card-label-style">{data.name}</h5>
+                    <p class="card-text card-label-style">{data.description}</p>
                 </div>
             </div>
         </div>
