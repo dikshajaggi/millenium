@@ -1,15 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import productimg from "../../assests/products/product.png"
 import { Link } from 'react-router-dom'
 import "../styles.scss"
+import { CartContext } from '../../context/cartContext'
 
 const SpecificProductCard = ({ data }) => {
+    const context = useContext(CartContext)
     const [info, setInfo] = useState()
     const getdata = async () => {
         const detail = await fetch(`http://localhost:8000/api/products/${data.id}/${data.product}`)
         const jsondata = await detail.json()
         setInfo(jsondata)
         console.log(jsondata, "specific data")
+    }
+
+    const handleCart = () => {
+        context.setCartData(prev => [...prev, info])
     }
 
     useEffect(() => {
@@ -30,7 +36,7 @@ const SpecificProductCard = ({ data }) => {
                             {/* <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> */}
                             <h5 class="card-title">Rs.{info?.price}</h5>
                             <Link to="/cart">
-                                <button type="button" class="btn btn-primary btn-sm btn-color">Add to Cart</button>
+                                <button type="button" class="btn btn-primary btn-sm btn-color" onClick={handleCart}>Add to Cart</button>
                             </Link>
                         </div>
                     </div>

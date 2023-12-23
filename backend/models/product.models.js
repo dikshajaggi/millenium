@@ -7,7 +7,8 @@ const productSchema = new mongoose.Schema({
   price: { type: Number, required: true },
   cloudinaryImage: { type: String, required: true }, // You might want to store the URL or file path
   stock: { type: Number, required: true },
-  category: { type: String, required: true }
+  category: { type: String, required: true },
+  qty: { type: Number, default: 1 }
 });
 
 const Product = mongoose.model('Product', productSchema);
