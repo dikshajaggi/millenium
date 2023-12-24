@@ -1,8 +1,9 @@
 // LoginForm.js
-import React from 'react';
+import React, { useContext } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
+import { MainContext } from '../context/MainContext';
 
 const LoginSchema = Yup.object().shape({
     username: Yup.string().required('Username is required'),
@@ -10,6 +11,7 @@ const LoginSchema = Yup.object().shape({
 });
 
 const Login = ({ onSubmit }) => {
+    const context = useContext(MainContext)
     const handleLogin = async (values) => {
         console.log(values, "login")
         try {
@@ -23,6 +25,7 @@ const Login = ({ onSubmit }) => {
 
             const resJson = await response.json()
             console.log(resJson.token)
+            context.setUserLoginToken(resJson.token)
             // token needs to be in context as it will be required to add products to the cart
 
         } catch (error) {
