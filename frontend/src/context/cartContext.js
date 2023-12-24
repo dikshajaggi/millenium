@@ -1,13 +1,16 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useReducer, useState } from "react";
+import { cartReducer } from "./cartReducer";
 
 const CartContext = createContext()
 
 const CartContextProvider = (props) => {
-    const [cartData, setCartData] = useState([])
+    const [cartState, dispatch] = useReducer(cartReducer, {
+        cart: []
+    })
     return (
         <CartContext.Provider value={{
-            cartData,
-            setCartData
+            cartState,
+            dispatch
         }
         }>
             {props.children}
@@ -15,4 +18,12 @@ const CartContextProvider = (props) => {
     )
 }
 
-export { CartContext, CartContextProvider }
+const useCart = () => {
+    const context = useContext(CartContext);
+    if (!context) {
+        throw new Error('useCart must be used within a CartProvider');
+    }
+    return context;
+};
+
+export { useCart, CartContextProvider }

@@ -1,11 +1,62 @@
-import React from 'react'
+// SignupForm.js
+import React, { useEffect } from 'react';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 
-const Signup = () => {
+const SignupSchema = Yup.object().shape({
+    email: Yup.string().email('Invalid email').required('Email is required'),
+    username: Yup.string().required('Username is required'),
+    password: Yup.string().required('Password is required'),
+});
+
+
+const Signup = ({ onSubmit }) => {
+    const handleSignup = async (values) => {
+        try {
+            const response = await fetch("http://localhost:8000/api/user/register", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(values),
+            })
+        } catch (error) {
+            // Handle signup error
+            console.error('Signup failed:', error);
+        }
+    };
     return (
-        <div>
-            Signup
-        </div>
-    )
-}
+        <Formik
+            initialValues={{ email: '', username: '', password: '' }}
+            validationSchema={SignupSchema}
+            onSubmit={handleSignup}
+        >
+            <Form>
+                <div>
+                    <label htmlFor="email">Email:</label>
+                    <Field type="email" id="email" name="email" />
+                    <ErrorMessage name="email" component="div" />
+                </div>
 
-export default Signup
+                <div>
+                    <label htmlFor="username">Username:</label>
+                    <Field type="text" id="username" name="username" />
+                    <ErrorMessage name="username" component="div" />
+                </div>
+
+                <div>
+                    <label htmlFor="password">Password:</label>
+                    <Field type="password" id="password" name="password" />
+                    <ErrorMessage name="password" component="div" />
+                </div>
+
+                <div>
+                    <button type="submit">Signup</button>
+                </div>
+            </Form>
+        </Formik>
+    );
+};
+
+export default Signup;
+

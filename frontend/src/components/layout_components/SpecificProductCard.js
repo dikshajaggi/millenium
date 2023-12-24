@@ -2,21 +2,36 @@ import React, { useContext, useEffect, useState } from 'react'
 import productimg from "../../assests/products/product.png"
 import { Link } from 'react-router-dom'
 import "../styles.scss"
-import { CartContext } from '../../context/cartContext'
+import { CartContext, useCart } from '../../context/cartContext'
 
 const SpecificProductCard = ({ data }) => {
-    const context = useContext(CartContext)
     const [info, setInfo] = useState()
+    const { cartState, dispatch } = useCart()
     const getdata = async () => {
         const detail = await fetch(`http://localhost:8000/api/products/${data.id}/${data.product}`)
         const jsondata = await detail.json()
         setInfo(jsondata)
-        console.log(jsondata, "specific data")
+    }
+
+    const addToCart = async () => {
+        await fetch(`http://localhost:8000/api/cart/add-to-cart/${info}`)
+    }
+
+    const getCart = async () => {
+        const data = await fetch(`http://localhost:8000/api/cart/all-products`)
+        const jsondata = data.json()
+        console.log(jsondata, "cart products")
     }
 
     const handleCart = () => {
-        context.setCartData(prev => [...prev, info])
+        dispatch({ type: "ADD_TO_CART", payload: info })
     }
+
+    const handleCartRemove = () => {
+        dispatch({ type: "REMOVE_FROM_CART", payload: info })
+    }
+
+    console.log(cartState)
 
     useEffect(() => {
         getdata()
@@ -35,9 +50,8 @@ const SpecificProductCard = ({ data }) => {
                             <p class="card-text">{info?.description}.</p>
                             {/* <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> */}
                             <h5 class="card-title">Rs.{info?.price}</h5>
-                            <Link to="/cart">
-                                <button type="button" class="btn btn-primary btn-sm btn-color" onClick={handleCart}>Add to Cart</button>
-                            </Link>
+                            {cartState.cart.length !== 0 && cartState.cart.some(item => item.id === info?.id) ? <button type="button" class="btn btn-primary btn-sm btn-color" onClick={handleCartRemove}> Remove from Cart</button>
+                                : <button type="button" class="btn btn-primary btn-sm btn-color" onClick={handleCart}>Add to Cart</button>}
                         </div>
                     </div>
                 </div>
