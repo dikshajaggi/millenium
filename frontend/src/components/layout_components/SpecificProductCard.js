@@ -27,19 +27,6 @@ const SpecificProductCard = ({ data }) => {
 
     }
 
-    const getCart = async () => {
-        console.log(context.userLoginToken, "context.userLoginToken")
-        const data = await fetch(`http://localhost:8000/api/cart/all-products`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': context.userLoginToken, // Include the token in the Authorization header
-            }
-        })
-        const jsondata = data.json()
-        console.log(jsondata, "cart products")
-    }
-
     const handleCart = () => {
         dispatch({ type: "ADD_TO_CART", payload: info })
         addToCart()
@@ -47,8 +34,6 @@ const SpecificProductCard = ({ data }) => {
 
     const handleCartRemove = () => {
         dispatch({ type: "REMOVE_FROM_CART", payload: info })
-        getCart()
-
     }
 
     console.log(cartState)
