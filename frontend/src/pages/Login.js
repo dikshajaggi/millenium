@@ -23,9 +23,11 @@ const Login = ({ onSubmit }) => {
                 body: JSON.stringify(values),
             })
 
+            if (response.ok) context.setUser(values.username)
             const resJson = await response.json()
-            console.log(resJson.token)
+            console.log(resJson.token, resJson)
             context.setUserLoginToken(resJson.token)
+
             // token needs to be in context as it will be required to add products to the cart
 
         } catch (error) {

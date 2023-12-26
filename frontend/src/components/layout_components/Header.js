@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import "../styles.scss"
 import { Link } from 'react-router-dom'
+import { MainContext } from '../../context/MainContext'
 
 const Header = () => {
+  const context = useContext(MainContext)
+  const [user, setUser] = useState()
+  useEffect(() => {
+    setUser(context.user)
+  }, [context.userLoginToken])
   return (
     <div>
       <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary">
@@ -17,8 +23,8 @@ const Header = () => {
               <button class="btn btn-outline search-btn" type="submit">Search</button>
             </form>
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <Link to="/offers" class="nav-link" >Offers</Link>
+              <li class="nav-item text-capitalize">
+                <Link to="/offers" class="nav-link text-capitalize" >Offers</Link>
               </li>
               {/* <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -31,11 +37,11 @@ const Header = () => {
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li> */}
-              <li class="nav-item">
-                <Link to="/cart" class="nav-link" >Cart</Link>
+              <li class="nav-item text-capitalize">
+                <Link to="/cart" class="nav-link">Cart</Link>
               </li>
-              <li class="nav-item">
-                <Link to="/login" class="nav-link" >Login</Link>
+              <li class="nav-item text-capitalize">
+                <Link to="/login" class="nav-link" >{user !== undefined ? user : "Login"}</Link>
               </li>
             </ul>
           </div>

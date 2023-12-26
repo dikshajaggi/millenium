@@ -15,8 +15,15 @@ pending ->
     cart update remove add ✔ 
 
     styling & responsiveness
+    update user details when logged-in ✔ 
+    connect signup with login
+    update cart qty in header
+    add icon for cart, offers and user
+    store login credentials in local storage
     empty cart page 
     checkout form 
+    show encrypted password in api response
+    implement search functionality
     store confidential data in dotenv (for both backend and frontend)
     admin ->
         login
