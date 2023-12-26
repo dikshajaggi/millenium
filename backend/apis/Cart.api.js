@@ -134,41 +134,53 @@ router.delete('/delete-from-cart/:productId', authenticateUser, async (req, res)
 // Route to update the quantity of a product in the user's cart
 router.patch('/update-cart/:productId', authenticateUser, async (req, res) => {
     try {
-        const userId = req.user.userId;
-        const productId = req.params.productId;
-        const quantityChange = req.body.quantityChange; // This should be a positive or negative number
+      const userId = req.user.userId;
+      const productId = req.params.productId;
+      const quantityChange = req.body.quantityChange; // This should be a positive or negative number
+  
+      // Check if the user exists
+      const user = await User.findById(userId).populate('cart.product');
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+  
+      // Find the product in the user's cart
+      const cartItem = user.cart.find(item => item?.product?.id === productId);
+  
+      if (!cartItem) {
+        return res.status(404).json({ message: 'Product not found in the cart' });
+      }
+  
+      // Ensure the quantity change is a valid number
+      if (isNaN(quantityChange) || !Number.isInteger(quantityChange)) {
+        return res.status(400).json({ message: 'Invalid quantity change' });
+      }
 
-        // Check if the user exists
-        const user = await User.findById(userId).populate('cart.product');
-        if (!user) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-
-        console.log(user.cart, "cart item---")
-
-        // Find the product in the user's cart
-        const cartItem = user.cart.find(item => item?.product?.id === productId);
-
-        if (!cartItem) {
-            return res.status(404).json({ message: 'Product not found in the cart' });
-        }
-
-        // Update the quantity of the product in the cart
-        cartItem.quantity = quantityChange;
-
-        // If the quantity becomes 0 or negative, remove the item from the cart
-        if (cartItem.quantity <= 0) {
-            user.cart = user.cart.filter(item => item.product.id !== productId);
-        }
-
-        await user.save();
-
-        res.status(200).json({ message: 'Cart updated successfully', updatedCart: user.cart });
+      console.log(cartItem, cartItem.quantity , quantityChange)
+  
+      // Update the quantity of the product in the cart
+      const newQuantity = (cartItem.quantity || 0) + quantityChange;
+  
+      // Ensure the quantity doesn't go below 1
+      if (newQuantity < 1) {
+        return res.status(400).json({ message: 'Quantity cannot go below 1' });
+      }
+  
+      cartItem.quantity = newQuantity;
+  
+      // If the quantity becomes 1, ensure the item is in the cart
+      if (newQuantity === 1 && !user.cart.some(item => item.product.id === productId)) {
+        user.cart.push({ product: cartItem.product, quantity: 1 });
+      }
+  
+      await user.save();
+  
+      res.status(200).json({ message: 'Cart updated successfully', updatedCart: user.cart });
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Internal Server Error' });
+      console.error(error);
+      res.status(500).json({ message: 'Internal Server Error' });
     }
-});
+  });
 
 
 export default router;

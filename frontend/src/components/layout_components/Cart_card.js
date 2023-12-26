@@ -1,19 +1,75 @@
-import React from 'react'
-import productimg from "../../assests/products/product.png"
+import React, { useContext, useState } from 'react'
+import { MainContext } from '../../context/MainContext'
+
+export const Counter = ({quantity, id}) => {
+    const context = useContext(MainContext)
+
+    const  setQuantity = (productQty) => {
+        console.log(productQty, "product qty")
+        const requestBody = {
+            quantityChange: productQty
+        }
+        const data = fetch(`http://localhost:8000/api/cart/update-cart/${id}` , {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': context.userLoginToken
+            },
+            body: JSON.stringify(requestBody)
+        })
+    }
+
+    const [qty, setQty] = useState(quantity)
+    const inc = () => {
+        setQty(qty + 1)
+        setQuantity(1)
+    }
+    const dec = () => {
+        if(qty !== 1) {
+            setQty(qty - 1)
+            setQuantity(-1)
+        } else {
+            setQty(1)
+            setQuantity(0)
+        }
+    }
+    return (
+        <div className='d-flex'>
+            <span onClick={inc}>+</span>
+            {qty}
+            <span onClick={dec}>-</span>
+        </div>
+    )
+}
 
 const Cart_card = ({ data }) => {
-    console.log(data, "data")
+    const context = useContext(MainContext)
+
+    const deleteProducts = () => {
+        const info = fetch(`http://localhost:8000/api/cart//delete-from-cart/${data.product._id}`, {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': context.userLoginToken
+            }
+        })
+    }
     return (
         <div>
-            <div class="card mb-3" style={{ maxWidth: "1200px", minHeight: "400px" }}>
+            <div class="card mb-3" style={{ width: "800px", height: "230px", padding: "20px"}}>
                 <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src={data.cloudinaryImage} class="img-fluid rounded-start" alt="productimg" />
+                    <div class="col-md-4" style={{height: "200px", width: "200px"}}>
+                        <img src={data.product.cloudinaryImage} style={{objectFit: "fill"}} class="img-fluid rounded-start" alt="productimg" />
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h5 class="card-title">{data.name}</h5>
-                            <p class="card-text">{data.description}</p>
+                            <h5 class="card-title">{data.product.name}</h5>
+                            <h5 class="card-title">Rs.{data.product.price}</h5>
+                            <p class="card-text">In Stock</p>
+                            <div className='d-flex justify-content-between align-items-center' style={{width: "30%"}}>
+                                <Counter quantity={data.quantity} id={data.product.id}/>
+                                <div onClick={deleteProducts}>Delete</div>
+                            </div>
                         </div>
                     </div>
                 </div>

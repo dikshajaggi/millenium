@@ -26,16 +26,22 @@ const Cart = () => {
         setCartData(jsondata)
     }
 
+    console.log(cartData, "cardata check")
     useEffect(() => {
+        console.log("getttttttt cartttttttt")
         getCart()
     }, [cartState.cart])
 
     return (
-        <div className='d-flex flex-sm-row flex-column align-items-center justify-content-space-evenly'>
-            {cartData.cartProducts.map(item => {
-                <Cart_card data={item} />
+        <div className='d-flex flex-sm-row flex-column align-items-center justify-content-between' style={{padding: "200px"}}>
+            <div className='d-flex flex-row flex-sm-column align-items-center justify-content-evenly'>
+            {cartData.length !== 0 && cartData.cartProducts.map(item => {
+                return (
+                       <Cart_card data={item} />
+                )
             })}
-            <div className='d-flex flex-column align-items-center justify-content-space-evenly'>
+            </div>
+            <div className='d-flex flex-column align-items-center justify-content-evenly'>
                 <CartInfo />
                 <CartRelatedProducts />
             </div>
