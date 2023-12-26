@@ -7,10 +7,9 @@ import { MainContext } from '../context/MainContext'
 
 const Cart = () => {
     const { cartState, dispatch } = useCart()
+    console.log(cartState, "cart state cart")
     const context = useContext(MainContext)
     const [cartData, setCartData] = useState([])
-
-    console.log(cartState.cart)
 
     const getCart = async () => {
         console.log(context.userLoginToken, "context.userLoginToken")
@@ -22,15 +21,13 @@ const Cart = () => {
             }
         })
         const jsondata = await data.json()
-        console.log(jsondata, "cart products")
         setCartData(jsondata)
     }
 
-    console.log(cartData, "cardata check")
     useEffect(() => {
         console.log("getttttttt cartttttttt")
         getCart()
-    }, [cartState.cart])
+    }, [cartState.cart, context.del])
 
     return (
         <div className='d-flex flex-sm-row flex-column align-items-center justify-content-between' style={{padding: "200px"}}>

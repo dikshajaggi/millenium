@@ -1,18 +1,34 @@
 import React, { useContext, useEffect, useState } from 'react'
-import productimg from "../../assests/products/product.png"
-import { Link } from 'react-router-dom'
 import "../styles.scss"
 import { CartContext, useCart } from '../../context/cartContext'
 import { MainContext } from '../../context/MainContext'
 
 const SpecificProductCard = ({ data }) => {
-    const [info, setInfo] = useState()
     const { cartState, dispatch } = useCart()
+    const [cartData, setCartData] = useState(cartState.cart)
+    const [info, setInfo] = useState()
     const context = useContext(MainContext)
     const getdata = async () => {
         const detail = await fetch(`http://localhost:8000/api/products/${data.id}/${data.product}`)
         const jsondata = await detail.json()
         setInfo(jsondata)
+    }
+
+    const deleteProducts = async () => {
+        const res = await fetch(`http://localhost:8000/api/cart/delete-from-cart/${info._id}`, {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': context.userLoginToken
+            }
+        })
+
+        if(res.ok) {
+            context.setDelete(context.del + 1)
+            handleCartRemove()
+        }
+
+        console.log(res, "info check")
     }
 
     const addToCart = async () => {
@@ -34,13 +50,18 @@ const SpecificProductCard = ({ data }) => {
 
     const handleCartRemove = () => {
         dispatch({ type: "REMOVE_FROM_CART", payload: info })
+        deleteProducts()
     }
 
     console.log(cartState)
 
     useEffect(() => {
         getdata()
-    }, [])
+    }, [context.userLoginToken])
+
+    useEffect(() => {
+        setCartData(cartState.cart)
+    }, [cartState])
 
     return (
         <div>
@@ -55,7 +76,7 @@ const SpecificProductCard = ({ data }) => {
                             <p class="card-text">{info?.description}.</p>
                             {/* <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> */}
                             <h5 class="card-title">Rs.{info?.price}</h5>
-                            {cartState.cart.length !== 0 && cartState.cart.some(item => item.id === info?.id) ? <button type="button" class="btn btn-primary btn-sm btn-color" onClick={handleCartRemove}> Remove from Cart</button>
+                            {cartData.length !== 0 && cartData.some(item => item.id === info?.id) ? <button type="button" class="btn btn-primary btn-sm btn-color" onClick={handleCartRemove}> Remove from Cart</button>
                                 : <button type="button" class="btn btn-primary btn-sm btn-color" onClick={handleCart}>Add to Cart</button>}
                         </div>
                     </div>

@@ -1,29 +1,47 @@
-import { createContext, useContext, useReducer, useState } from "react";
+import { createContext, useContext, useEffect, useReducer, useState } from "react";
 import { cartReducer } from "./cartReducer";
+import { MainContext } from "./MainContext";
 
-const CartContext = createContext()
+const CartContext = createContext();
 
 const CartContextProvider = (props) => {
-    const [cartState, dispatch] = useReducer(cartReducer, {
-        cart: []
-    })
-    return (
-        <CartContext.Provider value={{
-            cartState,
-            dispatch
-        }
-        }>
-            {props.children}
-        </CartContext.Provider>
-    )
-}
+    const context = useContext(MainContext)
+  const [cartState, dispatch] = useReducer(cartReducer, {
+    cart: [],
+  });
 
-const useCart = () => {
-    const context = useContext(CartContext);
-    if (!context) {
-        throw new Error('useCart must be used within a CartProvider');
+  useEffect(() => {
+    const getCart = async () => {
+        const data = await fetch(`http://localhost:8000/api/cart/all-products`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': context.userLoginToken, // Include the token in the Authorization header
+            }
+        })
+        if (data.ok) {
+            const jsondata = await data.json();
+            // Dispatch an action to initialize the cart state
+            dispatch({ type: "SET_INITIAL_STATE", payload: jsondata.cartProducts });
+            console.log(jsondata.cartProducts, "jsondata.cartProducts");
+        }
     }
-    return context;
+    getCart()
+  }, [context.userLoginToken]); // Run this effect only once when the component mounts
+
+  return (
+    <CartContext.Provider value={{ cartState, dispatch }}>
+      {props.children}
+    </CartContext.Provider>
+  );
 };
 
-export { useCart, CartContextProvider }
+const useCart = () => {
+  const context = useContext(CartContext);
+  if (!context) {
+    throw new Error('useCart must be used within a CartProvider');
+  }
+  return context;
+};
+
+export { useCart, CartContextProvider };

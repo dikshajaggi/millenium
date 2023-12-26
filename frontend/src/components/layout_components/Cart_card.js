@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { MainContext } from '../../context/MainContext'
+import { useCart } from '../../context/cartContext'
 
 export const Counter = ({quantity, id}) => {
     const context = useContext(MainContext)
@@ -44,15 +45,27 @@ export const Counter = ({quantity, id}) => {
 
 const Cart_card = ({ data }) => {
     const context = useContext(MainContext)
+    const { cartState, dispatch } = useCart()
 
-    const deleteProducts = () => {
-        const info = fetch(`http://localhost:8000/api/cart//delete-from-cart/${data.product._id}`, {
+    const handleCartRemove = () => {
+        dispatch({ type: "REMOVE_FROM_CART", payload: data.product })
+    }
+
+    const deleteProducts = async () => {
+        const info = await fetch(`http://localhost:8000/api/cart/delete-from-cart/${data.product._id}`, {
             method: 'DELETE',
             headers: {
               'Content-Type': 'application/json',
               'Authorization': context.userLoginToken
             }
         })
+
+        if(info.ok) {
+            context.setDelete(context.del + 1)
+            handleCartRemove()
+        }
+
+        console.log(info, "info check")
     }
     return (
         <div>
