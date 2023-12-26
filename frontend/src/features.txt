@@ -4,17 +4,24 @@ pages ->
     specific product ✔ 
     cart ✔ 
     checkout  
-    login (formik)
-    sign-up (formik)
+    login (formik) ✔ 
+    sign-up (formik) ✔ 
 
-admin ->
-    login
-    inventory
 
 pending ->
     routing  ✔ 
     cloudinary (storing all images on cloudinary) ✔ 
+    redux for cart ✔ 
+    cart update remove add ✔ 
+
+    styling & responsiveness
+    empty cart page 
+    checkout form 
     store confidential data in dotenv (for both backend and frontend)
+    admin ->
+        login
+        inventory
+
 
 extra ->
     verfication-code during sign up
