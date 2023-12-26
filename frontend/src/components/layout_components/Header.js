@@ -2,10 +2,34 @@ import React, { useContext, useEffect, useState } from 'react'
 import "../styles.scss"
 import { Link } from 'react-router-dom'
 import { MainContext } from '../../context/MainContext'
+import { useCart } from '../../context/cartContext'
 
 const Header = () => {
   const context = useContext(MainContext)
   const [user, setUser] = useState()
+  const { cartState } = useCart()
+  const [cart, setCart] = useState()
+
+  const getCart = async () => {
+    const data = await fetch(`http://localhost:8000/api/cart/all-products`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': context.userLoginToken,
+      }
+    })
+    if (data.ok) {
+      const jsondata = await data.json();
+      console.log(jsondata.cartProducts, "jsondata.cartProducts");
+      setCart(jsondata.cartProducts)
+    }
+  }
+
+  useEffect(() => {
+    getCart()
+  }, [cartState.cart])
+  console.log(cart, "cart all ", cartState)
+
   useEffect(() => {
     setUser(context.user)
   }, [context.userLoginToken])
