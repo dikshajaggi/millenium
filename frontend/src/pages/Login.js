@@ -22,9 +22,11 @@ const Login = ({ onSubmit }) => {
                 },
                 body: JSON.stringify(values),
             })
-
-            if (response.ok) context.setUser(values.username)
             const resJson = await response.json()
+            if (response.ok){
+                localStorage.setItem('user', {name: values.username, token: resJson.token})
+                context.setUser(values.username)
+            } 
             console.log(resJson.token, resJson)
             context.setUserLoginToken(resJson.token)
 

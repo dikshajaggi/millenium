@@ -6,7 +6,8 @@ import { useCart } from '../../context/cartContext'
 
 const Header = () => {
   const context = useContext(MainContext)
-  const [user, setUser] = useState()
+  const name =  localStorage.getItem('user') ? localStorage.getItem('user').name : null
+  const [user, setUser] = useState(name)
   const { cartState } = useCart()
   const [cart, setCart] = useState()
 
