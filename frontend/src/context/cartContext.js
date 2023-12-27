@@ -19,12 +19,12 @@ const CartContextProvider = (props) => {
                 'Authorization': context.userLoginToken, // Include the token in the Authorization header
             }
         })
-        if (data.ok) {
-            const jsondata = await data.json();
-            // Dispatch an action to initialize the cart state
-            dispatch({ type: "SET_INITIAL_STATE", payload: jsondata.cartProducts });
-            console.log(jsondata.cartProducts, "jsondata.cartProducts");
-        }
+        // if (data.ok) {
+        //     const jsondata = await data.json();
+        //     // Dispatch an action to initialize the cart state
+        //     dispatch({ type: "SET_INITIAL_STATE", payload: jsondata.cartProducts });
+        //     console.log(jsondata.cartProducts, "jsondata.cartProducts");
+        // }
     }
     getCart()
   }, [context.userLoginToken]); // Run this effect only once when the component mounts

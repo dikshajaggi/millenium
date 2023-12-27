@@ -13,12 +13,12 @@ const Header = () => {
     setUser(context.user)
   }, [context.userLoginToken])
 
-  useEffect(() => {
-    const cartItems = JSON.parse(localStorage.getItem('cart'))
-    // const quantity = cartItems.cartProducts.map(item => item.quantity)
-    // setQty(_.sum(quantity))
-    // console.log(quantity,_.sum(quantity), "quantity array")
-  }, [localStorage.getItem('cart'), context.qtyUpdated])
+  // useEffect(() => {
+  //   const cartItems = JSON.parse(localStorage.getItem('cart'))
+  //   // const quantity = cartItems.cartProducts.map(item => item.quantity)
+  //   // setQty(_.sum(quantity))
+  //   // console.log(quantity,_.sum(quantity), "quantity array")
+  // }, [localStorage.getItem('cart'), context.qtyUpdated])
 
 
   return (

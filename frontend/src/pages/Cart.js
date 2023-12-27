@@ -7,13 +7,12 @@ import { MainContext } from '../context/MainContext'
 
 const Cart = () => {
     const { cartState, dispatch } = useCart()
-    console.log(cartState, "cart state cart")
+    console.log(cartState, cartState.cart, "cart state cart")
     const context = useContext(MainContext)
-    const cart =  localStorage.getItem('cart') ? JSON.parse( localStorage.getItem('cart')) :  null
+    const cart =  localStorage.getItem('cart') ? JSON.parse( localStorage.getItem('cart')) : []
     const [cartData, setCartData] = useState(cart)
-
+ 
     const getCart = async () => {
-        console.log(context.userLoginToken, "context.userLoginToken")
         const data = await fetch(`http://localhost:8000/api/cart/all-products`, {
             method: 'GET',
             headers: {
@@ -22,8 +21,9 @@ const Cart = () => {
             }
         })
         const jsondata = await data.json()
-        localStorage.setItem('cart', JSON.stringify(jsondata))
-        setCartData(jsondata)
+        console.log(jsondata, "jsondata")
+        localStorage.setItem('cart', JSON.stringify(jsondata.cartProducts))
+        setCartData(jsondata.cartProducts)
     }
 
     useEffect(() => {
@@ -31,6 +31,8 @@ const Cart = () => {
         
         getCart()
     }, [cartState.cart, context.del])
+
+    console.log(cartData, "cartData")
 
     return (
         <div className='d-flex flex-sm-row flex-column align-items-center justify-content-between' style={{padding: "200px"}}>

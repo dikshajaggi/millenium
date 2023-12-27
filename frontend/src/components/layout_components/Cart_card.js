@@ -21,7 +21,7 @@ export const Counter = ({quantity, id}) => {
         console.log(data, "data ok check")
         if(data.ok) {
             const jsondata = await data.json()
-            localStorage.setItem('cart', JSON.stringify(jsondata))
+            // localStorage.setItem('cart', JSON.stringify(jsondata))
             console.log("data ok check --")
             context.setQtyUpdated(true)
         }
@@ -29,6 +29,7 @@ export const Counter = ({quantity, id}) => {
     }
 
     const [qty, setQty] = useState(quantity)
+    console.log(qty, "counter")
     const inc = () => {
         setQty(qty + 1)
         setQuantity(1)
@@ -52,6 +53,7 @@ export const Counter = ({quantity, id}) => {
 }
 
 const Cart_card = ({ data }) => {
+    console.log("info check", data)
     const context = useContext(MainContext)
     const { cartState, dispatch } = useCart()
 
@@ -69,11 +71,9 @@ const Cart_card = ({ data }) => {
         })
 
         if(info.ok) {
-            context.setDelete(context.del + 1)
             handleCartRemove()
+            context.setDelete(context.del + 1)
         }
-
-        console.log(info, "info check")
     }
     return (
         <div>

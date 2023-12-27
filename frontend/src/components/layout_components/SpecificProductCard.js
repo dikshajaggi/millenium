@@ -46,7 +46,9 @@ const SpecificProductCard = ({ data }) => {
     }
 
     const handleCart = () => {
-        dispatch({ type: "ADD_TO_CART", payload: info })
+        console.log(info, "checking info")
+        const data = {product: info, quantity: info.qty}
+        dispatch({ type: "ADD_TO_CART", payload: data })
         addToCart()
     }
 
@@ -55,7 +57,7 @@ const SpecificProductCard = ({ data }) => {
         deleteProducts()
     }
 
-    console.log(cartState)
+    console.log(cartState.cart)
 
     useEffect(() => {
         getdata()

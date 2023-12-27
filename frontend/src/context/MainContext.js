@@ -4,10 +4,10 @@ const MainContext = createContext()
 
 const MainContextProvider = ({ children }) => {
     const userDetails =  localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null
-    const [userLoginToken, setUserLoginToken] = useState(userDetails.token)
+    const [userLoginToken, setUserLoginToken] = useState(userDetails?.token)
     console.log(userDetails)
     const [del, setDelete] = useState(0)
-    const [user, setUser] = useState(userDetails.name)
+    const [user, setUser] = useState(userDetails?.name)
     const [qtyUpdated, setQtyUpdated] = useState(false)
     return (
         <MainContext.Provider value={{
