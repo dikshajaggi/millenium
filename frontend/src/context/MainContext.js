@@ -3,10 +3,12 @@ import { createContext, useState } from "react";
 const MainContext = createContext()
 
 const MainContextProvider = ({ children }) => {
-    const token =  localStorage.getItem('user') ? localStorage.getItem('user').token : null
-    const [userLoginToken, setUserLoginToken] = useState(token)
+    const userDetails =  localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null
+    const [userLoginToken, setUserLoginToken] = useState(userDetails.token)
+    console.log(userDetails)
     const [del, setDelete] = useState(0)
-    const [user, setUser] = useState()
+    const [user, setUser] = useState(userDetails.name)
+    const [qtyUpdated, setQtyUpdated] = useState(false)
     return (
         <MainContext.Provider value={{
             userLoginToken,
@@ -14,7 +16,9 @@ const MainContextProvider = ({ children }) => {
             del,
             setDelete,
             user,
-            setUser
+            setUser,
+            qtyUpdated,
+            setQtyUpdated
         }}>
             {children}
         </MainContext.Provider>

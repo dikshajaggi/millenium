@@ -5,12 +5,12 @@ import { useCart } from '../../context/cartContext'
 export const Counter = ({quantity, id}) => {
     const context = useContext(MainContext)
 
-    const  setQuantity = (productQty) => {
+    const  setQuantity = async (productQty) => {
         console.log(productQty, "product qty")
         const requestBody = {
             quantityChange: productQty
         }
-        const data = fetch(`http://localhost:8000/api/cart/update-cart/${id}` , {
+        const data = await fetch(`http://localhost:8000/api/cart/update-cart/${id}` , {
             method: 'PATCH',
             headers: {
               'Content-Type': 'application/json',
@@ -18,6 +18,14 @@ export const Counter = ({quantity, id}) => {
             },
             body: JSON.stringify(requestBody)
         })
+        console.log(data, "data ok check")
+        if(data.ok) {
+            const jsondata = await data.json()
+            localStorage.setItem('cart', JSON.stringify(jsondata))
+            console.log("data ok check --")
+            context.setQtyUpdated(true)
+        }
+        context.setQtyUpdated(false)
     }
 
     const [qty, setQty] = useState(quantity)

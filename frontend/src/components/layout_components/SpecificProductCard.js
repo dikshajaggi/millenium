@@ -32,7 +32,7 @@ const SpecificProductCard = ({ data }) => {
     }
 
     const addToCart = async () => {
-        await fetch("http://localhost:8000/api/cart/add-to-cart", {
+        const data = await fetch("http://localhost:8000/api/cart/add-to-cart", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -40,6 +40,8 @@ const SpecificProductCard = ({ data }) => {
             },
             body: JSON.stringify({ productId: info.id, quantity: info.qty }),
         });
+
+        console.log(await data.json(), "add to cart")
 
     }
 

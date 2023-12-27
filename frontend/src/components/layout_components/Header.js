@@ -2,38 +2,25 @@ import React, { useContext, useEffect, useState } from 'react'
 import "../styles.scss"
 import { Link } from 'react-router-dom'
 import { MainContext } from '../../context/MainContext'
-import { useCart } from '../../context/cartContext'
+import _ from "lodash"
 
 const Header = () => {
   const context = useContext(MainContext)
-  const name =  localStorage.getItem('user') ? localStorage.getItem('user').name : null
-  const [user, setUser] = useState(name)
-  const { cartState } = useCart()
-  const [cart, setCart] = useState()
-
-  const getCart = async () => {
-    const data = await fetch(`http://localhost:8000/api/cart/all-products`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': context.userLoginToken,
-      }
-    })
-    if (data.ok) {
-      const jsondata = await data.json();
-      console.log(jsondata.cartProducts, "jsondata.cartProducts");
-      setCart(jsondata.cartProducts)
-    }
-  }
-
-  useEffect(() => {
-    getCart()
-  }, [cartState.cart])
-  console.log(cart, "cart all ", cartState)
+  const [user, setUser] = useState(context.user)
+  const [qty, setQty] = useState()
 
   useEffect(() => {
     setUser(context.user)
   }, [context.userLoginToken])
+
+  useEffect(() => {
+    const cartItems = JSON.parse(localStorage.getItem('cart'))
+    const quantity = cartItems.cartProducts.map(item => item.quantity)
+    setQty(_.sum(quantity))
+    console.log(quantity,_.sum(quantity), "quantity array")
+  }, [localStorage.getItem('cart'), context.qtyUpdated])
+
+
   return (
     <div>
       <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary">

@@ -17,11 +17,19 @@ pending ->
     styling & responsiveness
     update user details when logged-in ✔ 
     connect signup with login
+    sign-out functionality
+
+
+    store login credentials in local storage ✔
+    store cart-items in local storage ✔ 
+    remove info from local storage on sign-out
+
     update cart qty in header
-    add icon for cart, offers and user
-    store login credentials in local storage ✔ 
+    add icon for cart, offers and user in header (react icons)
     empty cart page 
     checkout form 
+
+   
     show encrypted password in api response
     implement search functionality
     store confidential data in dotenv (for both backend and frontend)

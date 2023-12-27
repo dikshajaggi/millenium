@@ -9,7 +9,8 @@ const Cart = () => {
     const { cartState, dispatch } = useCart()
     console.log(cartState, "cart state cart")
     const context = useContext(MainContext)
-    const [cartData, setCartData] = useState([])
+    const cart =  localStorage.getItem('cart') ? JSON.parse( localStorage.getItem('cart')) :  null
+    const [cartData, setCartData] = useState(cart)
 
     const getCart = async () => {
         console.log(context.userLoginToken, "context.userLoginToken")
@@ -21,11 +22,13 @@ const Cart = () => {
             }
         })
         const jsondata = await data.json()
+        localStorage.setItem('cart', JSON.stringify(jsondata))
         setCartData(jsondata)
     }
 
     useEffect(() => {
         console.log("getttttttt cartttttttt")
+        
         getCart()
     }, [cartState.cart, context.del])
 
