@@ -2,7 +2,7 @@
 import React, { useContext } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { MainContext } from '../context/MainContext';
 
 const LoginSchema = Yup.object().shape({
@@ -12,6 +12,8 @@ const LoginSchema = Yup.object().shape({
 
 const Login = ({ onSubmit }) => {
     const context = useContext(MainContext)
+    const navigate = useNavigate()
+
     const handleLogin = async (values) => {
         console.log(values, "login")
         try {
@@ -23,10 +25,11 @@ const Login = ({ onSubmit }) => {
                 body: JSON.stringify(values),
             })
             const resJson = await response.json()
-            if (response.ok){
-                localStorage.setItem('user', JSON.stringify({name: values.username, token: resJson.token}))
+            if (response.ok) {
+                localStorage.setItem('user', JSON.stringify({ name: values.username, token: resJson.token }))
                 context.setUser(values.username)
-            } 
+                navigate("/")
+            }
             console.log(resJson.token, resJson)
             context.setUserLoginToken(resJson.token)
 

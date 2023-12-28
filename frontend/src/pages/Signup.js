@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { useNavigate } from 'react-router-dom';
 
 const SignupSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Email is required'),
@@ -11,6 +12,8 @@ const SignupSchema = Yup.object().shape({
 
 
 const Signup = ({ onSubmit }) => {
+    const navigate = useNavigate()
+
     const handleSignup = async (values) => {
         try {
             const response = await fetch("http://localhost:8000/api/user/register", {
@@ -20,6 +23,8 @@ const Signup = ({ onSubmit }) => {
                 },
                 body: JSON.stringify(values),
             })
+
+            if (response.ok) navigate("/login")
         } catch (error) {
             // Handle signup error
             console.error('Signup failed:', error);

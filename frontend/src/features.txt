@@ -35,6 +35,8 @@ pending ->
     after login take the user to homepage ✔
     after signup take the user to login page ✔
 
+    show password feature
+
     show encrypted password in api response
     implement search functionality
     store confidential data in dotenv (for both backend and frontend)
