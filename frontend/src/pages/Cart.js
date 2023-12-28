@@ -4,14 +4,15 @@ import CartRelatedProducts from '../components/layout_components/CartRelatedProd
 import CartInfo from '../components/layout_components/CartInfo'
 import { useCart } from '../context/cartContext'
 import { MainContext } from '../context/MainContext'
+import emptyCart from "../assests/icons/cart/empty-cart.png"
 
 const Cart = () => {
     const { cartState, dispatch } = useCart()
     console.log(cartState, cartState.cart, "cart state cart")
     const context = useContext(MainContext)
-    const cart =  localStorage.getItem('cart') ? JSON.parse( localStorage.getItem('cart')) : []
+    const cart = localStorage.getItem('user') && (localStorage.getItem('cart') !== undefined ? JSON.parse(localStorage.getItem('cart')) : [])
     const [cartData, setCartData] = useState(cart)
- 
+
     const getCart = async () => {
         const data = await fetch(`http://localhost:8000/api/cart/all-products`, {
             method: 'GET',
@@ -21,33 +22,40 @@ const Cart = () => {
             }
         })
         const jsondata = await data.json()
-        console.log(jsondata, "jsondata")
+        console.log(jsondata, "cartData jsondata")
         localStorage.setItem('cart', JSON.stringify(jsondata.cartProducts))
         setCartData(jsondata.cartProducts)
     }
 
     useEffect(() => {
         console.log("getttttttt cartttttttt")
-        
+
         getCart()
     }, [cartState.cart, context.del])
 
-    console.log(cartData, "cartData")
+    console.log(cartData, "cartData", cart)
 
     return (
-        <div className='d-flex flex-sm-row flex-column align-items-center justify-content-between' style={{padding: "200px"}}>
-            <div className='d-flex flex-row flex-sm-column align-items-center justify-content-evenly'>
-            {cartData.length !== 0 && cartData.cartProducts.map(item => {
-                return (
-                       <Cart_card data={item} />
-                )
-            })}
-            </div>
-            <div className='d-flex flex-column align-items-center justify-content-evenly'>
-                <CartInfo />
-                <CartRelatedProducts />
-            </div>
+        <div>
+            {cartData !== null && cartData !== undefined ? <div className='d-flex flex-sm-row flex-column align-items-center justify-content-between' style={{ padding: "200px" }}>
+                <div className='d-flex flex-row flex-sm-column align-items-center justify-content-evenly'>
+                    {cartData.length !== 0 && cartData.map(item => {
+                        return (
+                            <Cart_card data={item} />
+                        )
+                    })}
+                </div>
+
+                <div className='d-flex flex-column align-items-center justify-content-evenly'>
+                    <CartInfo />
+                    <CartRelatedProducts />
+                </div>
+            </div> : <div className='d-flex flex-column justify-content-center align-items-center' style={{ height: "100%" }}>
+                <h4 style={{ margin: "30px 0" }}>Your cart is currently empty !</h4>
+                <img src={emptyCart} style={{ height: "240px", marginLeft: "-20px", marginBottom: "40px" }} />
+            </div>}
         </div>
+
     )
 }
 

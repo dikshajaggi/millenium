@@ -2,12 +2,14 @@ import React, { useContext, useEffect, useState } from 'react'
 import "../styles.scss"
 import { CartContext, useCart } from '../../context/cartContext'
 import { MainContext } from '../../context/MainContext'
+import { useNavigate } from 'react-router-dom'
 
 const SpecificProductCard = ({ data }) => {
     const { cartState, dispatch } = useCart()
     const [cartData, setCartData] = useState(cartState.cart)
     const [info, setInfo] = useState()
     const context = useContext(MainContext)
+    const navigate = useNavigate()
     const getdata = async () => {
         const detail = await fetch(`http://localhost:8000/api/products/${data.id}/${data.product}`)
         const jsondata = await detail.json()
@@ -18,12 +20,12 @@ const SpecificProductCard = ({ data }) => {
         const res = await fetch(`http://localhost:8000/api/cart/delete-from-cart/${info._id}`, {
             method: 'DELETE',
             headers: {
-              'Content-Type': 'application/json',
-              'Authorization': context.userLoginToken
+                'Content-Type': 'application/json',
+                'Authorization': context.userLoginToken
             }
         })
 
-        if(res.ok) {
+        if (res.ok) {
             context.setDelete(context.del + 1)
             handleCartRemove()
         }
@@ -47,9 +49,12 @@ const SpecificProductCard = ({ data }) => {
 
     const handleCart = () => {
         console.log(info, "checking info")
-        const data = {product: info, quantity: info.qty}
-        dispatch({ type: "ADD_TO_CART", payload: data })
-        addToCart()
+        const data = { product: info, quantity: info.qty }
+        if (context.userLoginToken) {
+            dispatch({ type: "ADD_TO_CART", payload: data })
+            addToCart()
+        }
+        else navigate("/login")
     }
 
     const handleCartRemove = () => {
