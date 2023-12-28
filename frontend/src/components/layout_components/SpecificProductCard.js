@@ -48,7 +48,7 @@ const SpecificProductCard = ({ data }) => {
     }
 
     const handleCart = () => {
-        console.log(info, "checking info")
+        console.log(info, "checking info", context.userLoginToken)
         const data = { product: info, quantity: info.qty }
         if (context.userLoginToken) {
             dispatch({ type: "ADD_TO_CART", payload: data })
@@ -72,6 +72,8 @@ const SpecificProductCard = ({ data }) => {
         setCartData(cartState.cart)
     }, [cartState])
 
+    console.log(cartData, "specific data")
+
     return (
         <div>
             <div class="card mb-3" style={{ maxWidth: "1200px", minHeight: "400px" }}>
@@ -85,7 +87,7 @@ const SpecificProductCard = ({ data }) => {
                             <p class="card-text">{info?.description}.</p>
                             {/* <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> */}
                             <h5 class="card-title">Rs.{info?.price}</h5>
-                            {cartData.length !== 0 && cartData.some(item => item.id === info?.id) ? <button type="button" class="btn btn-primary btn-sm btn-color" onClick={handleCartRemove}> Remove from Cart</button>
+                            {cartData.length !== 0 && cartData.some(item => item.product.id === info?.id) ? <button type="button" class="btn btn-primary btn-sm btn-color" onClick={handleCartRemove}> Remove from Cart</button>
                                 : <button type="button" class="btn btn-primary btn-sm btn-color" onClick={handleCart}>Add to Cart</button>}
                         </div>
                     </div>

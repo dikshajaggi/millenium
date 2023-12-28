@@ -1,8 +1,9 @@
 // SignupForm.js
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
+import { MainContext } from '../context/MainContext';
 
 const SignupSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Email is required'),
@@ -13,6 +14,7 @@ const SignupSchema = Yup.object().shape({
 
 const Signup = ({ onSubmit }) => {
     const navigate = useNavigate()
+    const context = useContext(MainContext)
 
     const handleSignup = async (values) => {
         try {
@@ -31,35 +33,37 @@ const Signup = ({ onSubmit }) => {
         }
     };
     return (
-        <Formik
-            initialValues={{ email: '', username: '', password: '' }}
-            validationSchema={SignupSchema}
-            onSubmit={handleSignup}
-        >
-            <Form>
-                <div>
-                    <label htmlFor="email">Email:</label>
-                    <Field type="email" id="email" name="email" />
-                    <ErrorMessage name="email" component="div" />
-                </div>
+        <>
+            {context.userLoginToken ? <div>already logged in</div> : <Formik
+                initialValues={{ email: '', username: '', password: '' }}
+                validationSchema={SignupSchema}
+                onSubmit={handleSignup}
+            >
+                <Form>
+                    <div>
+                        <label htmlFor="email">Email:</label>
+                        <Field type="email" id="email" name="email" />
+                        <ErrorMessage name="email" component="div" />
+                    </div>
 
-                <div>
-                    <label htmlFor="username">Username:</label>
-                    <Field type="text" id="username" name="username" />
-                    <ErrorMessage name="username" component="div" />
-                </div>
+                    <div>
+                        <label htmlFor="username">Username:</label>
+                        <Field type="text" id="username" name="username" />
+                        <ErrorMessage name="username" component="div" />
+                    </div>
 
-                <div>
-                    <label htmlFor="password">Password:</label>
-                    <Field type="password" id="password" name="password" />
-                    <ErrorMessage name="password" component="div" />
-                </div>
+                    <div>
+                        <label htmlFor="password">Password:</label>
+                        <Field type="password" id="password" name="password" />
+                        <ErrorMessage name="password" component="div" />
+                    </div>
 
-                <div>
-                    <button type="submit">Signup</button>
-                </div>
-            </Form>
-        </Formik>
+                    <div>
+                        <button type="submit">Signup</button>
+                    </div>
+                </Form>
+            </Formik>}
+        </>
     );
 };
 

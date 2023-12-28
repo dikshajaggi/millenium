@@ -42,33 +42,35 @@ const Login = ({ onSubmit }) => {
     };
 
     return (
-        <Formik
-            initialValues={{ username: '', password: '' }}
-            validationSchema={LoginSchema}
-            onSubmit={handleLogin}
-        >
-            <Form>
-                <div>
-                    <label htmlFor="username">Username:</label>
-                    <Field type="text" id="username" name="username" />
-                    <ErrorMessage name="username" component="div" />
-                </div>
+        <>
+            {context.userLoginToken ? <div>already logged in</div> : <Formik
+                initialValues={{ username: '', password: '' }}
+                validationSchema={LoginSchema}
+                onSubmit={handleLogin}
+            >
+                <Form>
+                    <div>
+                        <label htmlFor="username">Username:</label>
+                        <Field type="text" id="username" name="username" />
+                        <ErrorMessage name="username" component="div" />
+                    </div>
 
-                <div>
-                    <label htmlFor="password">Password:</label>
-                    <Field type="password" id="password" name="password" />
-                    <ErrorMessage name="password" component="div" />
-                </div>
+                    <div>
+                        <label htmlFor="password">Password:</label>
+                        <Field type="password" id="password" name="password" />
+                        <ErrorMessage name="password" component="div" />
+                    </div>
 
-                <div>
-                    <button type="submit">Login</button>
-                </div>
-                <div>
-                    not registred?
-                    <Link to="/signup"> <button type="submit">Signup</button></Link>
-                </div>
-            </Form>
-        </Formik>
+                    <div>
+                        <button type="submit">Login</button>
+                    </div>
+                    <div>
+                        not registred?
+                        <Link to="/signup"> <button type="submit">Signup</button></Link>
+                    </div>
+                </Form>
+            </Formik>}
+        </>
     );
 };
 

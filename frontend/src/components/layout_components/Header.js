@@ -9,6 +9,11 @@ const Header = () => {
   const [user, setUser] = useState(context.user)
   const [qty, setQty] = useState()
 
+  const handleSignOut = () => {
+    localStorage.removeItem('user')
+    window.location.reload()
+  }
+
   useEffect(() => {
     setUser(context.user)
   }, [context.userLoginToken])
@@ -38,23 +43,19 @@ const Header = () => {
               <li class="nav-item text-capitalize">
                 <Link to="/offers" class="nav-link text-capitalize" >Offers</Link>
               </li>
-              {/* <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li> */}
               <li class="nav-item text-capitalize">
                 <Link to="/cart" class="nav-link">Cart</Link>
               </li>
-              <li class="nav-item text-capitalize">
-                <Link to="/login" class="nav-link" >{user !== undefined ? user : "Login"}</Link>
-              </li>
+              {user !== undefined ? <li class="nav-item dropdown text-capitalize">
+                <Link className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  {user}
+                </Link>
+                <ul class="dropdown-menu" style={{ minWidth: 'auto', maxHeight: '40px', fontSize: "14px" }}>
+                  <li><Link class="dropdown-item" href="#" to="/" onClick={handleSignOut}>Sign out</Link></li>
+                </ul>
+              </li> : <li class="nav-item text-capitalize">
+                <Link to="/login" class="nav-link" >Login</Link>
+              </li>}
             </ul>
           </div>
         </div>

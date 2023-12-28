@@ -10,8 +10,7 @@ const Cart = () => {
     const { cartState, dispatch } = useCart()
     console.log(cartState, cartState.cart, "cart state cart")
     const context = useContext(MainContext)
-    const cart = localStorage.getItem('user') && (localStorage.getItem('cart') !== undefined ? JSON.parse(localStorage.getItem('cart')) : [])
-    const [cartData, setCartData] = useState(cart)
+    const [cartData, setCartData] = useState([])
 
     const getCart = async () => {
         const data = await fetch(`http://localhost:8000/api/cart/all-products`, {
@@ -22,18 +21,18 @@ const Cart = () => {
             }
         })
         const jsondata = await data.json()
-        console.log(jsondata, "cartData jsondata")
-        localStorage.setItem('cart', JSON.stringify(jsondata.cartProducts))
+        console.log(jsondata, "cartData jsondata", data)
+        if (data.ok) localStorage.setItem('cart', JSON.stringify(jsondata.cartProducts))
         setCartData(jsondata.cartProducts)
     }
 
     useEffect(() => {
-        console.log("getttttttt cartttttttt")
-
+        console.log("getttttttt cartttttttt", localStorage.getItem('cart') !== null, localStorage.getItem('cart'))
         getCart()
+        if (localStorage.getItem('cart') !== undefined) setCartData(JSON.parse(localStorage.getItem('cart')))
     }, [cartState.cart, context.del])
 
-    console.log(cartData, "cartData", cart)
+    console.log(cartData, "undefined cartData", cartData !== null && cartData !== undefined)
 
     return (
         <div>
