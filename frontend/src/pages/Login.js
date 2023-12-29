@@ -4,6 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Link, useNavigate } from 'react-router-dom';
 import { MainContext } from '../context/MainContext';
+import "./styles.scss"
 
 const LoginSchema = Yup.object().shape({
     username: Yup.string().required('Username is required'),
@@ -48,27 +49,33 @@ const Login = ({ onSubmit }) => {
                 validationSchema={LoginSchema}
                 onSubmit={handleLogin}
             >
-                <Form>
-                    <div>
-                        <label htmlFor="username">Username:</label>
-                        <Field type="text" id="username" name="username" />
-                        <ErrorMessage name="username" component="div" />
-                    </div>
+                <div className='d-flex justify-content-center align-items-center minheight'>
+                    <Form className='d-flex flex-column justify-content-evenly align-items-center border formheight'>
+                        <div className='text-capitalize'>
+                            <div className='d-flex justify-content-between align-items-center divWidth' >
+                                <label htmlFor="username" className='mr-10'>Username:</label>
+                                <Field type="text" id="username" name="username" />
+                            </div>
+                            <ErrorMessage name="username" component="div" className="text-danger" />
+                        </div>
 
-                    <div>
-                        <label htmlFor="password">Password:</label>
-                        <Field type="password" id="password" name="password" />
-                        <ErrorMessage name="password" component="div" />
-                    </div>
+                        <div className='text-capitalize'>
+                            <div className='d-flex justify-content-between align-items-center divWidth'>
+                                <label htmlFor="password">Password:</label>
+                                <Field type="password" id="password" name="password" />
+                            </div>
+                            <ErrorMessage name="password" component="div" className="text-danger" />
+                        </div>
 
-                    <div>
-                        <button type="submit">Login</button>
-                    </div>
-                    <div>
-                        not registred?
-                        <Link to="/signup"> <button type="submit">Signup</button></Link>
-                    </div>
-                </Form>
+                        <div className='text-capitalize'>
+                            <button className="btn buttons btn-sm" type="submit">Login</button>
+                        </div>
+                        <div className='text-capitalize'>
+                            not registred?
+                            <Link to="/signup" className='linkclass'> <button className="btn buttons btn-sm" type="submit">Signup</button></Link>
+                        </div>
+                    </Form>
+                </div>
             </Formik>}
         </>
     );

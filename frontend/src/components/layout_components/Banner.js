@@ -3,7 +3,7 @@ import background_banner from "../../assests/background/background_banner.png"
 
 const Banner = () => {
   return (
-    <div id="carouselExampleDark" class="carousel carousel-dark slide">
+    <div id="carouselExampleDark" class="carousel carousel-dark slide h-auto">
       <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
         <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>

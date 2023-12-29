@@ -1,0 +1,24 @@
+@import "../styles.scss";
+
+.minheight {
+    height: 60vh;
+}
+
+.formheight {
+    padding-bottom: 4vh;
+    min-height: 80%;
+    width: 400px;
+}
+
+.divWidth {
+    width: 300px;
+}
+
+.linkclass {
+    text-decoration: none;
+}
+
+.buttons {
+    background-color: var(--primary-color) !important;
+    color: #fff;
+}

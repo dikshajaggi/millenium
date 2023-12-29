@@ -5,11 +5,15 @@ import Products from './components/Products'
 const MainLayout = () => {
   return (
     <div style={{
-      maxWidth: "100vw"
+      display: 'flex',
+      minHeight: '100vh',
+      maxWidth: '100vw'
     }}>
-      <Banner />
-      <Products />
-    </div >
+      <div style={{ flex: '1' }}> {/* This div ensures that the content takes up the available space */}
+        <Banner />
+        <Products />
+      </div>
+    </div>
   )
 }
 

@@ -4,15 +4,20 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/layout_components/Header';
 import Categories from './components/Categories';
 import Footer from './components/layout_components/Footer';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import "./styles.scss"
 
 function App() {
+  const routes = ["/login", "/signup"]
+  const location = useLocation();
+  console.log(location, "loc")
   return (
-    <div className="App">
+    <div className="App" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <Header />
-      <Categories />
-      <Outlet />
+      {routes.includes(location.pathname) ? null : <Categories />}
+      <div style={{ flex: '1' }}>
+        <Outlet />
+      </div>
       <Footer />
     </div>
   );
