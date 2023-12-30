@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Link, json, useParams } from 'react-router-dom'
+import { Link, json, useLocation, useParams } from 'react-router-dom'
 import ProductCard from '../components/layout_components/ProductCard'
 import { MainContext } from '../context/MainContext'
 

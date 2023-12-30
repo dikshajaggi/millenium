@@ -20,7 +20,8 @@ const Products = () => {
     const getProducts = async () => {
         const data = await fetch("http://localhost:8000/api/products")
         const jsonData = await data.json()
-        setProducts(jsonData)
+        const slicedArr = jsonData.slice(0, 8)
+        setProducts(slicedArr)
     }
     useEffect(() => {
         getProducts()
