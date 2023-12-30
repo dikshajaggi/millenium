@@ -66,13 +66,13 @@ const SpecificProductCard = ({ data }) => {
 
     useEffect(() => {
         getdata()
-    }, [context.userLoginToken])
+    }, [context.userLoginToken, context.del])
 
     useEffect(() => {
         setCartData(cartState.cart)
-    }, [cartState])
+    }, [cartState.cart])
 
-    console.log(cartData, "specific data")
+    console.log(cartData, "specific data", cartState)
 
     return (
         <div>

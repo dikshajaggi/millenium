@@ -28,7 +28,7 @@ const SpecificProduct = () => {
         // </div>
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", margin: "0 2vw" }}>
             <SpecificProductCard data={data} />
-            <RelatedProducts />
+            {/* <RelatedProducts /> */}
         </div>
     )
 }

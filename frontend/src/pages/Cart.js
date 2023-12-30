@@ -46,7 +46,7 @@ const Cart = () => {
     return (
         <div>
             {searched ? <Link className='style-link' to={`/product/${context.searchedProducts.name}/${context.searchedProducts._id}`} key={context.searchedProducts._id}> <ProductCard data={context.searchedProducts} /> </Link> :
-                cartData !== null && cartData !== undefined ? <div className='d-flex flex-sm-row flex-column align-items-center justify-content-between' style={{ padding: "200px" }}>
+                cartData !== null && cartData !== undefined ? <div className='d-flex flex-sm-row flex-column align-items-center justify-content-between' style={{ padding: "100px" }}>
                     <div className='d-flex flex-row flex-sm-column align-items-center justify-content-evenly'>
                         {cartData.length !== 0 && cartData.map(item => {
                             return (
@@ -57,7 +57,7 @@ const Cart = () => {
 
                     <div className='d-flex flex-column align-items-center justify-content-evenly'>
                         <CartInfo />
-                        <CartRelatedProducts />
+                        {/* <CartRelatedProducts /> */}
                     </div>
                 </div> : <div className='d-flex flex-column justify-content-center align-items-center' style={{ height: "100%" }}>
                     <h4 style={{ margin: "30px 0" }}>Your cart is currently empty !</h4>
