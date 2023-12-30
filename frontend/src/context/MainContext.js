@@ -7,7 +7,7 @@ const MainContextProvider = ({ children }) => {
     const [userLoginToken, setUserLoginToken] = useState(userDetails?.token)
     const [del, setDelete] = useState(0)
     const [user, setUser] = useState(userDetails?.name)
-    const [qtyUpdated, setQtyUpdated] = useState(false)
+    const [qtyUpdated, setQtyUpdated] = useState(0)
     const [searchedProducts, setSearchedProducts] = useState(null)
     const [searched, setSearched] = useState(false)
     const [categorySearch, setCategorySearch] = useState(false)

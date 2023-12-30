@@ -23,9 +23,8 @@ export const Counter = ({ quantity, id }) => {
             const jsondata = await data.json()
             // localStorage.setItem('cart', JSON.stringify(jsondata))
             console.log("data ok check --")
-            context.setQtyUpdated(true)
+            context.setQtyUpdated(context.qtyUpdated + 1)
         }
-        context.setQtyUpdated(false)
     }
 
     const [qty, setQty] = useState(quantity)
@@ -45,9 +44,9 @@ export const Counter = ({ quantity, id }) => {
     }
     return (
         <div className='d-flex'>
-            <span onClick={inc}>+</span>
+            <span style={{ cursor: "pointer" }} onClick={inc}>+</span>
             {qty}
-            <span onClick={dec}>-</span>
+            <span style={{ cursor: "pointer" }} onClick={dec}>-</span>
         </div>
     )
 }
@@ -79,19 +78,19 @@ const Cart_card = ({ data }) => {
     console.log(cartState, "checking redux state")
     return (
         <div>
-            <div class="card mb-3" style={{ width: "700px", height: "230px", padding: "20px" }}>
+            <div class="card mb-3" style={{ padding: "20px" }}>
                 <div class="row g-0">
-                    <div class="col-md-4" style={{ height: "200px", width: "200px" }}>
+                    <div class="col-md-4" style={{ height: "100px", width: "100px" }}>
                         <img src={data.product.cloudinaryImage} style={{ objectFit: "fill" }} class="img-fluid rounded-start" alt="productimg" />
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h5 class="card-title">{data.product.name}</h5>
-                            <h5 class="card-title">Rs.{data.product.price}</h5>
-                            <p class="card-text">In Stock</p>
+                            <h6 class="card-title text-capitalize">{data.product.name}</h6>
+                            <h6 class="card-title text-capitalize">Rs.{data.product.price}</h6>
+                            <p class="card-text text-capitalize  text-success">In Stock</p>
                             <div className='d-flex justify-content-between align-items-center' style={{ width: "30%" }}>
                                 <Counter quantity={data.quantity} id={data.product.id} />
-                                <div onClick={deleteProducts}>Delete</div>
+                                <div style={{ cursor: "pointer" }} className="text-danger" onClick={deleteProducts}>Delete</div>
                             </div>
                         </div>
                     </div>

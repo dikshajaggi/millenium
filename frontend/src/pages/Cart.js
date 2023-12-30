@@ -20,7 +20,7 @@ const Cart = () => {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': context.userLoginToken, // Include the token in the Authorization header
+                'Authorization': context.userLoginToken,
             }
         })
         const jsondata = await data.json()
@@ -34,36 +34,42 @@ const Cart = () => {
         getCart()
         context.setSearched(false)
         if (localStorage.getItem('cart') !== undefined) setCartData(JSON.parse(localStorage.getItem('cart')))
-    }, [cartState.cart, context.del])
+    }, [cartState.cart, context.del, context.qtyUpdated])
 
     useEffect(() => {
         if (context.searchedProducts !== null) setSearched(true)
         if (context.searched === false && context.categorySearch) setSearched(false)
     }, [context.searched])
 
-    console.log(cartData, "undefined cartData", cartData !== null && cartData !== undefined)
+    console.log(cartData, "undefined cartData", cartData !== null && cartData !== undefined, cartData !== null && cartData !== undefined && cartData?.length !== 0)
 
     return (
-        <div>
-            {searched ? <Link className='style-link' to={`/product/${context.searchedProducts.name}/${context.searchedProducts._id}`} key={context.searchedProducts._id}> <ProductCard data={context.searchedProducts} /> </Link> :
-                cartData !== null && cartData !== undefined && cartData?.length !== 0 ? <div className='d-flex flex-sm-row flex-column align-items-center justify-content-between' style={{ padding: "100px" }}>
-                    <div className='d-flex flex-row flex-sm-column align-items-center justify-content-evenly'>
-                        {cartData.length !== 0 && cartData.map(item => {
-                            return (
-                                <Cart_card data={item} />
-                            )
-                        })}
+        <div className="container mt-5">
+            {searched ? (
+                <Link className="style-link" to={`/product/${context.searchedProducts.name}/${context.searchedProducts._id}`} key={context.searchedProducts._id}>
+                    <ProductCard data={context.searchedProducts} />
+                </Link>
+            ) : (
+                cartData !== null && cartData !== undefined && cartData?.length !== 0 ? (
+                    <div className='row'>
+                        <div className='col-md-8'>
+                            {cartData.map(item => (
+                                <Cart_card key={item.product._id} data={item} />
+                            ))}
+                        </div>
+                        <div className='col-md-4'>
+                            <CartInfo data={cartData} />
+                        </div>
                     </div>
-
-                    <div className='d-flex flex-column align-items-center justify-content-evenly'>
-                        <CartInfo />
-                        {/* <CartRelatedProducts /> */}
+                ) : (
+                    <div className='d-flex flex-column justify-content-center align-items-center' style={{ height: "100%" }}>
+                        <h4 style={{ margin: "30px 0" }}>Your cart is currently empty!</h4>
+                        <img src={emptyCart} style={{ height: "240px", marginLeft: "-20px", marginBottom: "40px" }} alt="empty-cart" />
                     </div>
-                </div> : <div className='d-flex flex-column justify-content-center align-items-center' style={{ height: "100%" }}>
-                    <h4 style={{ margin: "30px 0" }}>Your cart is currently empty !</h4>
-                    <img src={emptyCart} style={{ height: "240px", marginLeft: "-20px", marginBottom: "40px" }} />
-                </div>}
+                )
+            )}
         </div>
+
 
     )
 }

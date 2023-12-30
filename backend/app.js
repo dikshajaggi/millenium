@@ -12,6 +12,7 @@ import categoryRoute from "./apis/Category.api.js"
 import userRoutes from "./apis/User.api.js"
 import cartRoutes from "./apis/Cart.api.js"
 import verificationRoutes from "./apis/verificationRoutes.js"
+import checkoutRoute from "./apis/Checkout.api.js"
 
 const { json } = pkg;
 const app = express();
@@ -27,6 +28,7 @@ app.use('/api/admin', authenticateAdmin, addProductRoutes, addCategoryRoutes);
 app.use('/api/', productRoutes, categoryRoute);
 app.use('/api/cart', cartRoutes);
 app.use('/verification', verificationRoutes);
+app.use('/api/', checkoutRoute)
 
 
 app.get("/", (req, res) => {
