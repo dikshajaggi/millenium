@@ -19,14 +19,16 @@ pending ->
     
     checkout form 
     show password feature
+    reset password
 
     show encrypted password in api response
     store confidential data in dotenv (for both backend and frontend)
     
 
 issues -> 
-   (NOT FIXED❗) on removing one item from cart the item left gets the qty of the removed item, gets fixed on refresh
+   (NOT FIXED❗) (temporarily solved) on removing one item from cart the item left gets the qty of the removed item, gets fixed on refresh
     opening cart page without login is causing error (create empty cart condition) ✔
+    on refresh, if an item is present in cart, "add to cart" is shown instead of "remove from cart"
 
 
 extra ->

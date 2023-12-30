@@ -73,6 +73,7 @@ const Cart_card = ({ data }) => {
         if (info.ok) {
             handleCartRemove()
             context.setDelete(context.del + 1)
+            window.location.reload()
         }
     }
     console.log(cartState, "checking redux state")
