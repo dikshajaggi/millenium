@@ -3,8 +3,8 @@ import product from "../../assests/products/product.png"
 
 const ProductCard = ({ data }) => {
     return (
-        <div>
-            <div class="card" style={{ width: "18rem", marginBottom: "2vh" }}>
+        <div style={{ margin: "0 10px" }}>
+            <div class="card" style={{ width: "14rem", marginBottom: "2vh" }}>
                 <img src={data.cloudinaryImage} class="card-img-top" alt="product" />
                 <div class="card-body card-label-style">
                     <h5 class="card-title card-label-style">{data.name}</h5>

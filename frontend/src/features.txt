@@ -10,14 +10,8 @@ pages ->
 
 pending ->
     styling & responsiveness
-    sign-out functionality
-  
-
-    remove info from local storage on sign-out ✔
-    don't show login or signup page when user is logged in ✔
 
     update cart qty in header
-    cart qty update in cart reducer
     add icon for cart, offers and user in header (react icons)
     
     checkout form 
@@ -59,5 +53,8 @@ completed ->
     empty cart page ✔
     after login take the user to homepage ✔
     after signup take the user to login page ✔
+    sign-out functionality ✔
+    remove info from local storage on sign-out ✔
+    don't show login or signup page when user is logged in ✔
 
 

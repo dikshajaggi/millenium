@@ -9,10 +9,9 @@ import "./styles.scss"
 
 function App() {
   const routes = ["/login", "/signup"]
-  const location = useLocation();
-  console.log(location, "loc")
+  const location = useLocation()
   return (
-    <div className="App" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+    <div className="App" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', maxWidth: "100vw", overflowX: "hidden" }}>
       <Header />
       {routes.includes(location.pathname) ? null : <Categories />}
       <div style={{ flex: '1' }}>
