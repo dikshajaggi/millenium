@@ -30,6 +30,7 @@ const Header = () => {
 
   const handleClick = () => {
     context.setSearched(false)
+    setSearchTerm("")
   }
 
   const handleInputChange = (event) => {
@@ -63,7 +64,7 @@ const Header = () => {
   const handleSuggestionClick = (selectedProduct) => {
     // Handle the click on a suggestion (e.g., navigate to the product details page)
     console.log(`Clicked on suggestion: ${selectedProduct.name}`)
-    if (location.pathname === "/brackets") { context.setCategorySearch(true) }
+    if (location.pathname === "/brackets" || location.pathname === "/wires%20and%20springs") { context.setCategorySearch(true) }
     setSearchTerm(selectedProduct.name)
     setSearchedProduct(selectedProduct)
     setShowSuggestions(false)
@@ -82,6 +83,10 @@ const Header = () => {
       clearTimeout(debounceTimeout)
     };
   }, [searchTerm])
+
+  useEffect(() => {
+    if (context.searched === false) setSearchTerm("")
+  }, [context.searched])
 
   const handleSearch = (event) => {
     event.preventDefault()
