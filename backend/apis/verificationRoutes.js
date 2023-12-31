@@ -1,66 +1,87 @@
-import express from 'express';
-import bodyParser from 'body-parser';
+import express from 'express'
+import bodyParser from 'body-parser'
 import twilio from "twilio"
-// Use a SMS service library like Twilio
+import User from '../models/user.models.js'
+import jwt from 'jsonwebtoken';
+import CheckoutModel from "../models/checkout.model.js"
 
+const router = express.Router()
 
-const router = express.Router();
-router.use(bodyParser.json());
-
-// Generate a random 6-digit verification code
-function generateVerificationCode() {
-    return Math.floor(100000 + Math.random() * 900000).toString();
-}
-
-// Store verification codes and their associated phone numbers (in-memory storage for simplicity)
-const verificationCodes = {};
-
-// Twilio configuration (replace with your own credentials)
+// Initialize the Twilio client with your credentials
 const accountSid = 'AC7e56caff5114ee8d280dbf67f6cc976f';
-const authToken = 'a809098c42d514b5d82b3614e02916d7';
-const client = new twilio(accountSid, authToken);
+const authToken = '28b38d7b19eed595b5476d5a6569184c';
+const client = twilio(accountSid, authToken);
 
-// Endpoint to initiate phone number verification
-router.post('/send-verification-code', async (req, res) => {
-    const phoneNumber = req.body.phoneNumber;
 
-    // Generate a verification code
-    const verificationCode = generateVerificationCode();
+// Middleware to authenticate the user
+const authenticateUser = (req, res, next) => {
+    const token = req.header('Authorization');
+    console.log(token, "token")
 
-    // Store the verification code with the phone number
-    verificationCodes[phoneNumber] = verificationCode;
+    if (!token) {
+        return res.status(401).json({ error: 'Unauthorized - Missing Token' });
+    }
 
     try {
-        // Use Twilio (or your preferred SMS service) to send the verification code
+        const decoded = jwt.verify(token, 'QiOjE3MDE2OTk0MzMsImV4cCI6MTcwMTcwMzAzM30.1sR1U6uNDE0cGB7Pb-Di-nBeiRgpMN3Jog4aduTlY4o');
+        console.log('Decoded Token', decoded, token);
+        req.user = decoded; // Attach user information to the request object
+        next();
+    } catch (error) {
+        return res.status(403).json({ error: 'Forbidden - Invalid Token' });
+    }
+};
+
+router.post('/send-order-details', authenticateUser, async (req, res) => {
+    const userId = req.user.userId; // Assuming you have authentication middleware
+    const phoneNumber = req.body.phoneNumber;
+    const phoneNumberWithCountryCode = "+91" + phoneNumber;
+
+
+    try {
+        // Find the user based on the user ID (you can adjust this based on your authentication mechanism)
+        const user = await User.findById(userId);
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        // Fetch the user's cart details and total price
+        const checkoutDetails = await CheckoutModel.findOne({ user: user._id });
+
+        if (!checkoutDetails) {
+            return res.status(404).json({ error: 'Checkout details not found' });
+        }
+
+        // You may need to adjust this based on your actual data structure
+        // const cartProducts = checkoutDetails.cart.map(item => ({
+        //     productName: item.product.name,
+        //     quantity: item.quantity,
+        // }));
+
+        // const totalPrice = checkoutDetails.totalPrice; // Adjust this based on your data structure
+
+        // Compose the message with order details
+        // const messageBody = `Thank you for your order!\n\nOrder Details:\n${formatCartDetails(cartProducts)}\nTotal Price: ${totalPrice}`;
+        const messageBody = "Thank you for your order!Order"
+
+        // Use Twilio (or your preferred SMS service) to send the order details
         await client.messages.create({
-            body: `i love you`,
-            to: phoneNumber,
-            from: '+12568010504',
+            body: messageBody,
+            to: phoneNumberWithCountryCode,
+            from: '+12568010504', // Replace with your Twilio phone number
         });
 
-        res.status(200).json({ message: 'Verification code sent successfully' });
+        res.status(200).json({ message: 'Order details sent successfully' });
     } catch (error) {
-        console.error('Error sending verification code:', error);
-        res.status(500).json({ error: 'Failed to send verification code' });
+        console.error('Error sending order details:', error);
+        res.status(500).json({ error: 'Failed to send order details' });
     }
 });
 
-// Endpoint to verify the entered code
-router.post('/verify-code', (req, res) => {
-    const phoneNumber = req.body.phoneNumber;
-    const enteredCode = req.body.code;
-
-    // Retrieve the stored verification code
-    const storedCode = verificationCodes[phoneNumber];
-
-    if (enteredCode === storedCode) {
-        // Codes match, phone number is verified
-        res.status(200).json({ message: 'Phone number verified successfully' });
-    } else {
-        // Codes do not match
-        res.status(400).json({ error: 'Invalid verification code' });
-    }
-});
-
+// Helper function to format cart details
+function formatCartDetails(cartProducts) {
+    return cartProducts.map(product => `${product.quantity} x ${product.productName}`).join('\n');
+}
 
 export default router

@@ -17,7 +17,7 @@ const authenticateUser = (req, res, next) => {
 
     try {
         const decoded = jwt.verify(token, 'QiOjE3MDE2OTk0MzMsImV4cCI6MTcwMTcwMzAzM30.1sR1U6uNDE0cGB7Pb-Di-nBeiRgpMN3Jog4aduTlY4o');
-        console.log('Decoded Token:', decoded);
+        console.log('Decoded Token: ---------', decoded);
         req.user = decoded; // Attach user information to the request object
         next();
     } catch (error) {

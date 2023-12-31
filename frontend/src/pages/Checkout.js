@@ -32,7 +32,18 @@ const Checkout = () => {
         paymentMethod: '',
     };
 
+    const sendOrder = async (phoneNumber) => {
+        const info = await fetch('http://localhost:8000/api/order/send-order-details', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': context.userLoginToken,
+            },
+            body: JSON.stringify({ phoneNumber }),
+        });
+    }
     const handleSubmit = async (values, { resetForm }) => {
+        console.log(context.userLoginToken, 'Checkout successful:')
         try {
             const response = await fetch('http://localhost:8000/api/checkout', {
                 method: 'POST',
@@ -46,11 +57,12 @@ const Checkout = () => {
             const data = await response.json();
 
             if (response.ok) {
-                console.log('Checkout successful:', data);
+                console.log('Checkout successful:', data, values.phoneNumber, context.userLoginToken,);
                 toast.success('Order placed successfully');
 
+                await sendOrder(values.phoneNumber)
                 // Reset form fields
-                resetForm({ values: initialValues });
+                // resetForm({ values: initialValues });
             } else {
                 console.error('Checkout failed:', data.message);
                 toast.error('Failed to place order');
