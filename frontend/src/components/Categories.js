@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Category_Card from './layout_components/Category_Card'
+import CategoryCard from './layout_components/CategoryCard'
 import { Link } from 'react-router-dom'
 
 const Categories = () => {
@@ -24,7 +24,7 @@ const Categories = () => {
       {categories !== null && categories.map(item => {
         return (
           <Link className='style-link' to={`/${item.name}`} key={item._id}>
-            <Category_Card name={item.name} />
+            <CategoryCard name={item.name} />
           </Link>
         )
       })}

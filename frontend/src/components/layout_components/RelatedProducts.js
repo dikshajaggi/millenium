@@ -1,5 +1,4 @@
 import React from 'react'
-import ProductCard from './ProductCard'
 
 const RelatedProducts = () => {
     // fetch 4 random products from the db of the same category 

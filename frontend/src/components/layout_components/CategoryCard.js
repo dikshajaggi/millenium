@@ -2,7 +2,7 @@ import React from 'react'
 import braces from "../../assests/icons/catgeories/braces.png"
 import "../styles.scss"
 
-const Category_Card = ({ name }) => {
+const CategoryCard = ({ name }) => {
   return (
     <div class="card d-flex flex-column align-items-center" style={{ width: "10rem", border: "none", height: "6rem" }}>
       <img src={braces} style={{ width: "35%" }} className="card-img-top mx-auto my-auto d-block" alt="braces" />
@@ -13,4 +13,4 @@ const Category_Card = ({ name }) => {
   )
 }
 
-export default Category_Card
+export default CategoryCard

@@ -1,6 +1,6 @@
 // auth.routes.js
 import express from 'express';
-import { generateAdminToken, authenticateAdmin } from '../auth.js';
+import { generateAdminToken } from '../auth.js';
 import bcrypt from 'bcrypt';
 import Admin from "../models/admin/admin_reg.models.js"
 

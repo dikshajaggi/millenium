@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import "../styles.scss"
-import { CartContext, useCart } from '../../context/cartContext'
+import { useCart } from '../../context/cartContext'
 import { MainContext } from '../../context/MainContext'
 import { useNavigate } from 'react-router-dom'
 
@@ -66,6 +66,7 @@ const SpecificProductCard = ({ data }) => {
 
     useEffect(() => {
         getdata()
+        // eslint-disable-next-line
     }, [context.userLoginToken, context.del])
 
     useEffect(() => {

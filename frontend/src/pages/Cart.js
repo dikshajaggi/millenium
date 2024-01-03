@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import Cart_card from '../components/layout_components/Cart_card'
-import CartRelatedProducts from '../components/layout_components/CartRelatedProducts'
+import Cartcard from '../components/layout_components/Cartcard'
 import CartInfo from '../components/layout_components/CartInfo'
 import { useCart } from '../context/cartContext'
 import { MainContext } from '../context/MainContext'
@@ -9,7 +8,7 @@ import { Link } from 'react-router-dom'
 import ProductCard from '../components/layout_components/ProductCard'
 
 const Cart = () => {
-    const { cartState, dispatch } = useCart()
+    const { cartState } = useCart()
     console.log(cartState, cartState.cart, "cart state cart")
     const context = useContext(MainContext)
     const [cartData, setCartData] = useState([])
@@ -34,11 +33,13 @@ const Cart = () => {
         getCart()
         context.setSearched(false)
         if (localStorage.getItem('cart') !== undefined) setCartData(JSON.parse(localStorage.getItem('cart')))
+        // eslint-disable-next-line
     }, [cartState.cart, context.del, context.qtyUpdated])
 
     useEffect(() => {
         if (context.searchedProducts !== null) setSearched(true)
         if (context.searched === false && context.categorySearch) setSearched(false)
+        // eslint-disable-next-line
     }, [context.searched])
 
     console.log(cartData, "undefined cartData", cartData !== null && cartData !== undefined, cartData !== null && cartData !== undefined && cartData?.length !== 0)
@@ -54,7 +55,7 @@ const Cart = () => {
                     <div className='row'>
                         <div className='col-md-8'>
                             {cartData.map(item => (
-                                <Cart_card key={item.product._id} data={item} />
+                                <Cartcard key={item.product._id} data={item} />
                             ))}
                         </div>
                         <div className='col-md-4'>

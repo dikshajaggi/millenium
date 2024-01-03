@@ -3,7 +3,6 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 import Product from '../models/product.models.js';
 import { generateAdminToken } from '../auth.js';
-import Category from '../models/category.models.js';
 import { v2 as cloudinary } from 'cloudinary';
 
 const router = express.Router();

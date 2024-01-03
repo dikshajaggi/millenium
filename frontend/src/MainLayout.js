@@ -10,7 +10,8 @@ const MainLayout = () => {
   useEffect(() => {
     if (context.searchedProducts !== null) setSearched(true)
     if (context.searched === false) setSearched(false)
-  }, [context.setSearched])
+    // eslint-disable-next-line
+  }, [context.searched])
   return (
     <div style={{
       display: 'flex',

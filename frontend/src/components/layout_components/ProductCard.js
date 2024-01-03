@@ -1,5 +1,4 @@
 import React from 'react'
-import product from "../../assests/products/product.png"
 import { useLocation } from 'react-router-dom'
 
 const ProductCard = ({ data }) => {

@@ -1,5 +1,4 @@
 import express from 'express'
-import bodyParser from 'body-parser'
 import twilio from "twilio"
 import User from '../models/user.models.js'
 import jwt from 'jsonwebtoken';

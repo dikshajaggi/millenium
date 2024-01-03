@@ -1,4 +1,3 @@
-import MainLayout from './MainLayout';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/layout_components/Header';
