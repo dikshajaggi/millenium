@@ -1,0 +1,39 @@
+name: Full Stack CI/CD
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: self-hosted
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+    - uses: actions/checkout@v3
+
+    # Frontend build
+    - name: Setup and Build Frontend
+      run: |
+        cd frontend
+        npm ci
+        npm run build --if-present
+
+    # Backend build
+    - name: Setup and Build Backend
+      run: |
+        cd backend
+        npm ci
+        npm run build
+
+    # Add additional steps like testing, linting, etc.
+
+    # Deploy
+    - name: Deploy
+      if: success()
+      run: |
+        # Add deployment steps here, e.g., deploying to a server or a cloud provider
