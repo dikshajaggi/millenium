@@ -22,6 +22,7 @@ const CartInfo = ({ data }) => {
     useEffect(() => {
         getData()
         console.log("checking order details")
+        // eslint-disable-next-line
     }, [data, context.qtyUpdated])
     return (
         <div>

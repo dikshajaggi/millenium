@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Link, json, useLocation, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import ProductCard from '../components/layout_components/ProductCard'
 import { MainContext } from '../context/MainContext'
 
@@ -18,11 +18,13 @@ const ProductPage = () => {
     useEffect(() => {
         context.setSearched(false)
         getProductsByCategory()
+        // eslint-disable-next-line
     }, [category])
 
     useEffect(() => {
         if (context.searchedProducts !== null && context.categorySearch) setSearched(true)
         if (context.searched === false && context.categorySearch) setSearched(false)
+        // eslint-disable-next-line
     }, [context.searched])
     return (
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-evenly" }}>

@@ -1,5 +1,5 @@
 // SignupForm.js
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';

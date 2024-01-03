@@ -30,6 +30,7 @@ const Products = () => {
     useEffect(() => {
         if (context.searchedProducts !== null) setSearched(true)
         if (context.searched === false) setSearched(false)
+        // eslint-disable-next-line
     }, [context.searched])
 
     return (

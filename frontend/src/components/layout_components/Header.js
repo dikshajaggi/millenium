@@ -2,14 +2,12 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import "../styles.scss"
 import { Link, useLocation } from 'react-router-dom'
 import { MainContext } from '../../context/MainContext'
-import _ from "lodash"
 
 const Header = () => {
   const context = useContext(MainContext)
   const location = useLocation()
   console.log(location, "loc")
   const [user, setUser] = useState(context.user)
-  const [qty, setQty] = useState()
 
   const handleSignOut = () => {
     localStorage.removeItem('user')
@@ -18,6 +16,7 @@ const Header = () => {
 
   useEffect(() => {
     setUser(context.user)
+    // eslint-disable-next-line
   }, [context.userLoginToken])
 
   const [searchTerm, setSearchTerm] = useState('')
@@ -82,6 +81,7 @@ const Header = () => {
     return () => {
       clearTimeout(debounceTimeout)
     };
+    // eslint-disable-next-line
   }, [searchTerm])
 
   useEffect(() => {
