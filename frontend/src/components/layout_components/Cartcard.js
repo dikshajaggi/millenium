@@ -10,7 +10,7 @@ export const Counter = ({ quantity, id }) => {
         const requestBody = {
             quantityChange: productQty
         }
-        const data = await fetch(`http://localhost:8000/api/cart/update-cart/${id}`, {
+        const data = await fetch(`https://millenium-orthodontics.onrender.com/api/cart/update-cart/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ const Cartcard = ({ data }) => {
     }
 
     const deleteProducts = async () => {
-        const info = await fetch(`http://localhost:8000/api/cart/delete-from-cart/${data.product._id}`, {
+        const info = await fetch(`https://millenium-orthodontics.onrender.com/api/cart/delete-from-cart/${data.product._id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

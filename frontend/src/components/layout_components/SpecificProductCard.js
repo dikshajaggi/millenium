@@ -11,13 +11,13 @@ const SpecificProductCard = ({ data }) => {
     const context = useContext(MainContext)
     const navigate = useNavigate()
     const getdata = async () => {
-        const detail = await fetch(`http://localhost:8000/api/products/${data.id}/${data.product}`)
+        const detail = await fetch(`https://millenium-orthodontics.onrender.com/api/products/${data.id}/${data.product}`)
         const jsondata = await detail.json()
         setInfo(jsondata)
     }
 
     const deleteProducts = async () => {
-        const res = await fetch(`http://localhost:8000/api/cart/delete-from-cart/${info._id}`, {
+        const res = await fetch(`https://millenium-orthodontics.onrender.com/api/cart/delete-from-cart/${info._id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ const SpecificProductCard = ({ data }) => {
     }
 
     const addToCart = async () => {
-        const data = await fetch("http://localhost:8000/api/cart/add-to-cart", {
+        const data = await fetch("https://millenium-orthodontics.onrender.com/api/cart/add-to-cart", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

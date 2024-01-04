@@ -33,7 +33,7 @@ const Checkout = () => {
     };
 
     const sendOrder = async (phoneNumber) => {
-        await fetch('http://localhost:8000/api/order/send-order-details', {
+        await fetch('https://millenium-orthodontics.onrender.com/api/order/send-order-details', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -45,7 +45,7 @@ const Checkout = () => {
     const handleSubmit = async (values, { resetForm }) => {
         console.log(context.userLoginToken, 'Checkout successful:')
         try {
-            const response = await fetch('http://localhost:8000/api/checkout', {
+            const response = await fetch('https://millenium-orthodontics.onrender.com/api/checkout', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

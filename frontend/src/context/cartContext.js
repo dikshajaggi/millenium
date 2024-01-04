@@ -12,7 +12,7 @@ const CartContextProvider = (props) => {
 
   useEffect(() => {
     const getCart = async () => {
-      await fetch(`http://localhost:8000/api/cart/all-products`, {
+      await fetch(`https://millenium-orthodontics.onrender.com/api/cart/all-products`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

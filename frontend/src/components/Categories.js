@@ -8,7 +8,7 @@ const Categories = () => {
   }])
 
   const getCategories = async () => {
-    const data = await fetch("http://localhost:8000/api/categories")
+    const data = await fetch("https://millenium-orthodontics.onrender.com/api/categories")
     const jsonData = await data.json()
     console.log(jsonData)
     setCategories(jsonData)

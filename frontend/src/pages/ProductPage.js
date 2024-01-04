@@ -10,7 +10,7 @@ const ProductPage = () => {
     const [searched, setSearched] = useState(false)
 
     const getProductsByCategory = async () => {
-        const data = await fetch(`http://localhost:8000/api/products/${category}`)
+        const data = await fetch(`https://millenium-orthodontics.onrender.com/api/products/${category}`)
         const jsondata = await data.json()
         setProducts(jsondata)
         console.log(jsondata, "products by catgeory")

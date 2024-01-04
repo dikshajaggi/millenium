@@ -18,7 +18,7 @@ const Login = ({ onSubmit }) => {
     const handleLogin = async (values) => {
         console.log(values, "login")
         try {
-            const response = await fetch("http://localhost:8000/api/user/login", {
+            const response = await fetch("https://millenium-orthodontics.onrender.com/api/user/login", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

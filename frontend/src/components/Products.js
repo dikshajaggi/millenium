@@ -18,7 +18,7 @@ const Products = () => {
     const [products, setProducts] = useState([])
     const [searched, setSearched] = useState(false)
     const getProducts = async () => {
-        const data = await fetch("http://localhost:8000/api/products")
+        const data = await fetch("https://millenium-orthodontics.onrender.com/api/products")
         const jsonData = await data.json()
         const slicedArr = jsonData.slice(0, 8)
         setProducts(slicedArr)

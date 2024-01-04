@@ -15,7 +15,7 @@ const Cart = () => {
     const [searched, setSearched] = useState(false)
 
     const getCart = async () => {
-        const data = await fetch(`http://localhost:8000/api/cart/all-products`, {
+        const data = await fetch(`https://millenium-orthodontics.onrender.com/api/cart/all-products`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

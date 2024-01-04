@@ -50,7 +50,7 @@ const Header = () => {
 
   const performSearch = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/api/search?name=${searchTerm}`)
+      const response = await fetch(`https://millenium-orthodontics.onrender.com/api/search?name=${searchTerm}`)
       const products = await response.json()
       console.log(products, "searching products")
       setSearchResults(products)
