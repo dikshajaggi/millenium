@@ -3,7 +3,7 @@ pages ->
     specific category -> products ✔ 
     specific product ✔ 
     cart ✔ 
-    checkout  
+    checkout ✔  
     login (formik) ✔ 
     sign-up (formik) ✔ 
     admin ->
