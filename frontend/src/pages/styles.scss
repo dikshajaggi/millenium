@@ -22,3 +22,19 @@
     background-color: var(--primary-color) !important;
     color: #fff;
 }
+
+.footer-pages-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.work-in-progress {
+    height: 400px;
+}
+
+.work-in-progress-H4{
+    color: var(--primary-color) !important;
+    font-size: 28px;
+}

@@ -40,7 +40,7 @@ extra ->
         unit
         integration
     SSR(server side rendering)
-    CI/CD pipeline (continuous integration/ continuous deployment)
+    CI/CD pipeline (continuous integration/ continuous deployment) ✔ 
     
 
 completed ->

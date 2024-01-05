@@ -8,6 +8,10 @@ import ProductPage from "../pages/ProductPage";
 import Offers from "../pages/Offers";
 import MainLayout from "../MainLayout";
 import Signup from "../pages/Signup";
+import Blog from "../pages/footer/Blog";
+import Contact from "../pages/footer/Contact";
+import TnC from "../pages/footer/TnC";
+import About from "../pages/footer/About";
 
 export const router = createBrowserRouter([
     {
@@ -45,6 +49,22 @@ export const router = createBrowserRouter([
             {
                 path: "/product/:product/:id",
                 element: <SpecificProduct />
+            },
+            {
+                path: "/about",
+                element: <About />
+            },
+            {
+                path: "/terms_conditions",
+                element: <TnC />
+            }, 
+            {
+                path: "/contact",
+                element: <Contact />
+            },
+            {
+                path: "/blog",
+                element: <Blog />
             }
         ]
     },

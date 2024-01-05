@@ -125,9 +125,9 @@ const Header = () => {
                 <button class="btn btn-outline search-btn" type="submit" onClick={handleSearch}>Search</button>
               </form>
               {showSuggestions && searchResults.length > 0 && (
-                <ul className="suggestion-list" style={{ position: 'absolute', top: '100%', left: 0, zIndex: 1 }}>
+                <ul className="suggestion-list" style={{ position: 'absolute', top: '100%', left: 0, zIndex: 1, listStyleType: "none", backgroundColor: "#ffffff", height: "auto", width: "200px", borderRadius: "5px", border: "1px solid #2B97A4" }}>
                   {searchResults.map((product) => (
-                    <li key={product._id} onClick={() => handleSuggestionClick(product)}>
+                    <li key={product._id} style={{textTransform: "capitalize", cursor: "pointer"}} onClick={() => handleSuggestionClick(product)}>
                       {product.name}
                     </li>
                   ))}
