@@ -84,8 +84,8 @@ const SpecificProductCard = ({ data }) => {
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h5 class="card-title text-center">{info?.name}</h5>
-                            <p class="card-text">{info?.description}.</p>
+                            <h5 class="card-title text-center text-capitalize">{info?.name}</h5>
+                            <p class="card-text text-capitalize">{info?.description}.</p>
                             {/* <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> */}
                             <h5 class="card-title">Rs.{info?.price}</h5>
                             {cartData.length !== 0 && cartData.some(item => item.product.id === info?.id) ? <button type="button" class="btn btn-primary btn-sm btn-color" onClick={handleCartRemove}> Remove from Cart</button>
