@@ -34,7 +34,7 @@ const Products = () => {
     }, [context.searched])
 
     return (
-        <div className="d-flex justify-content-center align-items-center" style={{ padding: "0 2vw", margin: "4vh auto", flexWrap: "wrap", flexBasis: "33.33%" }}>
+        <div className="d-flex justify-content-center align-items-center res-products" >
             {searched ? <Link className='style-link' to={`/product/${context.searchedProducts.name}/${context.searchedProducts._id}`} key={context.searchedProducts._id}> <ProductCard data={context.searchedProducts} /> </Link> : products.map(item => {
                 return (
                     <Link className='style-link' to={`/product/${item.name}/${item._id}`} key={item._id}> <ProductCard data={item} /> </Link>
