@@ -77,10 +77,10 @@ const SpecificProductCard = ({ data }) => {
 
     return (
         <div>
-            <div class="card mb-3" style={{ maxWidth: "1200px", minHeight: "400px" }}>
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src={info?.cloudinaryImage} class="img-fluid rounded-start" alt="productimg" />
+            <div class="card mb-3 res-specific-prod-card-wrapper">
+                <div class="row g-0 res-specific-prod-card">
+                    <div class="col-md-4 res-specific-prod-img-wrapper" >
+                        <img src={info?.cloudinaryImage} class="img-fluid rounded-start res-specific-prod-img" alt="productimg" />
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">

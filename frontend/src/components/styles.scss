@@ -85,6 +85,11 @@
     padding: 0 2vw;
 }
 
+.res-specific-prod-card {
+    max-width: 1200px;
+    min-height: 400px;
+}
+
 @media only screen and (max-width: 767px) {
     .footer-div {
         width: 100%;
@@ -142,5 +147,21 @@
         background-color: #464646;
         color: white;
         padding: 0 2vw;
+    }
+
+    .res-specific-prod-card-wrapper {
+        max-width: 800px;
+        min-height: 150px;
+    }
+
+    .res-specific-prod-img-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .res-specific-prod-img {
+        height: auto;
+        width: 40%;
     }
 }
