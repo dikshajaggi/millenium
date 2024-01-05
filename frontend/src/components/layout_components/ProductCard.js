@@ -9,7 +9,7 @@ const ProductCard = ({ data }) => {
             <div class="card" style={{ width: "14rem", marginBottom: "2vh" }}>
                 <img src={data.cloudinaryImage} class="card-img-top" alt="product" />
                 <div class="card-body card-label-style">
-                    <h5 class="card-title card-label-style">{data.name}</h5>
+                    <h5 class="card-title card-label-style text-center">{data.name}</h5>
                     {location.pathname === "/" ? null : <p class="card-text card-label-style">{data.description}</p>}
                 </div>
             </div>

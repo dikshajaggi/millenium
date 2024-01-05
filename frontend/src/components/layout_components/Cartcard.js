@@ -84,7 +84,7 @@ const Cartcard = ({ data }) => {
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h6 class="card-title text-capitalize">{data.product.name}</h6>
+                            <h6 class="card-title text-capitalize text-center">{data.product.name}</h6>
                             <h6 class="card-title text-capitalize">Rs.{data.product.price}</h6>
                             <p class="card-text text-capitalize  text-success">In Stock</p>
                             <div className='d-flex justify-content-between align-items-center' style={{ width: "30%" }}>

@@ -84,7 +84,7 @@ const SpecificProductCard = ({ data }) => {
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h5 class="card-title">{info?.name}</h5>
+                            <h5 class="card-title text-center">{info?.name}</h5>
                             <p class="card-text">{info?.description}.</p>
                             {/* <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> */}
                             <h5 class="card-title">Rs.{info?.price}</h5>
