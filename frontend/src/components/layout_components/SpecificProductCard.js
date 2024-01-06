@@ -77,19 +77,19 @@ const SpecificProductCard = ({ data }) => {
 
     return (
         <div>
-            <div class="card mb-3 res-specific-prod-card-wrapper">
-                <div class="row g-0 res-specific-prod-card">
-                    <div class="col-md-4 res-specific-prod-img-wrapper" >
-                        <img src={info?.cloudinaryImage} class="img-fluid rounded-start res-specific-prod-img" alt="productimg" />
+            <div className="card mb-3 res-specific-prod-card-wrapper">
+                <div className="row g-0 res-specific-prod-card">
+                    <div className="col-md-4 res-specific-prod-img-wrapper" >
+                        <img src={info?.cloudinaryImage} className="img-fluid rounded-start res-specific-prod-img" alt="productimg" />
                     </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title text-capitalize responsive-center">{info?.name}</h5>
-                            <p class="card-text text-capitalize">{info?.description}.</p>
-                            {/* <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> */}
-                            <h5 class="card-title">Rs.{info?.price}</h5>
-                            {cartData.length !== 0 && cartData.some(item => item.product.id === info?.id) ? <button type="button" class="btn btn-primary btn-sm btn-color" onClick={handleCartRemove}> Remove from Cart</button>
-                                : <button type="button" class="btn btn-primary btn-sm btn-color" onClick={handleCart}>Add to Cart</button>}
+                    <div className="col-md-8">
+                        <div className="card-body">
+                            <h5 className="card-title text-capitalize responsive-center">{info?.name}</h5>
+                            <p className="card-text text-capitalize">{info?.description}.</p>
+                            {/* <p className="card-text"><small className="text-body-secondary">Last updated 3 mins ago</small></p> */}
+                            <h5 className="card-title">Rs.{info?.price}</h5>
+                            {cartData.length !== 0 && cartData.some(item => item.product.id === info?.id) ? <button type="button" className="btn btn-primary btn-sm btn-color" onClick={handleCartRemove}> Remove from Cart</button>
+                                : <button type="button" className="btn btn-primary btn-sm btn-color" onClick={handleCart}>Add to Cart</button>}
                         </div>
                     </div>
                 </div>

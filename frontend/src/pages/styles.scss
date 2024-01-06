@@ -41,6 +41,46 @@ max-width: 40%;
     font-size: 28px;
 }
 
+.height100 {
+    height: 100%;
+}
+
+.cart-empty-h4{
+    margin: 30px 0;
+}
+
+.cart-empty-img{
+    height: 240px; 
+    margin-left: -20px; 
+    margin-bottom: 40px
+}
+
+.pass-visibility{
+    background-color: transparent;
+    border: none;
+    position: relative;
+    left: 270;
+}
+
+.pass-visibility-img{
+    height: 2.5vh;
+}
+
+.width100 {
+    width: 100%
+}
+
+.product-page-div {
+    padding: 0 2vw; 
+    margin: 4vh auto;
+    flex-wrap: wrap;
+    flex-basis: 33.33%;
+}
+
+.specific-product-div{
+    margin: 0 2vw;
+}
+
 @media only screen and (max-width: 600px) {
     .work-in-progress-H4{
         color: var(--primary-color) !important;

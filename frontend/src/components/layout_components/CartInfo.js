@@ -26,13 +26,13 @@ const CartInfo = ({ data }) => {
     }, [data, context.qtyUpdated])
     return (
         <div>
-            <div class="card border-success mb-3" style={{ maxWidth: "18rem" }}>
-                <div class="card-header bg-transparent border-success">Order Summary</div>
-                <div class="card-body">
-                    <p class="card-text">Total Items: {qty}</p>
-                    <h5 class="card-title text-danger">Order Total: Rs. {price}</h5>
+            <div className="card border-success mb-3 cart-info-width">
+                <div className="card-header bg-transparent border-success">Order Summary</div>
+                <div className="card-body">
+                    <p className="card-text">Total Items: {qty}</p>
+                    <h5 className="card-title text-danger">Order Total: Rs. {price}</h5>
                 </div>
-                <div class="card-footer bg-transparent border-success"><Link to="/checkout" className='text-decoration-none'><button className='btn buttons'>Checkout</button></Link></div>
+                <div className="card-footer bg-transparent border-success"><Link to="/checkout" className='text-decoration-none'><button className='btn buttons'>Checkout</button></Link></div>
             </div>
         </div>
     )

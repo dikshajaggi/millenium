@@ -90,16 +90,11 @@ const Signup = ({ onSubmit }) => {
                 <button
                   type="button"
                   onClick={togglePasswordVisibility}
-                  style={{
-                    backgroundColor: "transparent",
-                    border: "none",
-                    position: "relative",
-                    left: 270,
-                  }}
+                  className="pass-visibility"
                 >
                   <img
                     src={showPassword ? hide : show}
-                    style={{ height: "2.5vh" }}
+                    className="pass-visibility-img"
                     alt="show/hide pass"
                   />
                 </button>

@@ -63,9 +63,9 @@ const Cart = () => {
                         </div>
                     </div>
                 ) : (
-                    <div className='d-flex flex-column justify-content-center align-items-center' style={{ height: "100%" }}>
-                        <h4 style={{ margin: "30px 0" }}>Your cart is currently empty!</h4>
-                        <img src={emptyCart} style={{ height: "240px", marginLeft: "-20px", marginBottom: "40px" }} alt="empty-cart" />
+                    <div className='d-flex flex-column justify-content-center align-items-center height100'>
+                        <h4 className='cart-empty-h4'>Your cart is currently empty!</h4>
+                        <img src={emptyCart} className='cart-empty-img' alt="empty-cart" />
                     </div>
                 )
             )}
