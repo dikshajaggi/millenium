@@ -181,5 +181,26 @@ router.patch('/update-cart/:productId', authenticateUser, async (req, res) => {
     }
 });
 
+// Route to clear all products from the user's cart
+router.delete('/clear-cart', authenticateUser, async (req, res) => {
+    try {
+        const userId = req.user.userId;
+
+        // Check if the user exists
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Clear all products from the user's cart
+        user.cart = [];
+        await user.save();
+
+        res.status(200).json({ message: 'Cart cleared successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+});
 
 export default router;
