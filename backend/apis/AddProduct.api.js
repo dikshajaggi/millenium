@@ -29,7 +29,7 @@ router.post('/products', async (req, res) => {
           folder: 'website-products',
           use_filename: true,
           unique_filename: false,
-          timestamp: Math.floor(Date.now() / 1000) // Add timestamp to the request
+          timestamp: Math.floor(Date.now() / 1000)
         });
 
 

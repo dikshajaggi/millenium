@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import "./styles.scss"
 import { MainContext } from '../context/MainContext';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 const CheckoutSchema = Yup.object().shape({
     userName: Yup.string().required('Required'),
