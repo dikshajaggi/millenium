@@ -62,7 +62,7 @@ const Checkout = () => {
 
                 await sendOrder(values.phoneNumber)
                 // Reset form fields
-                // resetForm({ values: initialValues });
+                resetForm({ values: initialValues })
             } else {
                 console.error('Checkout failed:', data.message);
                 toast.error('Failed to place order');
