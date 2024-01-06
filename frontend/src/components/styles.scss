@@ -49,20 +49,119 @@
     color: #fff;
 }
 
-.footer-div{
+.footer-div {
     width: 33.33%;
     text-align: center;
     cursor: pointer;
 }
 
+.res-products {
+    padding: 0 2vw;
+    margin: 4vh auto;
+    flex-wrap: wrap;
+    flex-basis: 33.33%;
+}
+
+.res-card {
+    width: 14rem;
+    margin-bottom: 2vh;
+}
+
+.res-cat-image {
+    width: 35%
+}
+
+.res-cat-card {
+    width: 10rem;
+    border: none;
+    height: 6rem;
+}
+
+.res-footer-wrapper {
+    width: 100%;
+    height: 20vh;
+    background-color: #464646;
+    color: white;
+    padding: 0 2vw;
+}
+
+.res-specific-prod-card {
+    max-width: 1200px;
+    min-height: 400px;
+}
+
 @media only screen and (max-width: 767px) {
-    .footer-div{
+    .footer-div {
         width: 100%;
         text-align: center;
         cursor: pointer;
+        margin-bottom: 4px;
     }
 
-    .responsive-center{
+    .responsive-center {
         text-align: center;
     }
-  }
+
+    .res-products {
+        padding: 0 2vw;
+        margin: 4vh auto;
+        flex-wrap: wrap;
+        flex-basis: 50%;
+    }
+
+    .res-card {
+        display: flex;
+        align-items: center;
+        width: 8rem;
+        margin-bottom: 1vh;
+    }
+
+    .res-product-img {
+        width: 50%;
+        height: auto;
+    }
+
+    .res-product-name {
+        font-size: 10px;
+    }
+
+    .card-label-style {
+        text-transform: capitalize;
+        cursor: pointer;
+        font-size: 10.5px;
+    }
+
+    .res-cat-image {
+        width: 30%
+    }
+
+    .res-cat-card {
+        width: 6rem;
+        border: none;
+        height: 4rem;
+    }
+
+    .res-footer-wrapper {
+        width: 100%;
+        height: 15vh;
+        background-color: #464646;
+        color: white;
+        padding: 0 2vw;
+    }
+
+    .res-specific-prod-card-wrapper {
+        max-width: 800px;
+        min-height: 150px;
+    }
+
+    .res-specific-prod-img-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .res-specific-prod-img {
+        height: auto;
+        width: 55%;
+    }
+}
