@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import "./styles.scss"
 import { MainContext } from '../context/MainContext';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 const CheckoutSchema = Yup.object().shape({
     userName: Yup.string().required('Required'),
@@ -33,15 +33,31 @@ const Checkout = () => {
     };
 
     const sendOrder = async (phoneNumber) => {
-        await fetch('https://millenium-orthodontics.onrender.com/api/order/send-order-details', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': context.userLoginToken,
-            },
-            body: JSON.stringify({ phoneNumber }),
-        });
-    }
+        try {
+            // Call the order details API
+            await fetch('https://millenium-orthodontics.onrender.com/api/order/send-order-details', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': context.userLoginToken,
+                },
+                body: JSON.stringify({ phoneNumber }),
+            });
+
+            // Call the clear cart API
+            await fetch('https://millenium-orthodontics.onrender.com/api/cart/clear-cart', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': context.userLoginToken,
+                },
+            });
+        } catch (error) {
+            console.error('Error sending order details or clearing cart:', error);
+            toast.error('Failed to complete the order');
+        }
+    };
+
     const handleSubmit = async (values, { resetForm }) => {
         console.log(context.userLoginToken, 'Checkout successful:')
         try {
@@ -62,7 +78,7 @@ const Checkout = () => {
 
                 await sendOrder(values.phoneNumber)
                 // Reset form fields
-                // resetForm({ values: initialValues });
+                resetForm({ values: initialValues })
             } else {
                 console.error('Checkout failed:', data.message);
                 toast.error('Failed to place order');

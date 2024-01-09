@@ -90,6 +90,60 @@
     min-height: 400px;
 }
 
+.cart-card-wrapper{
+    padding: 20px;
+}
+
+.cart-card-colmd4{
+    height: 100px;
+    width: 100px;
+}
+
+.cart-card-img{
+    object-fit: fill;
+}
+
+.cart-card-width{
+    width: 30%;
+}
+
+.cursorpointer{
+    cursor: pointer;
+}
+
+.cart-info-width{
+    max-width: 18rem;
+}
+
+.width100 {
+    width: 100%;
+}
+
+.rel-products {
+    padding: 0 2vw; 
+    margin: 4vh auto; 
+    flex-wrap: wrap; 
+    flex-basis: 33.33%;
+}
+
+.header-suggestion-list{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    list-style-type: none;
+    background-color: #ffffff;
+    height: auto;width: 200px;
+    border-radius: 5px;
+    border: 1px solid var(--primary-color) !important;
+}
+
+.header-meanudropdown{
+   min-width: auto;
+   max-height: 40px;
+   font-size: 14px;
+}
+
 @media only screen and (max-width: 767px) {
     .footer-div {
         width: 100%;

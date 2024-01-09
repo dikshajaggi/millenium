@@ -13,7 +13,7 @@ const SpecificProduct = () => {
     }, [])
 
     return (
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", margin: "0 2vw" }}>
+        <div className="d-flex flex-column align-items-center justify-content-between specific-product-div">
             <SpecificProductCard data={data} />
             {/* <RelatedProducts /> */}
         </div>

@@ -43,9 +43,9 @@ export const Counter = ({ quantity, id }) => {
     }
     return (
         <div className='d-flex'>
-            <span style={{ cursor: "pointer" }} onClick={inc}>+</span>
+            <span className='cursorpointer' onClick={inc}>+</span>
             {qty}
-            <span style={{ cursor: "pointer" }} onClick={dec}>-</span>
+            <span className='cursorpointer' onClick={dec}>-</span>
         </div>
     )
 }
@@ -77,19 +77,19 @@ const Cartcard = ({ data }) => {
     console.log(cartState, "checking redux state")
     return (
         <div>
-            <div class="card mb-3" style={{ padding: "20px" }}>
-                <div class="row g-0">
-                    <div class="col-md-4" style={{ height: "100px", width: "100px" }}>
-                        <img src={data.product.cloudinaryImage} style={{ objectFit: "fill" }} class="img-fluid rounded-start" alt="productimg" />
+            <div className="card mb-3 cart-card-wrapper">
+                <div className="row g-0">
+                    <div className="col-md-4 cart-card-colmd4">
+                        <img src={data.product.cloudinaryImage} className="img-fluid rounded-start cart-card-img" alt="productimg" />
                     </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h6 class="card-title text-capitalize text-center">{data.product.name}</h6>
-                            <h6 class="card-title text-capitalize">Rs.{data.product.price}</h6>
-                            <p class="card-text text-capitalize  text-success">In Stock</p>
-                            <div className='d-flex justify-content-between align-items-center' style={{ width: "30%" }}>
+                    <div className="col-md-8">
+                        <div className="card-body">
+                            <h6 className="card-title text-capitalize text-center">{data.product.name}</h6>
+                            <h6 className="card-title text-capitalize">Rs.{data.product.price}</h6>
+                            <p className="card-text text-capitalize  text-success">In Stock</p>
+                            <div className='d-flex justify-content-between align-items-center cart-card-width'>
                                 <Counter quantity={data.quantity} id={data.product.id} />
-                                <div style={{ cursor: "pointer" }} className="text-danger" onClick={deleteProducts}>Delete</div>
+                                <div className="text-danger cursorpointer" onClick={deleteProducts}>Delete</div>
                             </div>
                         </div>
                     </div>

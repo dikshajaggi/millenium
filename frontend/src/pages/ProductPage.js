@@ -27,12 +27,12 @@ const ProductPage = () => {
         // eslint-disable-next-line
     }, [context.searched])
     return (
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-evenly" }}>
+        <div className="d-flex flex-column align-items-center justify-content-evenly">
             {searched ? <Link className='style-link' to={`/product/${context.searchedProducts.name}/${context.searchedProducts._id}`} key={context.searchedProducts._id}> <ProductCard data={context.searchedProducts} /> </Link> : <>
                 <div>
                     <h4 className="category-heading">{category}</h4>
                 </div>
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 2vw", margin: "4vh auto", flexWrap: "wrap", flexBasis: "33.33%", width: "100%" }}>
+                <div className="d-flex align-items-center justify-content-between width100 product-page-div" >
                     {products.map(item => {
                         return (
                             <Link className='style-link' to={`/product/${item.name}/${item._id}`} key={item._id}> <ProductCard data={item} /> </Link>
