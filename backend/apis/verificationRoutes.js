@@ -8,7 +8,7 @@ const router = express.Router()
 
 // Initialize the Twilio client with your credentials
 const accountSid = 'AC7e56caff5114ee8d280dbf67f6cc976f';
-const authToken = '28b38d7b19eed595b5476d5a6569184c';
+const authToken = 'e6ddaf3975a62dace591487f184b930a';
 const client = twilio(accountSid, authToken);
 
 
@@ -47,31 +47,32 @@ router.post('/send-order-details', authenticateUser, async (req, res) => {
         console.log(user, "user found")
 
         // Fetch the user's cart details and total price
-        const checkoutDetails = await CheckoutModel.findOne({ user: user._id });
+        const checkoutDetails = await CheckoutModel.findOne({ userName: user.username });
 
         if (!checkoutDetails) {
             return res.status(404).json({ error: 'Checkout details not found' });
         }
 
+        console.log(checkoutDetails, "checkout details")
         // You may need to adjust this based on your actual data structure
-        // const cartProducts = checkoutDetails.cart.map(item => ({
-        //     productName: item.product.name,
-        //     quantity: item.quantity,
-        // }));
+        const cartProducts = checkoutDetails.cart.map(item => ({
+            productName: item.product.productName,
+            quantity: item.quantity,
+        }));
 
-        // console.log("cartproducts", cartProducts)
+        console.log("cartproducts", JSON.stringify(cartProducts, null, 2))
 
         // const totalPrice = checkoutDetails.totalPrice; // Adjust this based on your data structure
 
         // Compose the message with order details
-        // const messageBody = `Thank you for your order!\n\nOrder Details:\n${formatCartDetails(cartProducts)}\nTotal Price: ${totalPrice}`;
-        const messageBody = "Thank you for your order!Order"
+        // const messageBody = `Thank you for your order!\n\nOrder Details: \n${ formatCartDetails(cartProducts) } \nTotal Price: ${ totalPrice } `;
+        const messageBody = `Thank you for your order!Order, ${JSON.stringify(cartProducts, null, 2)} `
 
         // Use Twilio (or your preferred SMS service) to send the order details
         await client.messages.create({
             body: messageBody,
             to: phoneNumberWithCountryCode,
-            from: '+12568010504', // Replace with your Twilio phone number
+            from: '+12568010504'
         });
 
         res.status(200).json({ message: 'Order details sent successfully' });
@@ -83,7 +84,7 @@ router.post('/send-order-details', authenticateUser, async (req, res) => {
 
 // Helper function to format cart details
 function formatCartDetails(cartProducts) {
-    return cartProducts.map(product => `${product.quantity} x ${product.productName}`).join('\n');
+    return cartProducts.map(product => `${product.quantity} x ${product.productName} `).join('\n');
 }
 
 export default router

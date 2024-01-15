@@ -16,6 +16,7 @@ const checkoutSchema = new mongoose.Schema({
                 ref: 'Product', // Reference to the Product model
             },
             quantity: Number,
+            productName: String
         }
     ],
 });

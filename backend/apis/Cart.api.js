@@ -53,7 +53,8 @@ router.post('/add-to-cart', authenticateUser, async (req, res) => {
             // If the product is not in the cart, add it with the specified quantity
             user.cart.push({
                 product: product._id,
-                quantity
+                quantity,
+                productName: req.body.name
             });
         }
 

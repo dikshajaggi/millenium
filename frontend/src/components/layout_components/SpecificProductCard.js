@@ -13,6 +13,7 @@ const SpecificProductCard = ({ data }) => {
     const getdata = async () => {
         const detail = await fetch(`https://millenium-orthodontics.onrender.com/api/products/${data.id}/${data.product}`)
         const jsondata = await detail.json()
+        console.log(jsondata, "info.name")
         setInfo(jsondata)
     }
 
@@ -40,7 +41,7 @@ const SpecificProductCard = ({ data }) => {
                 'Content-Type': 'application/json',
                 'Authorization': context.userLoginToken, // Include the token in the Authorization header
             },
-            body: JSON.stringify({ productId: info.id, quantity: info.qty }),
+            body: JSON.stringify({ productId: info.id, quantity: info.qty, productName: info.name }),
         });
 
         console.log(await data.json(), "add to cart")
