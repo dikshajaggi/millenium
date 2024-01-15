@@ -3,9 +3,9 @@ import CategoryCard from './layout_components/CategoryCard'
 import { Link } from 'react-router-dom'
 
 const Categories = () => {
-  const [categories, setCategories] = useState([{ id: 0, name: "cat1" }, {
-    id: 1, name: "cat2"
-  }])
+  const [categories, setCategories] = useState([
+    { id: 0, name: "Brackets" }, { id: 1, name: "Bands and Tubes" }, { id: 2, name: "wires and springs" },
+    { id: 3, name: "elastomerics" }, { id: 4, name: "orthodontic pliers" }, { id: 5, name: "miscellaneous" }])
 
   const getCategories = async () => {
     const data = await fetch("https://millenium-orthodontics.onrender.com/api/categories")

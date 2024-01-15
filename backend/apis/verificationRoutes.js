@@ -44,6 +44,7 @@ router.post('/send-order-details', authenticateUser, async (req, res) => {
         if (!user) {
             return res.status(404).json({ error: 'User not found' });
         }
+        console.log(user, "user found")
 
         // Fetch the user's cart details and total price
         const checkoutDetails = await CheckoutModel.findOne({ user: user._id });
@@ -57,6 +58,8 @@ router.post('/send-order-details', authenticateUser, async (req, res) => {
         //     productName: item.product.name,
         //     quantity: item.quantity,
         // }));
+
+        // console.log("cartproducts", cartProducts)
 
         // const totalPrice = checkoutDetails.totalPrice; // Adjust this based on your data structure
 

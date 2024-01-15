@@ -16,9 +16,7 @@ pending ->
 
     update cart qty in header
     add icon for cart, offers and user in header (react icons)
-    
-    checkout form 
-    show password feature
+
     reset password
 
     show encrypted password in api response
@@ -59,5 +57,7 @@ completed ->
     remove info from local storage on sign-out ✔
     don't show login or signup page when user is logged in ✔
     implement search functionality ✔ 
+    checkout form ✔ 
+    show password feature ✔ 
 
 

@@ -15,7 +15,39 @@ import { MainContext } from '../context/MainContext'
 
 const Products = () => {
     const context = useContext(MainContext)
-    const [products, setProducts] = useState([])
+    const [products, setProducts] = useState([{
+        id: "1",
+        name: "metal brackets kit",
+        description: "desc desc desc desc desc",
+        price: 1600,
+        cloudinaryImage: "https://res.cloudinary.com/df43msegk/image/upload/v1703080291/website-products/metal-bracket-kit-2.jpg",
+        stock: 60,
+        category: "brackets"
+    }, {
+        id: "2",
+        name: "arch wire",
+        description: "desc desc desc desc desc",
+        price: 2000,
+        cloudinaryImage: "https://res.cloudinary.com/df43msegk/image/upload/v1703143845/website-products/ss_wire_2.png",
+        stock: 40,
+        category: "wires and springs"
+    }, {
+        id: "3",
+        name: "archwire another",
+        description: "desc desc desc",
+        price: 2200,
+        cloudinaryImage: "https://res.cloudinary.com/df43msegk/image/upload/v1703143845/website-products/ss_wire_2.png",
+        stock: 50,
+        category: "wires and springs"
+    }, {
+        id: "4",
+        name: " brackets kit",
+        description: "desc  desc desc desc",
+        price: 2000,
+        cloudinaryImage: "https://res.cloudinary.com/df43msegk/image/upload/v1703080291/website-products/metal-bracket-kit-2.jpg",
+        stock: 60,
+        category: "brackets"
+    }])
     const [searched, setSearched] = useState(false)
     const getProducts = async () => {
         const data = await fetch("https://millenium-orthodontics.onrender.com/api/products")
