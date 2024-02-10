@@ -54,7 +54,7 @@ router.post('/add-to-cart', authenticateUser, async (req, res) => {
             user.cart.push({
                 product: product._id,
                 quantity,
-                productName: req.body.name
+                productName: req.body.productName
             });
         }
 
