@@ -43,6 +43,8 @@ router.post('/add-to-cart', authenticateUser, async (req, res) => {
             return res.status(404).json({ message: 'Product not found' });
         }
 
+        console.log(product, "product check", user)
+
         // Check if the product is already in the user's cart
         const existingProductIndex = user.cart.findIndex(item => item.product === product._id);
 
@@ -54,7 +56,8 @@ router.post('/add-to-cart', authenticateUser, async (req, res) => {
             user.cart.push({
                 product: product._id,
                 quantity,
-                productName: req.body.productName
+                productName: product.name,
+                price: product.price
             });
         }
 

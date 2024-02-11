@@ -38,9 +38,11 @@ router.post('/checkout', authenticateUser, async (req, res) => {
         // Extract checkout details from the request body
         const { userName, phoneNumber, address, street, city, state, country, paymentMethod } = req.body;
 
+        // Populate the user's cart details
+        await user.populate('cart.product').execPopulate();
+
         // Create a new checkout entry
         const checkoutEntry = new CheckoutModel({
-            user: userId,
             userName,
             phoneNumber,
             address,
@@ -49,17 +51,22 @@ router.post('/checkout', authenticateUser, async (req, res) => {
             state,
             country,
             paymentMethod,
-            cart: user.cart,
+            cart: user.cart.map(item => ({
+                product: item.product._id,
+                quantity: item.quantity,
+                productName: item.productName
+            })),
         });
 
         // Save the checkout entry
         await checkoutEntry.save();
-
+        console.log(checkoutEntry, "checkoutEntry")
         res.status(200).json({ message: 'Checkout details stored successfully' });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal Server Error' });
     }
 });
+
 
 export default router;

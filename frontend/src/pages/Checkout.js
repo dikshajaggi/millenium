@@ -35,7 +35,7 @@ const Checkout = () => {
     const sendOrder = async (phoneNumber) => {
         try {
             // Call the order details API
-            await fetch('http://localhost:8000/api/order/send-order-details', {
+            await fetch('https://millenium-orthodontics.onrender.com/api/order/send-order-details', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -47,7 +47,7 @@ router.post('/send-order-details', authenticateUser, async (req, res) => {
         console.log(user, "user found")
 
         // Fetch the user's cart details and total price
-        const checkoutDetails = await CheckoutModel.findOne({ userName: user.username });
+        const checkoutDetails = user.cart
 
         if (!checkoutDetails) {
             return res.status(404).json({ error: 'Checkout details not found' });
@@ -55,18 +55,19 @@ router.post('/send-order-details', authenticateUser, async (req, res) => {
 
         console.log(checkoutDetails, "checkout details")
         // You may need to adjust this based on your actual data structure
-        const cartProducts = checkoutDetails.cart.map(item => ({
-            productName: item.product.productName,
+        const cartProducts = checkoutDetails.map(item => ({
+            productName: item.productName,
             quantity: item.quantity,
         }));
 
-        console.log("cartproducts", JSON.stringify(cartProducts, null, 2))
-
-        // const totalPrice = checkoutDetails.totalPrice; // Adjust this based on your data structure
-
+        console.log("cartproducts", JSON.stringify(cartProducts, null, 2), cartProducts)
+        const totalPrice = checkoutDetails.reduce((total, item) => {
+            console.log(total + (item.quantity * item.price), "total + (item.quantity * item.product.price)")
+            return total + (item.quantity * item.price); // Assuming each product has a 'price' field
+        }, 0);
         // Compose the message with order details
-        // const messageBody = `Thank you for your order!\n\nOrder Details: \n${ formatCartDetails(cartProducts) } \nTotal Price: ${ totalPrice } `;
-        const messageBody = `Thank you for your order!Order, ${JSON.stringify(cartProducts, null, 2)} `
+        const messageBody = `Thank you for your order!\n\nOrder Details: \n${formatCartDetails(cartProducts)} \nTotal Price: ${totalPrice} `;
+        // const messageBody = `Thank you for your order!Order, ${JSON.stringify(cartProducts, null, 2)} `
 
         // Use Twilio (or your preferred SMS service) to send the order details
         await client.messages.create({

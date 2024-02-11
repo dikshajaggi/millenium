@@ -17,7 +17,8 @@ const userSchema = new mongoose.Schema({
                 required: false,
                 default: 1,
             },
-            productName: { type: String, required: true }
+            productName: { type: String, required: true },
+            price: { type: Number, required: true }
         },
     ],
 });
