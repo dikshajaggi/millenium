@@ -1,9 +1,11 @@
 // db.js
 import { connect } from 'mongoose';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const connectDB = async () => {
   try {
-    await connect('mongodb+srv://developerdiksha2000:diksha24may@cluster0.iecnqq4.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+    await connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true });
     console.log('Connected to MongoDB');
   } catch (error) {
     console.error('MongoDB connection error:', error);

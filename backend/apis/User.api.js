@@ -3,6 +3,8 @@ import express from "express"
 import bcrypt from "bcrypt"
 import User from "../models/user.models.js"
 import jwt from "jsonwebtoken"
+import dotenv from 'dotenv';
+dotenv.config();
 
 const router = express.Router();
 
@@ -50,7 +52,7 @@ router.post('/login', async (req, res) => {
 
             if (passwordMatch) {
                 // Passwords match, generate and return a token
-                const token = jwt.sign({ userId: user._id }, 'QiOjE3MDE2OTk0MzMsImV4cCI6MTcwMTcwMzAzM30.1sR1U6uNDE0cGB7Pb-Di-nBeiRgpMN3Jog4aduTlY4o');
+                const token = jwt.sign({ userId: user._id }, process.env.API_KEY);
                 return res.status(200).json({ message: 'Login successful', token });
             } else {
                 // Passwords don't match

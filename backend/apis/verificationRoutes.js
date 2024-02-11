@@ -3,12 +3,14 @@ import twilio from "twilio"
 import User from '../models/user.models.js'
 import jwt from 'jsonwebtoken';
 import CheckoutModel from "../models/checkout.model.js"
+import dotenv from 'dotenv';
+dotenv.config();
 
 const router = express.Router()
 
 // Initialize the Twilio client with your credentials
-const accountSid = 'AC7e56caff5114ee8d280dbf67f6cc976f';
-const authToken = 'e6ddaf3975a62dace591487f184b930a';
+const accountSid = process.env.ACCOUNT_SID;
+const authToken = process.env.AUTH_TOKEN;
 const client = twilio(accountSid, authToken);
 
 
@@ -22,7 +24,7 @@ const authenticateUser = (req, res, next) => {
     }
 
     try {
-        const decoded = jwt.verify(token, 'QiOjE3MDE2OTk0MzMsImV4cCI6MTcwMTcwMzAzM30.1sR1U6uNDE0cGB7Pb-Di-nBeiRgpMN3Jog4aduTlY4o');
+        const decoded = jwt.verify(token, process.env.API_KEY);
         console.log('Decoded Token', decoded, token);
         req.user = decoded; // Attach user information to the request object
         next();

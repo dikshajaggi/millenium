@@ -3,7 +3,8 @@ import CheckoutModel from "../models/checkout.model.js";
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import User from '../models/user.models.js';
-
+import dotenv from 'dotenv';
+dotenv.config();
 
 const router = express.Router();
 
@@ -16,7 +17,7 @@ const authenticateUser = (req, res, next) => {
     }
 
     try {
-        const decoded = jwt.verify(token, 'QiOjE3MDE2OTk0MzMsImV4cCI6MTcwMTcwMzAzM30.1sR1U6uNDE0cGB7Pb-Di-nBeiRgpMN3Jog4aduTlY4o');
+        const decoded = jwt.verify(token, process.env.API_KEY);
         console.log('Decoded Token: ---------', decoded);
         req.user = decoded; // Attach user information to the request object
         next();
