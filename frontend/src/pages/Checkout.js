@@ -5,6 +5,7 @@ import "./styles.scss"
 import { MainContext } from '../context/MainContext';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
+import { useCart } from '../context/cartContext';
 
 const CheckoutSchema = Yup.object().shape({
     userName: Yup.string().required('Required'),
@@ -20,6 +21,7 @@ const CheckoutSchema = Yup.object().shape({
 });
 
 const Checkout = () => {
+    const { dispatch } = useCart()
     const context = useContext(MainContext)
     const initialValues = {
         userName: '',
@@ -52,6 +54,7 @@ const Checkout = () => {
                     'Authorization': context.userLoginToken,
                 },
             });
+            dispatch({ type: "CLEAR_CART" })
         } catch (error) {
             console.error('Error sending order details or clearing cart:', error);
             toast.error('Failed to complete the order');

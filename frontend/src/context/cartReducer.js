@@ -8,6 +8,8 @@ export const cartReducer = (state, action) => {
         case 'REMOVE_FROM_CART':
             console.log(state.cart, "checking delete redux", action.payload)
             return { ...state, cart: state.cart.filter(item => item.product.id !== action.payload.id) }
+        case 'CLEAR_CART':
+            return { ...state, cart: [] }
         default:
             return state
     }
