@@ -12,6 +12,13 @@ pages ->
 
 
 pending ->
+   ❗after placing order, when cart becomes empty, the items which get removed from the cart,
+    the state of those items does not get updated from "remove from cart" to "add to cart"
+
+   ❗issues with product quantity
+
+   ❗on refresh, if an item is present in cart, "add to cart" is shown instead of "remove from cart"
+
     styling & responsiveness
 
     update cart qty in header
