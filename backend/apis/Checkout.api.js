@@ -39,7 +39,7 @@ router.post('/checkout', authenticateUser, async (req, res) => {
         const { userName, phoneNumber, address, street, city, state, country, paymentMethod } = req.body;
 
         // Populate the user's cart details
-        await user.populate('cart.product').execPopulate();
+        await user.populate('cart.product');
 
         // Create a new checkout entry
         const checkoutEntry = new CheckoutModel({
