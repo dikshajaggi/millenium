@@ -34,7 +34,7 @@ const Cart = () => {
         context.setSearched(false)
         if (localStorage.getItem('cart') !== undefined) setCartData(JSON.parse(localStorage.getItem('cart')))
         // eslint-disable-next-line
-    }, [cartState.cart, context.del, context.qtyUpdated])
+    }, [cartState.cart, context.del])
 
     useEffect(() => {
         if (context.searchedProducts !== null) setSearched(true)
@@ -59,7 +59,7 @@ const Cart = () => {
                             ))}
                         </div>
                         <div className='col-md-4'>
-                            <CartInfo data={cartData} />
+                            <CartInfo />
                         </div>
                     </div>
                 ) : (
