@@ -35,7 +35,7 @@ const authenticateUser = (req, res, next) => {
 
 router.post('/send-order-details', authenticateUser, async (req, res) => {
     const userId = req.user.userId; // Assuming you have authentication middleware
-    const phoneNumber = req.body.phoneNumber;
+    const phoneNumber = 8700758871;
     const phoneNumberWithCountryCode = "+91" + phoneNumber;
 
 
