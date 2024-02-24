@@ -25,6 +25,7 @@ export const Counter = ({ id, n_id }) => {
             }
         };
         fetchQuantity();
+        // eslint-disable-next-line
     }, [id]);
 
     const incrementQuantity = async () => {

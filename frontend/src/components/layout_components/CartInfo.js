@@ -10,7 +10,7 @@ const CartInfo = () => {
   const [data, setData] = useState([])
   const [qty, setQty] = useState()
   const [price, setPrice] = useState()
-  const [isLoading, setIsLoading] = useState(true)
+  // const [isLoading, setIsLoading] = useState(true)
 
   const getCart = async () => {
     const data = await fetch(`https://millenium-orthodontics.onrender.com/api/cart/all-products`, {
@@ -46,7 +46,7 @@ const CartInfo = () => {
   }
 
   useEffect(() => {
-    setIsLoading(true)
+    // setIsLoading(true)
     getData()
     // eslint-disable-next-line
   }, [data, context.qtyUpdated])
