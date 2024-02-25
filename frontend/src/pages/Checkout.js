@@ -6,6 +6,7 @@ import { MainContext } from '../context/MainContext';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { useCart } from '../context/cartContext';
+import { useNavigate } from 'react-router-dom';
 
 const CheckoutSchema = Yup.object().shape({
     userName: Yup.string().required('Required'),
@@ -21,7 +22,8 @@ const CheckoutSchema = Yup.object().shape({
 });
 
 const Checkout = () => {
-    const { dispatch } = useCart()
+    const { dispatch, cartState } = useCart()
+    const navigate = useNavigate()
     const context = useContext(MainContext)
     const initialValues = {
         userName: '',
@@ -62,34 +64,40 @@ const Checkout = () => {
     };
 
     const handleSubmit = async (values, { resetForm }) => {
-        console.log(context.userLoginToken, 'Checkout successful:')
-        try {
-            const response = await fetch('https://millenium-orthodontics.onrender.com/api/checkout', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': context.userLoginToken,
-                },
-                body: JSON.stringify(values),
-            });
+        if (cartState.cart.length !== 0) {
+            console.log(context.userLoginToken, 'Checkout successful:')
+            try {
+                const response = await fetch('https://millenium-orthodontics.onrender.com/api/checkout', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': context.userLoginToken,
+                    },
+                    body: JSON.stringify(values),
+                });
 
-            const data = await response.json();
+                const data = await response.json();
 
-            if (response.ok) {
-                console.log('Checkout successful:', data, values.phoneNumber, context.userLoginToken,);
-                toast.success('Order placed successfully');
+                if (response.ok) {
+                    console.log('Checkout successful:', data, values.phoneNumber, context.userLoginToken,);
+                    toast.success('Order placed successfully');
 
-                await sendOrder(values.phoneNumber)
-                // Reset form fields
-                resetForm({ values: initialValues })
-            } else {
-                console.error('Checkout failed:', data.message);
-                toast.error('Failed to place order');
+                    await sendOrder(values.phoneNumber)
+                    // Reset form fields
+                    resetForm({ values: initialValues })
+                    navigate("/")
+                } else {
+                    console.error('Checkout failed:', data.message);
+                    toast.error('Failed to place order');
+                }
+            } catch (error) {
+                console.error('Error during checkout:', error);
+                toast.error('An error occurred');
             }
-        } catch (error) {
-            console.error('Error during checkout:', error);
-            toast.error('An error occurred');
+        } else {
+            toast.error('Your cart is empty');
         }
+
     };
 
     return (
