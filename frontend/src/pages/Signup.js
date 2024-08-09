@@ -1,9 +1,8 @@
 // SignupForm.js
-import React, { useContext, useState } from "react";
+import React, {useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
-import { MainContext } from "../context/MainContext";
 import "./styles.scss";
 import hide from "../assests/images/hide.png";
 import show from "../assests/images/visible.png";
@@ -16,7 +15,6 @@ const SignupSchema = Yup.object().shape({
 
 const Signup = ({ onSubmit }) => {
   const navigate = useNavigate();
-  const context = useContext(MainContext);
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -44,9 +42,6 @@ const Signup = ({ onSubmit }) => {
   };
   return (
     <>
-      {context.userLoginToken ? (
-        <div>already logged in</div>
-      ) : (
         <Formik
           initialValues={{ email: "", username: "", password: "" }}
           validationSchema={SignupSchema}
@@ -113,7 +108,6 @@ const Signup = ({ onSubmit }) => {
             </Form>
           </div>
         </Formik>
-      )}
     </>
   );
 };

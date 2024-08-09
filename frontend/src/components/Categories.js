@@ -1,31 +1,30 @@
-import React, { useEffect, useState } from 'react'
-import CategoryCard from './layout_components/CategoryCard'
-import { Link } from 'react-router-dom'
+import React from 'react'
+import categoryIcon from "../assests/icons/catgeories/braces.png"
 
-const Categories = () => {
-  const [categories, setCategories] = useState([
-    { id: 0, name: "Brackets" }, { id: 1, name: "Bands and Tubes" }, { id: 2, name: "wires and springs" },
-    { id: 3, name: "elastomerics" }, { id: 4, name: "orthodontic pliers" }, { id: 5, name: "miscellaneous" }])
+const Categories = ({category, setCategory}) => {
+  const categories = [
+    { id: 0, name: "Brackets" }, 
+    { id: 1, name: "Bands and Tubes" }, 
+    { id: 2, name: "wires and springs" },
+    { id: 3, name: "elastomerics" }, 
+    { id: 4, name: "orthodontic pliers" }, 
+    { id: 5, name: "miscellaneous" }
+  ]
 
-  const getCategories = async () => {
-    const data = await fetch("https://millenium-orthodontics.onrender.com/api/categories")
-    const jsonData = await data.json()
-    console.log(jsonData)
-    setCategories(jsonData)
+  const handleCategoryClick = (selected) => {
+    console.log(selected, "selected")
+    if (category === selected) setCategory("all")
+    else setCategory(selected)
   }
 
-  useEffect(() => {
-    getCategories()
-  }, [])
-
   return (
-    <div className='catgeory-wrapper'>
-      {console.log(categories, "-------")}
-      {categories !== null && categories.map(item => {
-        return (
-          <Link className='style-link' to={`/${item.name}`} key={item._id}>
-            <CategoryCard name={item.name} />
-          </Link>
+    <div className='category-card-wrapper'>
+      {categories.map(item => {
+        return(
+        <div className='category-card' key={item.id} onClick={() => handleCategoryClick(item.name)}>
+          <img className='category-card-img' src={categoryIcon} alt="category" />
+          <h6 className={category === item.name ? "category-card-label-active" : "category-card-label"}>{item.name}</h6>
+        </div>
         )
       })}
     </div>

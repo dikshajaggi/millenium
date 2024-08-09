@@ -6,6 +6,27 @@ $primary-color: #2B97A4;
   --primary-color: #{$primary-color};
 }
 
-.App {
-  height: 100vh;
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main {
+  flex: 1;
+  padding: 20px;
+  background-color: #ffffff;
+  overflow-y: auto; /* Ensures that the main content scrolls if necessary */
+}
+
+.main-layout{
+  display: flex;
+  max-width: 100%;
+}
+
+.main-layout-products-wrapper{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  max-width: 100%;
 }

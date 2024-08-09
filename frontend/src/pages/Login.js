@@ -1,9 +1,8 @@
 // LoginForm.js
-import React, { useContext, useState } from "react";
+import React, {useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
-import { MainContext } from "../context/MainContext";
 import "./styles.scss";
 import hide from "../assests/images/hide.png";
 import show from "../assests/images/visible.png";
@@ -14,7 +13,6 @@ const LoginSchema = Yup.object().shape({
 });
 
 const Login = ({ onSubmit }) => {
-  const context = useContext(MainContext);
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -41,11 +39,9 @@ const Login = ({ onSubmit }) => {
           "user",
           JSON.stringify({ name: values.username, token: resJson.token })
         );
-        context.setUser(values.username);
         navigate("/");
       }
       console.log(resJson.token, resJson);
-      context.setUserLoginToken(resJson.token);
 
       // token needs to be in context as it will be required to add products to the cart
     } catch (error) {
@@ -56,9 +52,6 @@ const Login = ({ onSubmit }) => {
 
   return (
     <>
-      {context.userLoginToken ? (
-        <div>already logged in</div>
-      ) : (
         <Formik
           initialValues={{ username: "", password: "" }}
           validationSchema={LoginSchema}
@@ -124,7 +117,6 @@ const Login = ({ onSubmit }) => {
             </Form>
           </div>
         </Formik>
-      )}
     </>
   );
 };

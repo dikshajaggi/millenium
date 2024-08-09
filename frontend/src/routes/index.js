@@ -1,17 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Login from "../pages/Login";
-import Cart from "../pages/Cart";
-import Checkout from "../pages/Checkout";
-import SpecificProduct from "../pages/SpecificProduct";
-import ProductPage from "../pages/ProductPage";
-import Offers from "../pages/Offers";
 import MainLayout from "../MainLayout";
 import Signup from "../pages/Signup";
 import Blog from "../pages/footer/Blog";
 import Contact from "../pages/footer/Contact";
 import TnC from "../pages/footer/TnC";
 import About from "../pages/footer/About";
+import Cart from "../pages/Cart"
+import Offers from "../pages/Offers"
+import SpecificProductPage from "../pages/SpecificProductPage";
 
 export const router = createBrowserRouter([
     {
@@ -38,17 +36,17 @@ export const router = createBrowserRouter([
                 path: "/offers",
                 element: <Offers />
             },
-            {
-                path: "/checkout",
-                element: <Checkout />
-            },
-            {
-                path: "/:category",
-                element: <ProductPage />
-            },
+            // {
+            //     path: "/checkout",
+            //     element: <Checkout />
+            // },
+            // {
+            //     path: "/:category",
+            //     element: <ProductPage />
+            // },
             {
                 path: "/product/:product/:id",
-                element: <SpecificProduct />
+                element: <SpecificProductPage />
             },
             {
                 path: "/about",
@@ -67,13 +65,5 @@ export const router = createBrowserRouter([
                 element: <Blog />
             }
         ]
-    },
-    // {
-    //     path: "/admin-login",
-    //     element: <AdminLogin />
-    // },
-    // {
-    //     path: "/inventory",
-    //     element: <Inventory />
-    // },
+    }
 ])

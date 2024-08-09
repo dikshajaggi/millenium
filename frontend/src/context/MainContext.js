@@ -1,36 +1,87 @@
-import { createContext, useState } from "react";
+import React, { createContext, useState } from 'react'
 
 const MainContext = createContext()
 
-const MainContextProvider = ({ children }) => {
-    const userDetails = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null
-    const [userLoginToken, setUserLoginToken] = useState(userDetails?.token)
-    const [del, setDelete] = useState(0)
-    const [user, setUser] = useState(userDetails?.name)
-    const [qtyUpdated, setQtyUpdated] = useState(0)
-    const [searchedProducts, setSearchedProducts] = useState(null)
-    const [searched, setSearched] = useState(false)
-    const [categorySearch, setCategorySearch] = useState(false)
-    return (
-        <MainContext.Provider value={{
-            userLoginToken,
-            setUserLoginToken,
-            del,
-            setDelete,
-            user,
-            setUser,
-            qtyUpdated,
-            setQtyUpdated,
-            searchedProducts,
-            setSearchedProducts,
-            searched,
-            setSearched,
-            categorySearch,
-            setCategorySearch
-        }}>
-            {children}
-        </MainContext.Provider>
-    )
+const MainContextProvider = ({children}) => {
+    const [products, setProducts] = useState([{
+        id: "1",
+        name: "metal brackets kit",
+        description: "description for this product. description for this product",
+        price: 1600,
+        image: "productImage",
+        stock: 60,
+        category: "brackets"
+    }, {
+        id: "2",
+        name: "arch wire",
+        description: "description for this product. description for this product",
+        price: 2000,
+        image: "productImage",
+        stock: 40,
+        category: "wires and springs"
+    }, {
+        id: "3",
+        name: "archwire another",
+        description: "description for this product. description for this product",
+        price: 2200,
+        image: "productImage",
+        stock: 50,
+        category: "wires and springs"
+    }, {
+        id: "4",
+        name: " brackets kit",
+        description: "description for this product. description for this product",
+        price: 2000,
+        image: "productImage",
+        stock: 60,
+        category: "brackets"
+    },
+    {
+        id: "5",
+        name: "bird beak plier",
+        description: "description for this product. description for this product",
+        price: 2000,
+        image: "productImage",
+        stock: 60,
+        category: "pliers"
+    },
+    {
+        id: "6",
+        name: "cheek retractor",
+        description: "description for this product. description for this product",
+        price: 2000,
+        image: "productImage",
+        stock: 60,
+        category: "miscellaneous"
+    },
+    {
+        id: "7",
+        name: "bird beak plier",
+        description: "description for this product. description for this product",
+        price: 2000,
+        image: "productImage",
+        stock: 60,
+        category: "pliers"
+    },
+    {
+        id: "8",
+        name: "cheek retractor",
+        description: "description for this product. description for this product",
+        price: 2000,
+        image: "productImage",
+        stock: 60,
+        category: "miscellaneous"
+    }])
+
+  return (
+    <MainContext.Provider
+    value={{
+        products,
+        setProducts
+    }}>
+        {children}
+    </MainContext.Provider>
+  )
 }
 
-export { MainContext, MainContextProvider }
+export { MainContextProvider, MainContext }

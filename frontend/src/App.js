@@ -1,19 +1,21 @@
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from './components/layout_components/Header';
+import Header from './components/Header';
 import Categories from './components/Categories';
-import Footer from './components/layout_components/Footer';
+import Footer from './components/Footer';
 import { Outlet, useLocation } from 'react-router-dom';
 import "./styles.scss"
+import { useState } from 'react';
 
 function App() {
   const routes = ["/login", "/signup"]
+  const [category, setCategory] = useState("all")
   const location = useLocation()
   return (
-    <div className="App" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', maxWidth: "100vw", overflowX: "hidden" }}>
+    <div className="app">
       <Header />
-      {routes.includes(location.pathname) ? null : <Categories />}
-      <div style={{ flex: '1' }}>
+      {routes.includes(location.pathname) ? null : <Categories category={category} setCategory={setCategory} />}
+      <div className='main'>
         <Outlet />
       </div>
       <Footer />
