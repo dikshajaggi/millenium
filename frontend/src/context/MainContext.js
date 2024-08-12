@@ -10,6 +10,7 @@ const MainContextProvider = ({children}) => {
         price: 1600,
         image: "productImage",
         stock: 60,
+        qty: 1,
         category: "brackets"
     }, {
         id: "2",
@@ -18,6 +19,7 @@ const MainContextProvider = ({children}) => {
         price: 2000,
         image: "productImage",
         stock: 40,
+        qty: 1,
         category: "wires and springs"
     }, {
         id: "3",
@@ -26,6 +28,7 @@ const MainContextProvider = ({children}) => {
         price: 2200,
         image: "productImage",
         stock: 50,
+        qty: 1,
         category: "wires and springs"
     }, {
         id: "4",
@@ -34,6 +37,7 @@ const MainContextProvider = ({children}) => {
         price: 2000,
         image: "productImage",
         stock: 60,
+        qty: 1,
         category: "brackets"
     },
     {
@@ -43,6 +47,7 @@ const MainContextProvider = ({children}) => {
         price: 2000,
         image: "productImage",
         stock: 60,
+        qty: 1,
         category: "pliers"
     },
     {
@@ -52,6 +57,7 @@ const MainContextProvider = ({children}) => {
         price: 2000,
         image: "productImage",
         stock: 60,
+        qty: 1,
         category: "miscellaneous"
     },
     {
@@ -61,6 +67,7 @@ const MainContextProvider = ({children}) => {
         price: 2000,
         image: "productImage",
         stock: 60,
+        qty: 1,
         category: "pliers"
     },
     {
@@ -70,6 +77,7 @@ const MainContextProvider = ({children}) => {
         price: 2000,
         image: "productImage",
         stock: 60,
+        qty: 1,
         category: "miscellaneous"
     }])
 
