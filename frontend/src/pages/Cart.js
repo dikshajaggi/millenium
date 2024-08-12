@@ -1,10 +1,15 @@
 import React from 'react';
 import "./styles.scss";
 import { useSelector } from 'react-redux';
+import CartTotal from '../components/CartTotal';
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
+  const deliveryCharge = 50; 
+  const couponDiscount = 0; 
 
+  const totalPrice = cartItems.reduce((acc, item) => acc + item.price * item.qty, 0);
+  const finalAmount = totalPrice + deliveryCharge - couponDiscount;
   return (
     <div className='cart-wrapper'>
       {cartItems.length === 0 ? (
@@ -19,7 +24,7 @@ const Cart = () => {
                 <th>Price</th>
                 <th>Qty</th>
                 <th>Total</th>
-                <th>Remove</th>
+                <th>Update</th>
               </tr>
             </thead>
             <tbody>
@@ -46,11 +51,12 @@ const Cart = () => {
                   <p>Price: ₹{item.price.toFixed(2)}</p>
                   <p>Quantity: {item.qty}</p>
                   <p>Total: ₹{(item.qty * item.price).toFixed(2)}</p>
-                  <button className='remove-btn'>Remove</button>
+                  <button className='remove-btn'>Update</button>
                 </div>
               </div>
             ))}
           </div>
+          <CartTotal totalPrice={totalPrice} deliveryCharge={deliveryCharge} couponDiscount={couponDiscount} finalAmount={finalAmount} />
         </>
       )}
     </div>
