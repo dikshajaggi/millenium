@@ -1,4 +1,7 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
+import axios from "axios"
+import { getAllProducts } from '../apis'
+
 
 const MainContext = createContext()
 
@@ -80,6 +83,20 @@ const MainContextProvider = ({children}) => {
         qty: 1,
         category: "miscellaneous"
     }])
+
+    const fetchProductList = async () => {
+        const products = await getAllProducts()
+        console.log(products, "products")
+        setProducts(products)
+    }
+
+    useEffect(() => {
+        async function loadData () {
+            await fetchProductList()
+        }
+        loadData()
+        
+    }, [])
 
   return (
     <MainContext.Provider

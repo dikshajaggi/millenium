@@ -30,7 +30,7 @@ const Cart = () => {
             <tbody>
               {cartItems.map(item => (
                 <tr key={item.id}>
-                  <td><img src={item.image} alt={item.name} className='cart-item-img' /></td>
+                  <td><img src={`http://localhost:5000/images/${item.image}`} alt={item.name} className='cart-item-img' /></td>
                   <td>{item.name}</td>
                   <td>₹{item.price.toFixed(2)}</td>
                   <td>{item.qty}</td>
@@ -45,7 +45,7 @@ const Cart = () => {
           <div className='cart-cards'>
             {cartItems.map(item => (
               <div className='cart-card' key={item.id}>
-                <img src={item.image} alt={item.name} className='cart-card-img' />
+                <img src={`http://localhost:5000/images/${item.image}`} alt={item.name} className='cart-card-img' />
                 <div className='cart-card-details'>
                   <h3>{item.name}</h3>
                   <p>Price: ₹{item.price.toFixed(2)}</p>

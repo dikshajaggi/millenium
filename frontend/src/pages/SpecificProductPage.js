@@ -10,7 +10,7 @@ const SpecificProductPage = () => {
     const {products} = useContext(MainContext)
     const params = useParams()
     const product = products.find(item => item.name === params.product)
-    const {name, description, price} = product
+    const {name, description, price, image} = product
     const cartItems = useSelector((state) => state.cart.cartItems)
     const currentCartItem = cartItems.find(item => item.name === params.product)
     const dispatch = useDispatch()
@@ -35,7 +35,7 @@ const SpecificProductPage = () => {
     return (
         <div className='single-pro-main'>
         <div className='single-pro-div1'>
-            <img src={productImg} alt="productimg" />
+            <img src={`http://localhost:5000/images/${image}`} alt="productimg" />
         </div>
         <div className='single-pro-div2'>
             <h1 className='single-pro-label'>{name}</h1>
