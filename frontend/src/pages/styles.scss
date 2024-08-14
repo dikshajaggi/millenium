@@ -240,6 +240,12 @@
   .proceed-btn:hover {
     background-color: #e5533f;
   }
+
+  .specific-cat-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   
   /* Responsive Styles */
   @media (max-width: 768px) {

@@ -1,5 +1,6 @@
 import React from 'react'
 import categoryIcon from "../assests/icons/catgeories/braces.png"
+import { Link } from 'react-router-dom'
 
 const Categories = ({category, setCategory}) => {
   const categories = [
@@ -21,10 +22,12 @@ const Categories = ({category, setCategory}) => {
     <div className='category-card-wrapper'>
       {categories.map(item => {
         return(
-        <div className='category-card' key={item.id} onClick={() => handleCategoryClick(item.name)}>
-          <img className='category-card-img' src={categoryIcon} alt="category" />
-          <h6 className={category === item.name ? "category-card-label-active" : "category-card-label"}>{item.name}</h6>
-        </div>
+          <Link to={`/category/${item.name}`} key={item.id} >
+            <div className='category-card' onClick={() => handleCategoryClick(item.name)}>
+            <img className='category-card-img' src={categoryIcon} alt="category" />
+            <h6 className={category === item.name ? "category-card-label-active" : "category-card-label"}>{item.name}</h6>
+            </div>
+          </Link>
         )
       })}
     </div>

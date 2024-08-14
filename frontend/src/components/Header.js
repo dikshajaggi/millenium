@@ -1,13 +1,15 @@
 import React, {useContext } from 'react'
 import "../styles.scss"
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { MainContext } from '../context/MainContext'
 
 const Header = () => {
   const navigate = useNavigate()
   const location = useLocation()
+  const params = useParams()
   const {token, setToken} = useContext(MainContext)
-  console.log(location, "loc")
+  console.log(location, "loc", params)
+  const routes = ["Brackets", "Bands and Tubes", "wires and springs", "miscellaneous", "orthodontic pliers", "elastomerics", ]
 
   const handleLogout = () => {
     localStorage.removeItem("token")
@@ -24,12 +26,12 @@ const Header = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <div className="position-relative">
+            {routes.includes(params.category) || location.pathname === "/cart" || location.pathname === "/place-order" ? null : <div className="position-relative">
               <form className="d-flex mx-auto" role="search">
                 <input className="form-control me-2 search-width" type="search" placeholder="Search" aria-label="Search" />
                 <button className="btn btn-outline search-btn" type="submit">Search</button>
               </form>
-            </div>
+            </div>}
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item text-capitalize">
                 <Link to="/offers" className="nav-link text-capitalize">Offers</Link>

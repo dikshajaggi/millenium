@@ -11,6 +11,7 @@ import Cart from "../pages/Cart"
 import Offers from "../pages/Offers"
 import SpecificProductPage from "../pages/SpecificProductPage";
 import PlaceOrder from "../pages/PlaceOrder";
+import SpecificCategory from "../pages/SpecificCategory";
 
 export const router = createBrowserRouter([
     {
@@ -40,6 +41,10 @@ export const router = createBrowserRouter([
             {
                 path: "/product/:product",
                 element: <SpecificProductPage />
+            },
+            {
+                path: "/category/:category",
+                element: <SpecificCategory />
             },
             {
                 path: "/place-order",
