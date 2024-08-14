@@ -1,8 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { MainContext } from '../context/MainContext'
-import productImg from "../assests/products/plier.jpeg"
-import { addToCart, decQty, incQty, removeFromCart } from '../redux/cartSlice'
+import { addToCart, removeFromCart } from '../redux/cartSlice'
 import { useSelector, useDispatch } from 'react-redux';
 
 
@@ -19,13 +18,8 @@ const SpecificProductPage = () => {
         dispatch(addToCart(product))
     }
 
-    const handleQtyInc = () => {
-        dispatch(incQty(product))
-    }
-
     const handleQtyDec = () => {
-        if (currentCartItem.qty > 1) dispatch(decQty(product))
-        if (currentCartItem.qty === 1) dispatch(removeFromCart(product))
+        dispatch(removeFromCart(product))
     }
 
     useEffect(() => {
@@ -48,7 +42,7 @@ const SpecificProductPage = () => {
             : <div style={{display: "flex"}}>
                 <button className='single-pro-btn' onClick={handleQtyDec}>dec</button>
                 <span onClick={handleAddToCart}>{currentCartItem.qty}</span>
-                <button className='single-pro-btn' onClick={handleQtyInc}>inc</button>
+                <button className='single-pro-btn' onClick={handleAddToCart}>inc</button>
             </div>
             }
         </div>
