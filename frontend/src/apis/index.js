@@ -34,3 +34,10 @@ export const removingFromCart = async(id, config) => {
     const response = await axios.post(`${baseUrl}/api/cart/remove`, { itemid: id }, config)
     return response
 }
+
+// ---------------------------place-order----------------------------------
+
+export const placeorder = async(orderData) => {
+    const response = await axios.post(`${baseUrl}/api/order/place-order`, orderData)
+    return response
+}

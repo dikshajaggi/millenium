@@ -1,6 +1,14 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { MainContext } from '../context/MainContext';
+import { useSelector } from 'react-redux';
+import { placeorder } from '../apis';
+
 
 const PlaceOrder = () => {
+    const deliveryCharge = 50; 
+    const couponDiscount = 0; 
+    const {products} = useContext(MainContext)
+    const cartItems = useSelector((state) => state.cart.cartItems);
     const [data, setData] = useState({
         firstName: "",
         lastName:"",
@@ -18,6 +26,28 @@ const PlaceOrder = () => {
         setData(data => ({...data, [name]: value}))
     }
 
+    const placeOrder = async (event) => {
+        event.preventDefault()
+        const cartItemsArray = Object.keys(cartItems).map(id => {
+            const product = products.find(product => product._id === id);
+            if (product) {
+              return { ...product, qty: cartItems[id] };
+            }
+            return null;
+          }).filter(item => item !== null);
+        console.log(cartItemsArray, "cartItemsArray")
+        const totalPrice = cartItemsArray.reduce((acc, item) => acc + item.price * item.qty, 0);
+        const finalAmount = totalPrice + deliveryCharge - couponDiscount;
+
+        const orderData = {
+            address: data,
+            items: cartItemsArray,
+            amount: finalAmount
+        }
+
+        const response = await placeorder(orderData)
+        console.log(response, "res check")
+    }
 
     return (
         <div className="checkout-container">
@@ -25,24 +55,24 @@ const PlaceOrder = () => {
             <h2>Delivery Information</h2>
             <form>
               <div className="form-row">
-                <input name="firstName" value={data.firstName} onChange={onChangeHandler} type="text" placeholder="First name" />
-                <input name="lastName" value={data.lastName} onChange={onChangeHandler}type="text" placeholder="Last name" />
+                <input required name="firstName" value={data.firstName} onChange={onChangeHandler} type="text" placeholder="First name" />
+                <input required name="lastName" value={data.lastName} onChange={onChangeHandler}type="text" placeholder="Last name" />
               </div>
               <div className="form-row">
-                <input name="email" value={data.email} onChange={onChangeHandler} type="email" placeholder="Email address" />
+                <input required name="email" value={data.email} onChange={onChangeHandler} type="email" placeholder="Email address" />
               </div>
               <div className="form-row">
-                <input name="street" value={data.street} onChange={onChangeHandler} type="text" placeholder="Street" />
+                <input required name="street" value={data.street} onChange={onChangeHandler} type="text" placeholder="Street" />
               </div>
               <div className="form-row">
-                <input name="city" value={data.city} onChange={onChangeHandler} type="text" placeholder="City" />
-                <input name="state" value={data.state} onChange={onChangeHandler} type="text" placeholder="State" />
+                <input required name="city" value={data.city} onChange={onChangeHandler} type="text" placeholder="City" />
+                <input required name="state" value={data.state} onChange={onChangeHandler} type="text" placeholder="State" />
               </div>
               <div className="form-row">
-                <input name="pincode" value={data.pincode} onChange={onChangeHandler} type="text" placeholder="Pin code" />
+                <input required name="pincode" value={data.pincode} onChange={onChangeHandler} type="text" placeholder="Pin code" />
               </div>
               <div className="form-row">
-                <input name="phone" value={data.phone} onChange={onChangeHandler} type="text" placeholder="Phone" />
+                <input required name="phone" value={data.phone} onChange={onChangeHandler} type="text" placeholder="Phone" />
               </div>
             </form>
           </div>
@@ -60,7 +90,7 @@ const PlaceOrder = () => {
               <span>Total</span>
               <span>₹224</span>
             </div>
-            <button className="proceed-btn">PROCEED TO PAYMENT</button>
+            <button className="proceed-btn" onClick={placeOrder}>PLACE ORDER</button>
           </div>
         </div>
       );
