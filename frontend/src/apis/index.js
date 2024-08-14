@@ -20,17 +20,17 @@ export const getAllProducts = async() => {
 }
 
 // -------------------cart--------------------------------------
-export const getCart = async() => {
-    const products = await axios.get(`${baseUrl}/api/cart/all`)
+export const getCart = async(config) => {
+    const products = await axios.get(`${baseUrl}/api/cart/all`, config)
     return products
 }
 
-export const addToCart = async() => {
-    const products = await axios.post(`${baseUrl}/api/cart/add`)
-    return products
+export const addingToCart = async(id, config) => {
+    const response = await axios.post(`${baseUrl}/api/cart/add`, { itemid: id }, config)
+    return response
 }
 
-export const removeFromCart = async() => {
-    const products = await axios.post(`${baseUrl}/api/cart/remove`)
-    return products
+export const removingFromCart = async(id, config) => {
+    const response = await axios.post(`${baseUrl}/api/cart/remove`, { itemid: id }, config)
+    return response
 }

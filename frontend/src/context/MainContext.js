@@ -1,11 +1,13 @@
 import React, { createContext, useEffect, useState } from 'react'
-import axios from "axios"
-import { getAllProducts } from '../apis'
+import { getAllProducts, getCart } from '../apis'
+import { useDispatch } from 'react-redux'
+import { setCartItems } from '../redux/cartSlice'
 
 
 const MainContext = createContext()
 
 const MainContextProvider = ({children}) => {
+    const dispatch = useDispatch()
     const [token, setToken] = useState("")
     const [products, setProducts] = useState([{
         id: "1",
@@ -90,6 +92,22 @@ const MainContextProvider = ({children}) => {
         console.log(products, "products")
         setProducts(products)
     }
+
+    useEffect(() => {
+        const fetchCartItems = async (token) => {
+            try {
+                const response = await getCart({headers:{token}});
+                console.log(response, "get all cart products")
+                dispatch(setCartItems(response.data.cartData)); // Assuming the response contains the cart items
+            } catch (error) {
+                console.error("Error fetching cart items:", error);
+            }
+        };
+
+        if (token) {
+            fetchCartItems(token);
+        }
+    }, [dispatch, token]);
 
     useEffect(() => {
         async function loadData () {
