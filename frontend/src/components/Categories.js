@@ -1,6 +1,7 @@
 import React from 'react'
 import categoryIcon from "../assests/icons/catgeories/braces.png"
 import { Link } from 'react-router-dom'
+import "./styles.scss"
 
 const Categories = ({category, setCategory}) => {
   const categories = [
@@ -22,7 +23,7 @@ const Categories = ({category, setCategory}) => {
     <div className='category-card-wrapper'>
       {categories.map(item => {
         return(
-          <Link to={`/category/${item.name}`} key={item.id} >
+          <Link className='style-link' to={`/category/${item.name}`} key={item.id} >
             <div className='category-card' onClick={() => handleCategoryClick(item.name)}>
             <img className='category-card-img' src={categoryIcon} alt="category" />
             <h6 className={category === item.name ? "category-card-label-active" : "category-card-label"}>{item.name}</h6>
