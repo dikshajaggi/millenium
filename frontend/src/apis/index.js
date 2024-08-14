@@ -37,7 +37,7 @@ export const removingFromCart = async(id, config) => {
 
 // ---------------------------place-order----------------------------------
 
-export const placeorder = async(orderData) => {
-    const response = await axios.post(`${baseUrl}/api/order/place-order`, orderData)
+export const placeorder = async(orderData, config) => {
+    const response = await axios.post(`${baseUrl}/api/order/place-order`, orderData, config)
     return response
 }

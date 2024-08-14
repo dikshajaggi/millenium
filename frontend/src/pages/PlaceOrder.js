@@ -7,7 +7,7 @@ import { placeorder } from '../apis';
 const PlaceOrder = () => {
     const deliveryCharge = 50; 
     const couponDiscount = 0; 
-    const {products} = useContext(MainContext)
+    const {products, token, setOrderPlaced} = useContext(MainContext)
     const cartItems = useSelector((state) => state.cart.cartItems);
     const [data, setData] = useState({
         firstName: "",
@@ -45,8 +45,12 @@ const PlaceOrder = () => {
             amount: finalAmount
         }
 
-        const response = await placeorder(orderData)
+        const response = await placeorder(orderData, { headers: { token } })
         console.log(response, "res check")
+        if (response.data.success) {
+            setOrderPlaced(true)
+            alert("Order placed successfully")
+        }
     }
 
     return (
