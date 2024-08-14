@@ -8,24 +8,34 @@ import { addingToCart, removingFromCart } from '../apis';
 const SpecificProductPage = () => {
     const { products, token } = useContext(MainContext);
     const params = useParams();
-    
+    const cartItems = useSelector((state) => state.cart.cartItems);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        console.log(cartItems, "cartItems check");
+    }, [cartItems]);
+
+    // Ensure the products array is not undefined or empty
+    if (!products || products.length === 0) {
+        return <div>Loading...</div>;
+    }
+
     // Find the product based on URL params
     const product = products.find(item => item.name === params.product);
-    console.log(product, "product", products, params)
+
+    // If the product is not found, return an error message
+    if (!product) {
+        return <div>Product not found</div>;
+    }
+
     const { _id, name, description, price, image } = product;
 
     // Get the cart items from the Redux store
-    const cartItems = useSelector((state) => state.cart.cartItems);
     const currentQty = cartItems[_id] || 0; // Get quantity or default to 0
 
-    const dispatch = useDispatch();
 
     const handleAddToCart = async () => {
-        if (!cartItems[_id]) {
-            dispatch(addToCart({ id: _id })); // Add to cart in the Redux state
-        } else {
-            dispatch(addToCart({ id: _id })); // Increment quantity in the Redux state
-        }
+        dispatch(addToCart({ id: _id })); // Add or increment quantity in the Redux state
         if (token) {
             await addingToCart(_id, { headers: { token } }); // Sync with backend
         }
@@ -39,10 +49,6 @@ const SpecificProductPage = () => {
             }
         }
     };
-
-    useEffect(() => {
-        console.log(cartItems, "cartItems check");
-    }, [cartItems]);
 
     return (
         <div className='single-pro-main'>
