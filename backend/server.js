@@ -5,6 +5,7 @@ import cartRouter from './routes/cart.js';
 import productRouter from './routes/product.js';
 import "dotenv/config"
 import userRouter from './routes/user.js';
+import orderRouter from './routes/order.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -22,5 +23,7 @@ app.use("/images", express.static("uploads"))
 app.use('/api/user', userRouter);
 app.use('/api/product', productRouter);
 app.use('/api/cart', cartRouter);
+app.use('/api/order', orderRouter);
+
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

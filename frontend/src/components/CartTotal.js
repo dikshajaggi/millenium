@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from "react-router-dom"
 import "./styles.scss";
 
 const CartTotal = ({ totalPrice, deliveryCharge, couponDiscount, finalAmount }) => {
@@ -23,7 +24,7 @@ const CartTotal = ({ totalPrice, deliveryCharge, couponDiscount, finalAmount }) 
       <h3>Total:</h3>
       <h3>₹{finalAmount.toFixed(2)}</h3>
     </div>
-    <button className='checkout-btn'>Proceed to Checkout</button>
+    <Link to="/place-order"><button className='checkout-btn'>Proceed to Checkout</button></Link>
   </div>
   )
 }

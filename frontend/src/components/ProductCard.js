@@ -1,7 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import productImage from "../assests/products/plier.jpeg"
-
 
 const ProductCard = ({data}) => {
   return (

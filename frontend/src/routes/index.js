@@ -10,6 +10,7 @@ import About from "../pages/footer/About";
 import Cart from "../pages/Cart"
 import Offers from "../pages/Offers"
 import SpecificProductPage from "../pages/SpecificProductPage";
+import PlaceOrder from "../pages/PlaceOrder";
 
 export const router = createBrowserRouter([
     {
@@ -36,17 +37,13 @@ export const router = createBrowserRouter([
                 path: "/offers",
                 element: <Offers />
             },
-            // {
-            //     path: "/checkout",
-            //     element: <Checkout />
-            // },
-            // {
-            //     path: "/:category",
-            //     element: <ProductPage />
-            // },
             {
                 path: "/product/:product",
                 element: <SpecificProductPage />
+            },
+            {
+                path: "/place-order",
+                element: <PlaceOrder />
             },
             {
                 path: "/about",

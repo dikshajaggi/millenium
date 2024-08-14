@@ -59,7 +59,7 @@ const Signup = ({ onSubmit }) => {
 
               <div>
                 <div className="d-flex justify-content-between align-items-center divWidth">
-                  <label htmlFor="name">name:</label>
+                  <label htmlFor="name">Name:</label>
                   <Field type="text" id="name" name="name" />
                 </div>
                 <ErrorMessage
