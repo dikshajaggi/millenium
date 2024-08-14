@@ -6,6 +6,7 @@ import { getAllProducts } from '../apis'
 const MainContext = createContext()
 
 const MainContextProvider = ({children}) => {
+    const [token, setToken] = useState("")
     const [products, setProducts] = useState([{
         id: "1",
         name: "metal brackets kit",
@@ -96,11 +97,17 @@ const MainContextProvider = ({children}) => {
         }
         loadData()
         
+        // when we reload the webpage, the token should set again, otherwise the user will get logged-out
+        if (localStorage.getItem("token")) {
+            setToken(localStorage.getItem("token"))
+        }
     }, [])
 
   return (
     <MainContext.Provider
     value={{
+        token,
+        setToken,
         products,
         setProducts
     }}>

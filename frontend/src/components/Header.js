@@ -1,10 +1,19 @@
-import React, {useEffect, useRef, useState } from 'react'
+import React, {useContext } from 'react'
 import "../styles.scss"
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { MainContext } from '../context/MainContext'
 
 const Header = () => {
+  const navigate = useNavigate()
   const location = useLocation()
+  const {token, setToken} = useContext(MainContext)
   console.log(location, "loc")
+
+  const handleLogout = () => {
+    localStorage.removeItem("token")
+    setToken("")
+    navigate("/")
+  }
 
   return (
     <div>
@@ -28,9 +37,13 @@ const Header = () => {
               <li className="nav-item text-capitalize">
                 <Link to="/cart" className="nav-link">Cart</Link>
               </li>
-              <li className="nav-item text-capitalize">
-                <Link to="/login" className="nav-link">Login</Link>
-              </li>
+              {!token ? <li className="nav-item text-capitalize">
+                <Link to="/login" className="nav-link">Login</Link> 
+                </li> : <>
+                <li className="nav-item text-capitalize nav-link">Welcome</li>
+                <li className="nav-item text-capitalize nav-link" style={{cursor: 'pointer'}} onClick={handleLogout}>Logout</li>
+                </>
+              }
             </ul>
           </div>
         </div>
