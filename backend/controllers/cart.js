@@ -18,10 +18,26 @@ export const addToCart = async(req, res) => {
    
 }
 
-export const removeFromCart = (req, res) => {
-
+export const removeFromCart = async(req, res) => {
+    try{
+        const userData = await userModel.findOne({_id: req.body.userid})
+        let cartData = await userData.cartData
+        if (cartData[req.body.itemid] > 0)cartData[req.body.itemid] -= 1
+        await userModel.findByIdAndUpdate(req.body.userid, {cartData})
+        return res.json({success: true, message: "item removed from cart"})
+    }catch(error){
+        console.log(error, "error check")
+        return res.json({success: false, message: "error"})
+    }
 }
 
-export const getCart = (req, res) => {
-
+export const getCart = async (req, res) => {
+    try{
+        const userData = await userModel.findOne({_id: req.body.userid})
+        const cartData = await userData.cartData
+        return res.json({success: true, cartData})
+    }catch(error){
+        console.log(error, "error check")
+        return res.json({success: false, message: "error"})
+    }
 }
