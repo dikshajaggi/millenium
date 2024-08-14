@@ -2,9 +2,11 @@ import React, { useContext, useState } from 'react'
 import { MainContext } from '../context/MainContext';
 import { useSelector } from 'react-redux';
 import { placeorder } from '../apis';
+import { useNavigate } from 'react-router-dom';
 
 
 const PlaceOrder = () => {
+    const navigate = useNavigate()
     const deliveryCharge = 50; 
     const couponDiscount = 0; 
     const {products, token, setOrderPlaced} = useContext(MainContext)
@@ -28,29 +30,34 @@ const PlaceOrder = () => {
 
     const placeOrder = async (event) => {
         event.preventDefault()
-        const cartItemsArray = Object.keys(cartItems).map(id => {
-            const product = products.find(product => product._id === id);
-            if (product) {
-              return { ...product, qty: cartItems[id] };
+        if(data.firstName !== "" && data.lastName !== "" && data.email !== "" && data.street !== "" && data.city !== "" && data.state !== "" && data.pincode !== "" && data.phone !== "") {
+           if(!cartItems) {
+            const cartItemsArray = Object.keys(cartItems).map(id => {
+                const product = products.find(product => product._id === id);
+                if (product) {
+                  return { ...product, qty: cartItems[id] };
+                }
+                return null;
+              }).filter(item => item !== null);
+            console.log(cartItemsArray, "cartItemsArray")
+            const totalPrice = cartItemsArray.reduce((acc, item) => acc + item.price * item.qty, 0);
+            const finalAmount = totalPrice + deliveryCharge - couponDiscount;
+    
+            const orderData = {
+                address: data,
+                items: cartItemsArray,
+                amount: finalAmount
             }
-            return null;
-          }).filter(item => item !== null);
-        console.log(cartItemsArray, "cartItemsArray")
-        const totalPrice = cartItemsArray.reduce((acc, item) => acc + item.price * item.qty, 0);
-        const finalAmount = totalPrice + deliveryCharge - couponDiscount;
-
-        const orderData = {
-            address: data,
-            items: cartItemsArray,
-            amount: finalAmount
-        }
-
-        const response = await placeorder(orderData, { headers: { token } })
-        console.log(response, "res check")
-        if (response.data.success) {
-            setOrderPlaced(true)
-            alert("Order placed successfully")
-        }
+    
+            const response = await placeorder(orderData, { headers: { token } })
+            console.log(response, "res check")
+            if (response.data.success) {
+                setOrderPlaced(true)
+                alert("Order placed successfully")
+                navigate("/")
+            } 
+           } else alert("Cart is empty")
+        } else alert("Please fill all the fields")
     }
 
     return (

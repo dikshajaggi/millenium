@@ -11,6 +11,7 @@ const SpecificProductPage = () => {
     
     // Find the product based on URL params
     const product = products.find(item => item.name === params.product);
+    console.log(product, "product", products, params)
     const { _id, name, description, price, image } = product;
 
     // Get the cart items from the Redux store
