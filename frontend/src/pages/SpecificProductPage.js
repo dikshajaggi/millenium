@@ -1,15 +1,15 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { MainContext } from '../context/MainContext';
-import { addToCart, removeFromCart } from '../redux/cartSlice';
-import { useSelector, useDispatch } from 'react-redux';
-import { addingToCart, removingFromCart } from '../apis';
+import { useDispatch, useSelector } from 'react-redux';
+import { handleAddToCart, handleQtyDec } from '../utils/AddRemoveCartItems';
 
 const SpecificProductPage = () => {
+    const dispatch = useDispatch();
     const { products, token } = useContext(MainContext);
     const params = useParams();
     const cartItems = useSelector((state) => state.cart.cartItems);
-    const dispatch = useDispatch();
+    const [showisLoggedIn, setShowisLoggedIn] = useState(false)
 
     useEffect(() => {
         console.log(cartItems, "cartItems check");
@@ -22,33 +22,12 @@ const SpecificProductPage = () => {
 
     // Find the product based on URL params
     const product = products.find(item => item.name === params.product);
-
-    // If the product is not found, return an error message
     if (!product) {
         return <div>Product not found</div>;
     }
 
     const { _id, name, description, price, image } = product;
-
-    // Get the cart items from the Redux store
     const currentQty = cartItems[_id] || 0; // Get quantity or default to 0
-
-
-    const handleAddToCart = async () => {
-        dispatch(addToCart({ id: _id })); // Add or increment quantity in the Redux state
-        if (token) {
-            await addingToCart(_id, { headers: { token } }); // Sync with backend
-        }
-    };
-
-    const handleQtyDec = async () => {
-        if (currentQty > 0) {
-            dispatch(removeFromCart({ id: _id })); // Decrement quantity in the Redux state
-            if (token) {
-                await removingFromCart(_id, { headers: { token } }); // Sync with backend
-            }
-        }
-    };
 
     return (
         <div className='single-pro-main'>
@@ -63,12 +42,12 @@ const SpecificProductPage = () => {
                     <h6 className='single-pro-price-h6'>{price}</h6>
                 </div>
                 {currentQty === 0 ? (
-                    <button className='single-pro-btn' onClick={handleAddToCart}>Add to Cart</button>
+                    <button className='single-pro-btn' onClick={() => handleAddToCart(_id, setShowisLoggedIn, dispatch)}>Add to Cart</button>
                 ) : (
                     <div style={{ display: "flex" }}>
-                        <button className='single-pro-btn' onClick={handleQtyDec}>Dec</button>
+                        <button className='single-pro-btn' onClick={() => handleQtyDec(_id, currentQty, dispatch)}>Dec</button>
                         <span>{currentQty}</span>
-                        <button className='single-pro-btn' onClick={handleAddToCart}>Inc</button>
+                        <button className='single-pro-btn' onClick={() => handleAddToCart(_id, setShowisLoggedIn, dispatch)}>Inc</button>
                     </div>
                 )}
             </div>

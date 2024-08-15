@@ -6,8 +6,8 @@ import { useNavigate } from 'react-router-dom';
 
 const PlaceOrder = () => {
     const navigate = useNavigate();
-    const deliveryCharge = 50; 
-    const couponDiscount = 0; 
+    const deliveryCharge = 50;
+    const couponDiscount = 0;
     const { products, token, setOrderPlaced } = useContext(MainContext);
     const cartItems = useSelector((state) => state.cart.cartItems);
     const [data, setData] = useState({
