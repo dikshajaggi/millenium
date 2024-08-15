@@ -3,13 +3,13 @@ import categoryIcon from "../assests/icons/catgeories/braces.png"
 import { Link } from 'react-router-dom'
 import "./styles.scss"
 
-const Categories = ({category, setCategory}) => {
+const Categories = ({ category, setCategory }) => {
   const categories = [
-    { id: 0, name: "Brackets" }, 
-    { id: 1, name: "Bands and Tubes" }, 
+    { id: 0, name: "Brackets" },
+    { id: 1, name: "Bands and Tubes" },
     { id: 2, name: "wires and springs" },
-    { id: 3, name: "elastomerics" }, 
-    { id: 4, name: "orthodontic pliers" }, 
+    { id: 3, name: "elastomerics" },
+    { id: 4, name: "orthodontic_pliers" },
     { id: 5, name: "miscellaneous" }
   ]
 
@@ -22,11 +22,11 @@ const Categories = ({category, setCategory}) => {
   return (
     <div className='category-card-wrapper'>
       {categories.map(item => {
-        return(
+        return (
           <Link className='style-link' to={`/category/${item.name}`} key={item.id} >
             <div className='category-card' onClick={() => handleCategoryClick(item.name)}>
-            <img className='category-card-img' src={categoryIcon} alt="category" />
-            <h6 className={category === item.name ? "category-card-label-active" : "category-card-label"}>{item.name}</h6>
+              <img className='category-card-img' src={categoryIcon} alt="category" />
+              <h6 className={category === item.name ? "category-card-label-active" : "category-card-label"}>{item.name}</h6>
             </div>
           </Link>
         )

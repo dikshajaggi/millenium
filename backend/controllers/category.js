@@ -1,6 +1,6 @@
 import productModel from "../models/product.js"
 
-export const getProducts = async(req, res) => {
+export const getProducts = async (req, res) => {
     const { categoryName } = req.params;
     console.log(categoryName, req.params, "category name")
     try {
