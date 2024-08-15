@@ -3,11 +3,12 @@ import { MainContext } from '../context/MainContext';
 import { useSelector } from 'react-redux';
 import { placeorder } from '../apis';
 import { useNavigate } from 'react-router-dom';
+import PlaceOrderForm from '../components/PlaceOrderForm';
+import CartTotal from '../components/CartTotal';
+import { calculateCartTotal } from '../utils/CartTotalCalc';
 
 const PlaceOrder = () => {
     const navigate = useNavigate();
-    const deliveryCharge = 50;
-    const couponDiscount = 0;
     const { products, token, setOrderPlaced } = useContext(MainContext);
     const cartItems = useSelector((state) => state.cart.cartItems);
     const [data, setData] = useState({
@@ -21,15 +22,17 @@ const PlaceOrder = () => {
         phone: ""
     });
 
-    const onChangeHandler = (event) => {
-        const name = event.target.name;
-        const value = event.target.value;
-        setData((data) => ({ ...data, [name]: value }));
-    };
+    const cartItemsArray = Object.keys(cartItems)
+        .map(id => {
+            const product = products.find(product => product._id === id);
+            if (product) {
+                return { ...product, qty: cartItems[id] };
+            }
+            return null;
+        })
+        .filter(item => item !== null);
 
-    const placeOrder = async (event) => {
-        event.preventDefault();
-
+    const placeOrder = async () => {
         // Check if all required fields are filled
         if (
             data.firstName !== "" &&
@@ -43,22 +46,7 @@ const PlaceOrder = () => {
         ) {
             // Check if the cartItems object is not empty
             if (Object.keys(cartItems).length > 0) {
-                // Create the cartItemsArray
-                const cartItemsArray = Object.keys(cartItems)
-                    .map(id => {
-                        const product = products.find(product => product._id === id);
-                        if (product) {
-                            return { ...product, qty: cartItems[id] };
-                        }
-                        return null;
-                    })
-                    .filter(item => item !== null);
-
-                console.log(cartItemsArray, "cartItemsArray");
-
-                const totalPrice = cartItemsArray.reduce((acc, item) => acc + item.price * item.qty, 0);
-                const finalAmount = totalPrice + deliveryCharge - couponDiscount;
-
+                const { finalAmount } = calculateCartTotal(cartItemsArray)
                 const orderData = {
                     address: data,
                     items: cartItemsArray,
@@ -88,47 +76,8 @@ const PlaceOrder = () => {
 
     return (
         <div className="checkout-container">
-            <div className="delivery-info">
-                <h2>Delivery Information</h2>
-                <form>
-                    <div className="form-row">
-                        <input required name="firstName" value={data.firstName} onChange={onChangeHandler} type="text" placeholder="First name" />
-                        <input required name="lastName" value={data.lastName} onChange={onChangeHandler} type="text" placeholder="Last name" />
-                    </div>
-                    <div className="form-row">
-                        <input required name="email" value={data.email} onChange={onChangeHandler} type="email" placeholder="Email address" />
-                    </div>
-                    <div className="form-row">
-                        <input required name="street" value={data.street} onChange={onChangeHandler} type="text" placeholder="Street" />
-                    </div>
-                    <div className="form-row">
-                        <input required name="city" value={data.city} onChange={onChangeHandler} type="text" placeholder="City" />
-                        <input required name="state" value={data.state} onChange={onChangeHandler} type="text" placeholder="State" />
-                    </div>
-                    <div className="form-row">
-                        <input required name="pincode" value={data.pincode} onChange={onChangeHandler} type="text" placeholder="Pin code" />
-                    </div>
-                    <div className="form-row">
-                        <input required name="phone" value={data.phone} onChange={onChangeHandler} type="text" placeholder="Phone" />
-                    </div>
-                </form>
-            </div>
-            <div className="cart-totals">
-                <h2>Cart Totals</h2>
-                <div className="totals-item">
-                    <span>Subtotal</span>
-                    <span>₹222</span>
-                </div>
-                <div className="totals-item">
-                    <span>Delivery Fee</span>
-                    <span>₹{deliveryCharge}</span>
-                </div>
-                <div className="totals-item total">
-                    <span>Total</span>
-                    <span>₹224</span>
-                </div>
-                <button className="proceed-btn" onClick={placeOrder}>PLACE ORDER</button>
-            </div>
+            <PlaceOrderForm data={data} setData={setData} />
+            <CartTotal cartItemsArray={cartItemsArray} placeOrder={placeOrder} />
         </div>
     );
 }
