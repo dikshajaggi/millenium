@@ -3,13 +3,18 @@ import { useParams } from 'react-router-dom';
 import { MainContext } from '../context/MainContext';
 import { useDispatch, useSelector } from 'react-redux';
 import { handleAddToCart, handleQtyDec } from '../utils/AddRemoveCartItems';
+import LoginModal from '../components/LoginModal';
 
 const SpecificProductPage = () => {
     const dispatch = useDispatch();
-    const { products, token } = useContext(MainContext);
+    const { products } = useContext(MainContext);
     const params = useParams();
     const cartItems = useSelector((state) => state.cart.cartItems);
-    const [showisLoggedIn, setShowisLoggedIn] = useState(false)
+    const [showModal, setShowModal] = useState(false);
+
+    const onLoginRequired = () => {
+        setShowModal(true);
+    };
 
     useEffect(() => {
         console.log(cartItems, "cartItems check");
@@ -41,13 +46,14 @@ const SpecificProductPage = () => {
                     <h6 className='single-pro-price-h6'>Price:</h6>
                     <h6 className='single-pro-price-h6'>{price}</h6>
                 </div>
+                <LoginModal show={showModal} onClose={() => setShowModal(false)} />
                 {currentQty === 0 ? (
-                    <button className='single-pro-btn' onClick={() => handleAddToCart(_id, setShowisLoggedIn, dispatch)}>Add to Cart</button>
+                    <button className='single-pro-btn' onClick={() => handleAddToCart(_id, dispatch, onLoginRequired)}>Add to Cart</button>
                 ) : (
                     <div style={{ display: "flex" }}>
                         <button className='single-pro-btn' onClick={() => handleQtyDec(_id, currentQty, dispatch)}>Dec</button>
                         <span>{currentQty}</span>
-                        <button className='single-pro-btn' onClick={() => handleAddToCart(_id, setShowisLoggedIn, dispatch)}>Inc</button>
+                        <button className='single-pro-btn' onClick={() => handleAddToCart(_id, dispatch)}>Inc</button>
                     </div>
                 )}
             </div>

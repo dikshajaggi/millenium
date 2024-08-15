@@ -1,17 +1,16 @@
 import { addToCart, removeFromCart } from '../redux/cartSlice';
 import { addingToCart, removingFromCart } from '../apis';
 
-export const handleAddToCart = async (_id, setShowisLoggedIn, dispatch) => {
+export const handleAddToCart = async (_id, dispatch, onLoginRequired) => {
     // First check if the user is logged in
     const token = localStorage.getItem("token")
     if (token) {
-        setShowisLoggedIn(false)
         dispatch(addToCart({ id: _id }));
         if (token) {
             await addingToCart(_id, { headers: { token } });
         }
     } else {
-        setShowisLoggedIn(true)
+        if (onLoginRequired) onLoginRequired();
     }
 
 };
