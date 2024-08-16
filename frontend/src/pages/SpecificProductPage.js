@@ -26,7 +26,7 @@ const SpecificProductPage = () => {
     }
 
     // Find the product based on URL params
-    const product = products.find(item => item.name === params.product);
+    const product = products.find(item => item.name_id === params.product);
     if (!product) {
         return <div>Product not found</div>;
     }

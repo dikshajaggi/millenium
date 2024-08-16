@@ -5,6 +5,7 @@ export const addProduct = async(req, res) => {
     let image_filename = `${req.file.filename}`
     const product = new productModel({
         name: req.body.name,
+        name_id: req.body.name_id,
         description: req.body.description,
         price: req.body.price,
         category: req.body.category,
