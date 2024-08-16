@@ -20,11 +20,13 @@ const SpecificCategory = () => {
   return (
     <div className='specific-cat-wrapper'>
       <SearchCategoryHeader category={params.category}/>
-      {products.map(item => {
-        return(
-          <ProductCard key={item.id} data={item} />
-        )
-      })}
+      <div className="products-section-wrapper">
+        {products.map(item => {
+          return(
+            <ProductCard key={item.id} data={item} />
+          )
+        })}
+      </div>
     </div>
   )
 }

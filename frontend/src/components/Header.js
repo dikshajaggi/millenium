@@ -9,7 +9,7 @@ const Header = () => {
   const params = useParams()
   const {token, setToken} = useContext(MainContext)
   console.log(location, "loc", params)
-  const routes = ["Brackets", "Bands and Tubes", "wires and springs", "miscellaneous", "orthodontic pliers", "elastomerics", ]
+  const routes = ["brackets", "bands_and_tubes", "wires_and_springs", "miscellaneous", "orthodontic_pliers", "elastomerics", ]
 
   const handleLogout = () => {
     localStorage.removeItem("token")
