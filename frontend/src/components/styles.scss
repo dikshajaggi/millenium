@@ -198,6 +198,10 @@
     }
 }
 
+.mainSearch form {
+    width: 500px;
+}
+
 .categoryHeader {
     margin-right: auto;
     margin-left: auto;
@@ -206,6 +210,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.categoryHeader form {
+    width: 500px;
 }
 
 .categoryHeader h4 {
@@ -251,6 +259,10 @@
 }
 
 @media only screen and (max-width: 767px) {
+    .categoryHeader {
+        flex-direction: column;
+    }
+
     .footer-div {
         width: 100%;
         text-align: center;
@@ -272,6 +284,23 @@
 }
 
 @media screen and (max-width: 480px) {
+
+    .categoryHeader form {
+        width: 300px;
+    }
+
+    .mainSearch form {
+        width: 300px;
+    }
+
+    .categoryHeader {
+        flex-direction: column;
+    }
+
+    .categoryHeader {
+        font-size: 28px;
+    }
+
     .category-card-label {
         font-size: 12px;
     }
