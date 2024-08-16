@@ -45,6 +45,8 @@ const Search = () => {
           </div>
         )}
     </div>
+    {/*  onMouseDown instead of onClick: onMouseDown triggers before the input onBlur event, so it ensures that the click is registered before the dropdown closes.
+ */}
     </>
   )
 }
