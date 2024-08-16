@@ -2,7 +2,6 @@ import productModel from "../models/product.js";
 
 export const searchAll = async(req, res) => {
     const {productName} = req.query
-    console.log("workinggggggg")
     // using query params for flexibility
     try {
         // case-insensitive search for products that match the partial name

@@ -135,6 +135,22 @@
     cursor: pointer;
 }
 
+// -------------------search bar ---------------------------------------
+
+.textStyle {
+    text-transform: capitalize;
+}
+
+.search-results {
+    max-height: 300px;
+    overflow-y: auto;
+  }
+  
+  .search-results div:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+  }
+
 /* Cart Summary Styles */
 .cart-summary {
     padding: 20px;

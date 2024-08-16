@@ -48,3 +48,15 @@ export const categoryWiseProducts = async(param) => {
     const response = await axios.get(`${baseUrl}/api/category/${param}`)
     return response
 }
+
+// -----------------------------search------------------------------------
+
+export const searchAll = async(searchQuery) => {
+    const response = await axios.get(`${baseUrl}/api/search/all`, {params: {productName: searchQuery}})
+    return response
+}
+
+export const searchCategoryWise = async(searchQuery, category) => {
+    const response = await axios.get(`${baseUrl}/api/search/category`, {params: {productName: searchQuery, category: category}})
+    return response
+}
