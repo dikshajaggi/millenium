@@ -41,3 +41,10 @@ export const placeorder = async(orderData, config) => {
     const response = await axios.post(`${baseUrl}/api/order/place-order`, orderData, config)
     return response
 }
+
+// ---------------------------categories----------------------------------
+
+export const categoryWiseProducts = async(param) => {
+    const response = await axios.get(`${baseUrl}/api/category/${param}`)
+    return response
+}

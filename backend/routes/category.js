@@ -3,7 +3,7 @@ import { getProducts } from "../controllers/category.js"
 
 const categoryRouter = express.Router()
 
-categoryRouter.get("/all", getProducts)
+categoryRouter.get("/:categoryName", getProducts)
 
 
 export default categoryRouter
