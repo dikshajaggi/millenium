@@ -3,12 +3,13 @@ import React, { useCallback, useState } from 'react'
 import {debounce} from "lodash"
 import { handleInputBlur, handleInputChange, handleInputFocus, handleResultClick } from '../utils/SearchBar'
 import { searchAll } from '../apis'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const Search = () => {
     const [value, setValue] = useState("")
     const [results, setResults] = useState([])
     const [showResults, setShowResults] = useState(false)
+    const navigate = useNavigate()
 
     const search = async (searchVal) => {
         const response = await searchAll(searchVal)
@@ -21,7 +22,7 @@ const Search = () => {
   return (
     <>
     <div className="position-relative">
-        <form className="d-flex mx-auto" role="search" style={{width: "450px"}}>
+        <form className="d-flex mx-auto" role="search" style={{width: "450px"}} onSubmit={(e) => e.preventDefault()}>
             <input 
             className="form-control me-2 search-width" 
             type="search" 
@@ -37,8 +38,8 @@ const Search = () => {
         {showResults && results.length > 0 && (
           <div className="search-results position-absolute w-100 bg-white border rounded shadow-sm" style={{ top: '45px' }}>
             {results.map((result, index) => (
-              <div key={index} className="p-2 border-bottom textStyle" onClick={() => handleResultClick(result, setShowResults)}>
-                <Link className="nav-link" to={`/product/${result.name_id}`}>{result.name}</Link>
+              <div key={index} className="p-2 border-bottom textStyle" onMouseDown={() => handleResultClick(result, setShowResults, navigate)}>
+                {result.name}
               </div>
             ))}
           </div>

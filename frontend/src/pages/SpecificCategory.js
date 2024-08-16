@@ -8,6 +8,8 @@ import ProductCard from '../components/ProductCard';
 
 const SpecificCategory = () => {
     const params = useParams()
+    const [route, setRoute] = useState(params.category)
+    console.log(params.category, "check params")
     const [products, setProducts] = useState([])
 
     const fetchProducts = async () => {
@@ -15,16 +17,17 @@ const SpecificCategory = () => {
       setProducts(response.data)
     }
     useEffect(() => {
-        fetchProducts()
+      setRoute(params.category)
+      fetchProducts()
     }, [params.category])
 
   return (
     <div className='specific-cat-wrapper'>
-      <SearchCategoryHeader category={params.category}/>
+      <SearchCategoryHeader category={route}/>
       <div className="products-section-wrapper">
-        {products.map(item => {
+        {products.map((item, index) => {
           return(
-            <ProductCard key={item.id} data={item} />
+            <ProductCard key={item.id || index} data={item} />
           )
         })}
       </div>

@@ -11,8 +11,9 @@ export const handleInputChange = (e, setValue, setResults, setShowResults, handl
 }
 
 
-export const handleResultClick = (result, setShowResults) => {
+export const handleResultClick = (result, setShowResults, navigate) => {
     console.log(result, "result")
+    navigate(`/product/${result.name_id}`)
     setShowResults(false)
   }
 
@@ -24,6 +25,6 @@ export const handleInputFocus = (results, setShowResults) => {
 
 export const handleInputBlur = (setShowResults) => {
     setTimeout(() => {
-        setShowResults(false) 
-    }, 200) 
-} 
+      setShowResults(false);
+    }, 200); // Delay the closing to allow onMouseDown to trigger first
+  };
