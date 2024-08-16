@@ -71,6 +71,25 @@
 }
 
 // ----------------------------single product--------------------------------
+.qty-btn {
+  border: none;
+  text-align: center;
+  height: 30px;
+  width: 40px;
+  font-size: 20px;
+  color: white;
+  background-color: black;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+.qty-inc-dec {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 130px
+}
+
 .single-pro-main {
   display: flex;
   align-items: center;

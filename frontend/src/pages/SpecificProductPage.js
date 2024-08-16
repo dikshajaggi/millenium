@@ -50,10 +50,10 @@ const SpecificProductPage = () => {
                 {currentQty === 0 ? (
                     <button className='single-pro-btn' onClick={() => handleAddToCart(_id, dispatch, onLoginRequired)}>Add to Cart</button>
                 ) : (
-                    <div style={{ display: "flex" }}>
-                        <button className='single-pro-btn' onClick={() => handleQtyDec(_id, currentQty, dispatch)}>Dec</button>
-                        <span>{currentQty}</span>
-                        <button className='single-pro-btn' onClick={() => handleAddToCart(_id, dispatch)}>Inc</button>
+                    <div className='qty-inc-dec'>
+                        <div className='qty-btn' onClick={() => handleQtyDec(_id, currentQty, dispatch)}>-</div>
+                        <span style={{ fontWeight: "bolder" }}>{currentQty}</span>
+                        <div className='qty-btn' onClick={() => handleAddToCart(_id, dispatch)}>+</div>
                     </div>
                 )}
             </div>

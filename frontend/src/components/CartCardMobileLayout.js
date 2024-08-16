@@ -12,8 +12,11 @@ const CartCardMobileLayout = ({ cartItemsArray, handleQtyDec, handleQtyInc }) =>
                             <p>Price: ₹{item.price.toFixed(2)}</p>
                             <p>Quantity: {item.qty}</p>
                             <p>Total: ₹{(item.qty * item.price).toFixed(2)}</p>
-                            <button className='remove-btn' onClick={() => handleQtyDec(item._id)}>Dec</button>
-                            <button className='remove-btn' onClick={() => handleQtyInc(item._id)}>Inc</button>
+                            <div className='qty-inc-dec'>
+                                <div className='qty-btn' onClick={() => handleQtyDec(item._id)}>-</div>
+                                <span style={{ fontWeight: "bolder" }}>{item.qty}</span>
+                                <div className='qty-btn' onClick={() => handleQtyInc(item._id)}>+</div>
+                            </div>
                         </div>
                     </div>
                 ))}
