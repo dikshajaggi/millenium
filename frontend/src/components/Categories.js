@@ -7,9 +7,9 @@ import "./styles.scss"
 const Categories = ({ category, setCategory }) => {
   const location = useLocation()
   const categories = [
-    { id: 0, cat_id: "brackets", name: "Brackets"},
-    { id: 1, cat_id: "bands_and_tubes", name: "Bands and Tubes" },
-    { id: 2, cat_id: "wires_and_springs", name: "Wires and Springs" },
+    { id: 0, cat_id: "brackets", name: "Brackets" },
+    { id: 1, cat_id: "bands_and_tubes", name: "Bands & Tubes" },
+    { id: 2, cat_id: "wires_and_springs", name: "Wires & Springs" },
     { id: 3, cat_id: "elastomerics", name: "Elastomerics" },
     { id: 4, cat_id: "orthodontic_pliers", name: "Orthodontic Pliers" },
     { id: 5, cat_id: "miscellaneous", name: "Miscellaneous" }

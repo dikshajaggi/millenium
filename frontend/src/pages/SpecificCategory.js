@@ -7,26 +7,30 @@ import { categoryWiseProducts } from '../apis';
 import ProductCard from '../components/ProductCard';
 
 const SpecificCategory = () => {
-    const params = useParams()
-    const [route, setRoute] = useState(params.category)
-    console.log(params.category, "check params")
-    const [products, setProducts] = useState([])
+  const params = useParams()
+  const [route, setRoute] = useState(params.category)
+  console.log(params.category, "check params")
+  const [products, setProducts] = useState([])
 
-    const fetchProducts = async () => {
-      const response = await categoryWiseProducts(params.category)
-      setProducts(response.data)
-    }
-    useEffect(() => {
-      setRoute(params.category)
-      fetchProducts()
-    }, [params.category])
+  const fetchProducts = async () => {
+    const response = await categoryWiseProducts(params.category)
+    setProducts(response.data)
+  }
+  useEffect(() => {
+    // remove underscore
+    let formattedStr = params.category.replace(/_/g, ' ')
+    // replace and with &
+    formattedStr = formattedStr.replace(/ and /gi, ' & ');
+    setRoute(formattedStr)
+    fetchProducts()
+  }, [params.category])
 
   return (
     <div className='specific-cat-wrapper'>
-      <SearchCategoryHeader category={route}/>
+      <SearchCategoryHeader category={route} />
       <div className="products-section-wrapper">
         {products.map((item, index) => {
-          return(
+          return (
             <ProductCard key={item.id || index} data={item} />
           )
         })}
