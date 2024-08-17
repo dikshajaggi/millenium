@@ -21,6 +21,7 @@ $primary-color: #2B97A4;
 
 .main-layout{
   display: flex;
+  flex-direction: column;
   max-width: 100%;
 }
 
