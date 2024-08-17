@@ -5,6 +5,7 @@ import "./styles.scss";
 import SearchCategoryHeader from '../components/SearchCategoryHeader'
 import { categoryWiseProducts } from '../apis';
 import ProductCard from '../components/ProductCard';
+import Banner from '../components/Banner';
 
 const SpecificCategory = () => {
   const params = useParams()
@@ -28,6 +29,7 @@ const SpecificCategory = () => {
   return (
     <div className='specific-cat-wrapper'>
       <SearchCategoryHeader category={route} />
+      <Banner />
       <div className="products-section-wrapper">
         {products.map((item, index) => {
           return (

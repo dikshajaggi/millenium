@@ -133,6 +133,7 @@
     text-decoration: none;
     color: #000000;
     cursor: pointer;
+    font-size: 20px;
 }
 
 .qty-btn {
@@ -235,6 +236,7 @@
     margin-right: auto;
     margin-left: auto;
     margin-top: 50px;
+    margin-bottom: 50px;
     width: 80%;
     display: flex;
     align-items: center;
@@ -243,6 +245,7 @@
 
 .categoryHeader h4 {
     text-transform: capitalize;
+    font-size: 40px;
 }
 
 .search-category {

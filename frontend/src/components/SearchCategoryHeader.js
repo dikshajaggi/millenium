@@ -30,7 +30,7 @@ const SearchCategoryHeader = ({ category }) => {
           <input
             className="form-control me-2 search-width"
             type="search"
-            placeholder="Search"
+            placeholder={`Search for ${category}`}
             aria-label="Search"
             value={value}
             onChange={(e) => handleInputChange(e, setValue, setResults, setShowResults, handleSearch)}
