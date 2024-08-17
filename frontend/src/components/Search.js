@@ -4,6 +4,9 @@ import { debounce } from "lodash"
 import { handleInputBlur, handleInputChange, handleInputFocus, handleResultClick } from '../utils/SearchBar'
 import { searchAll } from '../apis'
 import { useNavigate } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+
 
 const Search = () => {
   const [value, setValue] = useState("")
@@ -33,6 +36,9 @@ const Search = () => {
             onFocus={() => handleInputFocus(results, setShowResults)}
             onBlur={() => handleInputBlur(setShowResults)}
           />
+          <span className="position-absolute search-icon-main">
+            <FontAwesomeIcon icon={faSearch} />
+          </span>
         </form>
         {showResults && results.length > 0 && (
           <div className="search-results position-absolute w-100 bg-white border rounded shadow-sm" style={{ top: '45px' }}>

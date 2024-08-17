@@ -156,6 +156,20 @@
 
 // -------------------search bar ---------------------------------------
 
+.search-icon {
+    right: 75px;
+    top: 50%;
+    transform: translateY(-50%); 
+    color: #aaa;
+}
+
+.search-icon-main {
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%); 
+    color: #aaa;
+}
+
 .textStyle {
     text-transform: capitalize;
 }
@@ -217,10 +231,6 @@
     }
 }
 
-.mainSearch form {
-    width: 500px;
-}
-
 .categoryHeader {
     margin-right: auto;
     margin-left: auto;
@@ -229,10 +239,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
-.categoryHeader form {
-    width: 500px;
 }
 
 .categoryHeader h4 {
@@ -277,7 +283,25 @@
     background-color: #0056b3;
 }
 
+@media only screen and (max-width: 1024px) {
+    .search-icon-main{
+        right: 120px;
+        top: 50%;
+        font-size: 18px;
+        transform: translateY(-50%); 
+        color: #aaa;
+    }
+}
+
 @media only screen and (max-width: 767px) {
+    .search-icon-main{
+        right: 30px;
+        top: 50%;
+        font-size: 18px;
+        transform: translateY(-50%); 
+        color: #aaa;
+    }
+
     .categoryHeader {
         flex-direction: column;
     }
@@ -303,15 +327,20 @@
 }
 
 @media screen and (max-width: 480px) {
-
-    .categoryHeader form {
-        width: 300px;
+    .search-icon-main{
+        right: 60px;
+        top: 50%;
+        font-size: 18px;
+        transform: translateY(-50%); 
+        color: #aaa;
     }
-
-    .mainSearch form {
-        width: 300px;
+    .search-icon {
+        right: 170px;
+        top: 50%;
+        font-size: 18px;
+        transform: translateY(-50%); 
+        color: #aaa;
     }
-
     .categoryHeader {
         flex-direction: column;
     }
@@ -362,3 +391,113 @@
         height: 40px;
     }
 }
+
+
+/* Base Styles */
+.search-category {
+    width: 500px; /* Default width for larger screens */
+    max-width: 100%; /* Ensure it doesn't overflow */
+    position: relative;
+  }
+  
+  .search-width {
+    width: 100%; /* Make input fill the container */
+    padding-right: 40px; /* Add space for the search icon */
+  }
+  
+  .search-icon {
+    position: absolute;
+    right: 18px; /* Adjust this to control the icon's position relative to the input's right edge */
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+    font-size: 18px;
+  }
+  
+  /* Responsive Styles */
+  
+  /* Tablet - Medium devices (768px to 1024px) */
+  @media (max-width: 1024px) {
+    .search-category {
+      width: 400px; /* Reduce the width for tablet-sized screens */
+    }
+  }
+  
+  /* Small tablets and large phones (max-width: 767px) */
+  @media (max-width: 767px) {
+    .search-category {
+      width: 300px; /* Further reduce the width for smaller screens */
+    }
+  
+    .search-icon {
+      font-size: 16px; /* Adjust the icon size if necessary */
+    }
+  }
+  
+  /* Mobile Devices - Small screens (max-width: 480px) */
+  @media (max-width: 480px) {
+    .search-category {
+      width: 250px; /* Adjust the width to fit on small mobile screens */
+    }
+  
+    .search-icon {
+      font-size: 14px; /* Adjust the icon size if necessary */
+    }
+  }
+
+
+  /* Base Styles */
+.mainSearch {
+    width: 500px; /* Default width for larger screens */
+    max-width: 100%; /* Ensure it doesn't overflow */
+    position: relative;
+  }
+  
+  .search-width {
+    width: 100%; /* Make input fill the container */
+    padding-right: 40px; /* Space for the search icon */
+  }
+  
+  .search-icon-main {
+    position: absolute;
+    right: 18px; /* Position the icon within the input field */
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+    font-size: 18px;
+  }
+  
+  /* Responsive Styles */
+  
+  /* Tablet - Medium devices (768px to 1024px) */
+  @media (max-width: 1024px) {
+    .mainSearch {
+      width: 400px; /* Reduce the width for tablet-sized screens */
+    }
+  }
+  
+  /* Small tablets and large phones (max-width: 767px) */
+  @media (max-width: 767px) {
+    .mainSearch {
+      width: 300px; /* Further reduce the width for smaller screens */
+    }
+  
+    .search-icon-main {
+      font-size: 16px; /* Adjust the icon size if necessary */
+      right: 20px; /* Adjust the icon position */
+    }
+  }
+  
+  /* Mobile Devices - Small screens (max-width: 480px) */
+  @media (max-width: 480px) {
+    .mainSearch {
+      width: 250px; /* Adjust the width to fit on small mobile screens */
+    }
+  
+    .search-icon-main {
+      font-size: 14px; /* Adjust the icon size if necessary */
+      right: 15px; /* Adjust the icon position */
+    }
+  }
+  
+  
