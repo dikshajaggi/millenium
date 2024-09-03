@@ -243,9 +243,9 @@
     justify-content: space-between;
 }
 
-.categoryHeader h4 {
+.categoryHeaderh4 {
     text-transform: capitalize;
-    font-size: 40px;
+    font-size: 28px;
 }
 
 .search-category {
@@ -297,6 +297,11 @@
 }
 
 @media only screen and (max-width: 767px) {
+    .categoryHeaderh4 {
+        text-transform: capitalize;
+        font-size: 24px;
+    }
+
     .search-icon-main{
         right: 30px;
         top: 50%;
@@ -307,6 +312,9 @@
 
     .categoryHeader {
         flex-direction: column;
+    }
+    .textStyle {
+        font-size: 14px;
     }
 
     .footer-div {

@@ -10,6 +10,7 @@ import { calculateCartTotal } from '../utils/CartTotalCalc';
 const PlaceOrder = () => {
     const navigate = useNavigate();
     const { products, token, setOrderPlaced } = useContext(MainContext);
+    console.log(token, "token checkkk")
     const cartItems = useSelector((state) => state.cart.cartItems);
     const [data, setData] = useState({
         firstName: "",
@@ -22,7 +23,7 @@ const PlaceOrder = () => {
         phone: ""
     });
 
-    const cartItemsArray = Object.keys(cartItems)
+    const cartItemsArray =cartItems ? Object.keys(cartItems)
         .map(id => {
             const product = products.find(product => product._id === id);
             if (product) {
@@ -30,7 +31,7 @@ const PlaceOrder = () => {
             }
             return null;
         })
-        .filter(item => item !== null);
+        .filter(item => item !== null) : [];
 
     const placeOrder = async () => {
         // Check if all required fields are filled
@@ -54,14 +55,14 @@ const PlaceOrder = () => {
                 };
 
                 try {
-                    const response = await placeorder(orderData, { headers: { token } });
+                    const response = await placeorder(orderData, { headers: { token: token } });
                     console.log(response, "res check");
 
                     if (response.data.success) {
                         setOrderPlaced(true);
                         alert("Order placed successfully");
                         navigate("/");
-                    }
+                    } else alert("Failed to place order. Please try again.")
                 } catch (error) {
                     console.error("Error placing order:", error);
                     alert("Failed to place order. Please try again.");

@@ -24,7 +24,7 @@ const SearchCategoryHeader = ({ category }) => {
 
   return (
     <div className='categoryHeader'>
-      <h4>{category}</h4>
+      <h6 className='categoryHeaderh4'>Search for {category}</h6>
       <div className="position-relative search-category ">
         <form className="d-flex mx-auto" role="search" onSubmit={(e) => e.preventDefault()}>
           <input

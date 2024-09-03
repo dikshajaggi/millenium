@@ -28,8 +28,9 @@ const SpecificCategory = () => {
 
   return (
     <div className='specific-cat-wrapper'>
-      <SearchCategoryHeader category={route} />
+      <h4>{route}</h4>
       <Banner />
+      <SearchCategoryHeader category={route} />
       <div className="products-section-wrapper">
         {products.map((item, index) => {
           return (

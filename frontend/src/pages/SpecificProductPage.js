@@ -32,7 +32,8 @@ const SpecificProductPage = () => {
     }
 
     const { _id, name, description, price, image } = product;
-    const currentQty = cartItems[_id] || 0; // Get quantity or default to 0
+    console.log(cartItems, "cart items")
+    const currentQty = cartItems ? cartItems[_id] || 0 : 0; // Get quantity or default to 0
 
     return (
         <div className='single-pro-main'>

@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken"
 
 const authMiddleware = async(req, res, next) => {
+    console.log(req.headers, "headers check auth")
     const {token} = req.headers
     if(!token) {
         return res.json({success: false, message: "not authorized"})

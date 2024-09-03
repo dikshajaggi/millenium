@@ -13,13 +13,13 @@ const Cart = () => {
   const dispatch = useDispatch();
 
   // Convert cartItems object to an array for easier processing
-  const cartItemsArray = Object.keys(cartItems).map(id => {
+  const cartItemsArray = cartItems ?  Object.keys(cartItems).map(id => {
     const product = products.find(product => product._id === id);
     if (product) {
       return { ...product, qty: cartItems[id] };
     }
     return null;
-  }).filter(item => item !== null);
+  }).filter(item => item !== null) : [];
 
 
   const handleQtyInc = (id) => {

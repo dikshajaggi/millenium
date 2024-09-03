@@ -14,6 +14,10 @@ const cartSlice = createSlice({
 
         addToCart: (state, action) => {
             const { id } = action.payload;
+            if (!state.cartItems) {
+                state.cartItems = {};
+            }
+        
             if (!state.cartItems[id]) {
                 state.cartItems = {
                     ...state.cartItems,
