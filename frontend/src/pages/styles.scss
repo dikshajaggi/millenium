@@ -268,9 +268,9 @@
   flex-direction: column;
 }
 
-.specific-cat-wrapper h4{
-  text-transform:  capitalize;
-  font-size: 40px;
+.specific-cat-wrapper h4 {
+  text-transform: capitalize;
+  font-size: 30px;
 }
 
 /* Responsive Styles */
@@ -297,8 +297,8 @@
 
 /* Mobile Styles */
 @media (max-width: 600px) {
-  .specific-cat-wrapper h4{
-    text-transform:  capitalize;
+  .specific-cat-wrapper h4 {
+    text-transform: capitalize;
     font-size: 30px;
   }
 

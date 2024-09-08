@@ -30,7 +30,7 @@ const SpecificCategory = () => {
     <div className='specific-cat-wrapper'>
       <h4>{route}</h4>
       <Banner />
-      <SearchCategoryHeader category={route} />
+      {/* <SearchCategoryHeader category={route} /> */}
       <div className="products-section-wrapper">
         {products.map((item, index) => {
           return (

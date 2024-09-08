@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import "../styles.scss"
 import { debounce } from "lodash"
 import { handleInputBlur, handleInputChange, handleInputFocus, handleResultClick } from '../utils/SearchBar'
@@ -22,6 +22,10 @@ const SearchCategoryHeader = ({ category }) => {
 
   const handleSearch = useCallback(debounce(search, 300), [])
 
+  useEffect(() => {
+    setResults([])
+  }, [])
+
   return (
     <div className='categoryHeader'>
       <h6 className='categoryHeaderh4'>Search for {category}</h6>
@@ -37,7 +41,7 @@ const SearchCategoryHeader = ({ category }) => {
             onFocus={() => handleInputFocus(results, setShowResults)}
             onBlur={() => handleInputBlur(setShowResults)}
           />
-           <span className="position-absolute search-icon">
+          <span className="position-absolute search-icon">
             <FontAwesomeIcon icon={faSearch} />
           </span>
         </form>
