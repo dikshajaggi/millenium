@@ -36,8 +36,9 @@ const Cart = () => {
   return (
     <div className='cart-wrapper'>
       {cartItemsArray.length === 0 ? (
-        <div>
-          <img src={emptycart} alt="" />
+        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+          <h4>Your cart is empty</h4>
+          <img src={emptycart} alt="" style={{ marginTop: "20px", height: "250px" }} />
         </div>
       ) : (
         <>

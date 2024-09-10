@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import "./styles.scss";
-import SearchCategoryHeader from '../components/SearchCategoryHeader'
+// import SearchCategoryHeader from '../components/SearchCategoryHeader'
 import { categoryWiseProducts } from '../apis';
 import ProductCard from '../components/ProductCard';
 import Banner from '../components/Banner';
