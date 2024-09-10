@@ -6,6 +6,7 @@ import CartCartMobileLayout from "../components/CartCardMobileLayout"
 import { MainContext } from '../context/MainContext';
 import { removeFromCart, addToCart } from '../redux/cartSlice';
 import CartCard from '../components/CartCard';
+import emptycart from "../assests/images/emptycart.png"
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
@@ -13,7 +14,7 @@ const Cart = () => {
   const dispatch = useDispatch();
 
   // Convert cartItems object to an array for easier processing
-  const cartItemsArray = cartItems ?  Object.keys(cartItems).map(id => {
+  const cartItemsArray = cartItems ? Object.keys(cartItems).map(id => {
     const product = products.find(product => product._id === id);
     if (product) {
       return { ...product, qty: cartItems[id] };
@@ -35,7 +36,9 @@ const Cart = () => {
   return (
     <div className='cart-wrapper'>
       {cartItemsArray.length === 0 ? (
-        <p>Your cart is empty.</p>
+        <div>
+          <img src={emptycart} alt="" />
+        </div>
       ) : (
         <>
           <CartCard cartItemsArray={cartItemsArray} handleQtyDec={handleQtyDec} handleQtyInc={handleQtyInc} />

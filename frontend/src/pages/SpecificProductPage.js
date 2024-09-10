@@ -38,7 +38,9 @@ const SpecificProductPage = () => {
     return (
         <div className='single-pro-main'>
             <div className='single-pro-div1'>
-                <img src={`http://localhost:5000/images/${image}`} alt="productimg" />
+                <div className='image-container'>
+                    <img src={`http://localhost:5000/images/${image}`} alt="productimg" />
+                </div>
             </div>
             <div className='single-pro-div2'>
                 <h1 className='single-pro-label'>{name}</h1>
