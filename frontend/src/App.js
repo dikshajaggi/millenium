@@ -8,7 +8,7 @@ import "./styles.scss"
 import { useState } from 'react';
 
 function App() {
-  const routes = ["/login", "/signup"]
+  const routes = ["/login", "/signup", "/contact", "/about", "/blog", "/terms_conditions"]
   const [category, setCategory] = useState("all")
   const location = useLocation()
   return (

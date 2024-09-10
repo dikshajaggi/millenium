@@ -1,4 +1,4 @@
-import React, {useContext } from 'react'
+import React, { useContext } from 'react'
 import "../styles.scss"
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { MainContext } from '../context/MainContext'
@@ -8,9 +8,9 @@ const Header = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const params = useParams()
-  const {token, setToken} = useContext(MainContext)
+  const { token, setToken } = useContext(MainContext)
   console.log(location, "loc", params)
-  const routes = ["brackets", "bands_and_tubes", "wires_and_springs", "miscellaneous", "orthodontic_pliers", "elastomerics", ]
+  const routes = ["brackets", "bands_and_tubes", "wires_and_springs", "miscellaneous", "orthodontic_pliers", "elastomerics"]
 
   const handleLogout = () => {
     localStorage.removeItem("token")
@@ -27,7 +27,7 @@ const Header = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            {routes.includes(params.category) || location.pathname === "/cart" || location.pathname === "/place-order" ? null : <Search />}
+            {routes.includes(params.category) || location.pathname === "/contact" || location.pathname === "/terms_conditions" || location.pathname === "/about" || location.pathname === "/blog" || location.pathname === "/cart" || location.pathname === "/place-order" ? null : <Search />}
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item text-capitalize">
                 <Link to="/offers" className="nav-link text-capitalize">Offers</Link>
@@ -36,11 +36,11 @@ const Header = () => {
                 <Link to="/cart" className="nav-link">Cart</Link>
               </li>
               {!token ? <li className="nav-item text-capitalize">
-                <Link to="/login" className="nav-link">Login</Link> 
-                </li> : <>
+                <Link to="/login" className="nav-link">Login</Link>
+              </li> : <>
                 <li className="nav-item text-capitalize nav-link">Welcome</li>
-                <li className="nav-item text-capitalize nav-link" style={{cursor: 'pointer'}} onClick={handleLogout}>Logout</li>
-                </>
+                <li className="nav-item text-capitalize nav-link" style={{ cursor: 'pointer' }} onClick={handleLogout}>Logout</li>
+              </>
               }
             </ul>
           </div>
