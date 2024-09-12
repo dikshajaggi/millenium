@@ -43,11 +43,11 @@ const SpecificProductPage = () => {
                 </div>
             </div>
             <div className='single-pro-div2'>
-                <h1 className='single-pro-label'>{name}</h1>
+                <h3 className='single-pro-label'>{name}</h3>
                 <p className='single-pro-desc'>{description}</p>
                 <div className='single-pro-price'>
-                    <h6 className='single-pro-price-h6'>Price:</h6>
-                    <h6 className='single-pro-price-h6'>{price}</h6>
+                    <h6 className='single-pro-price-h6'>Price: ₹</h6>
+                    <h6 className='single-pro-price-h6' style={{ marginLeft: "4px" }}>{price}</h6>
                 </div>
                 <LoginModal show={showModal} onClose={() => setShowModal(false)} />
                 {currentQty === 0 ? (

@@ -91,6 +91,13 @@
 }
 
 // ----------------------product section---------------------------------------------
+.products-catwise-wrapper {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
 .products-section-wrapper {
     display: flex;
     flex-wrap: wrap;
@@ -101,18 +108,21 @@
 
 // ------------------------product card----------------------------------------------
 .card-main {
-    height: 280px;
-    width: 330px;
+    height: 228px;
+    width: 180px;
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: space-between;
-    margin: 4px;
+    margin: 8px;
     cursor: pointer;
+    border-radius: 10px;
+    padding: 6px;
+    border: 1px solid #c2c2c2;
 }
 
 .card-main-img {
-    height: 240px;
+    height: 150px;
     width: 100%;
     display: flex;
     align-items: center;
@@ -129,11 +139,12 @@
 }
 
 .card-main-label {
+    text-align: center;
     text-transform: capitalize;
     text-decoration: none;
     color: #000000;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .qty-btn {
@@ -160,14 +171,14 @@
 .search-icon {
     right: 75px;
     top: 50%;
-    transform: translateY(-50%); 
+    transform: translateY(-50%);
     color: #aaa;
 }
 
 .search-icon-main {
     right: 20px;
     top: 50%;
-    transform: translateY(-50%); 
+    transform: translateY(-50%);
     color: #aaa;
 }
 
@@ -287,11 +298,11 @@
 }
 
 @media only screen and (max-width: 1024px) {
-    .search-icon-main{
+    .search-icon-main {
         right: 120px;
         top: 50%;
         font-size: 18px;
-        transform: translateY(-50%); 
+        transform: translateY(-50%);
         color: #aaa;
     }
 }
@@ -302,17 +313,18 @@
         font-size: 24px;
     }
 
-    .search-icon-main{
+    .search-icon-main {
         right: 30px;
         top: 50%;
         font-size: 18px;
-        transform: translateY(-50%); 
+        transform: translateY(-50%);
         color: #aaa;
     }
 
     .categoryHeader {
         flex-direction: column;
     }
+
     .textStyle {
         font-size: 14px;
     }
@@ -338,20 +350,22 @@
 }
 
 @media screen and (max-width: 480px) {
-    .search-icon-main{
+    .search-icon-main {
         right: 60px;
         top: 50%;
         font-size: 18px;
-        transform: translateY(-50%); 
+        transform: translateY(-50%);
         color: #aaa;
     }
+
     .search-icon {
         right: 170px;
         top: 50%;
         font-size: 18px;
-        transform: translateY(-50%); 
+        transform: translateY(-50%);
         color: #aaa;
     }
+
     .categoryHeader {
         flex-direction: column;
     }
@@ -404,128 +418,117 @@
 }
 
 
-/* Base Styles */
 .search-category {
-    width: 500px; /* Default width for larger screens */
-    max-width: 100%; /* Ensure it doesn't overflow */
+    width: 500px;
+    max-width: 100%;
     position: relative;
-  }
-  
-  .search-width {
-    width: 100%; /* Make input fill the container */
-    padding-right: 40px; /* Add space for the search icon */
-  }
-  
-  .search-icon {
+}
+
+.search-width {
+    width: 100%;
+    padding-right: 40px;
+}
+
+.search-icon {
     position: absolute;
-    right: 18px; /* Adjust this to control the icon's position relative to the input's right edge */
+    right: 18px;
     top: 50%;
     transform: translateY(-50%);
     color: #aaa;
     font-size: 18px;
-  }
-  
-  /* Responsive Styles */
-  
-  /* Tablet - Medium devices (768px to 1024px) */
-  @media (max-width: 1024px) {
-    .search-category {
-      width: 400px; /* Reduce the width for tablet-sized screens */
-    }
-  }
-  
-  /* Small tablets and large phones (max-width: 767px) */
-  @media (max-width: 767px) {
-    .search-category {
-      width: 300px; /* Further reduce the width for smaller screens */
-    }
-  
-    .search-icon {
-      font-size: 16px; /* Adjust the icon size if necessary */
-    }
-  }
-  
-  /* Mobile Devices - Small screens (max-width: 480px) */
-  @media (max-width: 480px) {
-    .search-category {
-      width: 250px; /* Adjust the width to fit on small mobile screens */
-    }
-  
-    .search-icon {
-      font-size: 14px; /* Adjust the icon size if necessary */
-    }
-  }
+}
 
+/* Responsive Styles */
 
-  /* Base Styles */
+@media (max-width: 1024px) {
+    .search-category {
+        width: 400px;
+    }
+}
+
+@media (max-width: 767px) {
+    .search-category {
+        width: 300px;
+    }
+
+    .search-icon {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-category {
+        width: 250px;
+    }
+
+    .search-icon {
+        font-size: 14px;
+    }
+}
+
 .mainSearch {
-    width: 500px; /* Default width for larger screens */
-    max-width: 100%; /* Ensure it doesn't overflow */
+    width: 500px;
+    max-width: 100%;
     position: relative;
-  }
-  
-  .search-width {
-    width: 100%; /* Make input fill the container */
-    padding-right: 40px; /* Space for the search icon */
-  }
-  
-  .search-icon-main {
+}
+
+.search-width {
+    width: 100%;
+    padding-right: 40px;
+}
+
+.search-icon-main {
     position: absolute;
-    right: 18px; /* Position the icon within the input field */
+    right: 18px;
     top: 50%;
     transform: translateY(-50%);
     color: #aaa;
     font-size: 18px;
-  }
-  
-  /* Responsive Styles */
-  
-  /* Tablet - Medium devices (768px to 1024px) */
-  @media (max-width: 1024px) {
+}
+
+
+@media (max-width: 1024px) {
     .mainSearch {
-      width: 400px; /* Reduce the width for tablet-sized screens */
+        width: 400px;
     }
-  }
-  
-  /* Small tablets and large phones (max-width: 767px) */
-  @media (max-width: 767px) {
+}
+
+@media (max-width: 767px) {
     .mainSearch {
-      width: 300px; /* Further reduce the width for smaller screens */
+        width: 300px;
     }
-  
+
     .search-icon-main {
-      font-size: 16px; /* Adjust the icon size if necessary */
-      right: 20px; /* Adjust the icon position */
+        font-size: 16px;
+        right: 20px;
     }
-  }
-  
-  /* Mobile Devices - Small screens (max-width: 480px) */
-  @media (max-width: 480px) {
+}
+
+@media (max-width: 480px) {
     .mainSearch {
-      width: 250px; /* Adjust the width to fit on small mobile screens */
+        width: 250px;
     }
-  
+
     .search-icon-main {
-      font-size: 14px; /* Adjust the icon size if necessary */
-      right: 15px; /* Adjust the icon position */
+        font-size: 14px;
+        right: 15px;
     }
-  }
-  
-    #carouselExample {
-        height: 500px; 
-        overflow: hidden;
-    }
-    
-    .carousel-inner {
-        height: 100%;
-    }
-    
-    .carousel-item {
-        height: 100%;
-    }
-    
-    .carousel-image {
-        height: 100%;
-        object-fit: cover; 
-    }
-    
+}
+
+#carouselExample {
+    height: 500px;
+    overflow: hidden;
+}
+
+.carousel-inner {
+    height: 100%;
+}
+
+.carousel-item {
+    height: 100%;
+}
+
+.carousel-image {
+    height: 100%;
+    object-fit: cover;
+}

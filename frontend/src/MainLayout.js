@@ -7,7 +7,7 @@ const MainLayout = () => {
     <div className='main-layout'>
       <Banner />
       <div className='main-layout-products-wrapper'>
-        <ProductsSection />
+        <ProductsSection category="orthodontic_pliers" />
       </div>
     </div>
   )

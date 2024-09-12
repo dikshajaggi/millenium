@@ -5,7 +5,7 @@ import bg from "../assests/background/bg.png"
 const Banner = () => {
   return (
     <>
-      <div id="carouselExample" className="carousel slide">
+      <div id="carouselExample" className="carousel slide" style={{ height: '300px' }}>
         <div className="carousel-inner">
           <div className="carousel-item active">
             <img src={bg} className="d-block w-100 carousel-image" alt="image1" />
