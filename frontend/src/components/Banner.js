@@ -1,6 +1,7 @@
 import React from 'react';
 import './styles.scss';
-import bg from "../assests/background/bg.png"
+import banner1 from "../assests/background/banner1.png"
+import banner2 from "../assests/background/banner2.png"
 
 const Banner = () => {
   return (
@@ -8,13 +9,13 @@ const Banner = () => {
       <div id="carouselExample" className="carousel slide" style={{ height: '300px' }}>
         <div className="carousel-inner">
           <div className="carousel-item active">
-            <img src={bg} className="d-block w-100 carousel-image" alt="image1" />
+            <img src={banner1} className="d-block w-100 carousel-image" alt="image1" />
           </div>
           <div className="carousel-item">
-            <img src={bg} className="d-block w-100 carousel-image" alt="image2" />
+            <img src={banner2} className="d-block w-100 carousel-image" alt="image2" />
           </div>
           <div className="carousel-item">
-            <img src={bg} className="d-block w-100 carousel-image" alt="image3" />
+            <img src={banner1} className="d-block w-100 carousel-image" alt="image3" />
           </div>
         </div>
         <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
