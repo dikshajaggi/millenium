@@ -15,9 +15,9 @@ const MainLayout = () => {
         <img src={mainbanner} className="d-block w-100 carousel-image" alt="image2" />
         <ProductsSection category="wires_and_springs" />
         <ProductsSection category="elastomerics" />
+        <img src={adv1} className="d-block w-100 carousel-image" alt="image2" />
         <ProductsSection category="miscellaneous" />
       </div>
-      <img src={adv1} className="d-block w-100 carousel-image" alt="image2" />
     </div>
   )
 }
