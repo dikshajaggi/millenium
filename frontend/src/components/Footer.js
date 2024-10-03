@@ -1,6 +1,6 @@
 import React from 'react'
 import "./styles.scss"
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
@@ -27,16 +27,20 @@ const Footer = () => {
                 <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
                   <h6 className="text-uppercase mb-4 font-weight-bold">Products</h6>
                   <p>
-                    <a href="#" className="text-white">MDBootstrap</a>
+                    Bootstrap Angular
+                    {/* <a href="#" className="text-white">MDBootstrap</a> */}
                   </p>
                   <p>
-                    <a href="#" className="text-white">MDWordPress</a>
+                    Bootstrap Angular
+                    {/* <a href="#" className="text-white">MDWordPress</a> */}
                   </p>
                   <p>
-                    <a href="#" className="text-white">BrandFlow</a>
+                    Bootstrap Angular
+                    {/* <a href="#" className="text-white">BrandFlow</a> */}
                   </p>
                   <p>
-                    <a href="#" className="text-white">Bootstrap Angular</a>
+                    Bootstrap Angular
+                    {/* <a href="#" className="text-white">Bootstrap Angular</a> */}
                   </p>
                 </div>
                 <hr className="w-100 clearfix d-md-none" />
