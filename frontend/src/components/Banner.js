@@ -8,7 +8,7 @@ import banner4 from "../assests/background/banner4.png"
 const Banner = () => {
   return (
     <>
-      <div id="carouselExample" className="carousel slide" data-bs-interval="2500" data-bs-ride="carousel">
+      <div id="carouselExample" className="carousel slide" data-bs-interval="2500" data-bs-ride="carousel" style={{ margin: "25px 0" }}>
         <div className="carousel-inner">
           <div className="carousel-item active">
             <img src={banner1} className="d-block w-100 carousel-image" alt="image1" />
