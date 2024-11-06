@@ -29,9 +29,7 @@ const Footer = () => {
                     Millenium Orthodontics
                   </h6>
                   <p>
-                    Here you can use rows and columns to organize your footer
-                    content. Lorem ipsum dolor sit amet, consectetur adipisicing
-                    elit.
+                  At Millenium Orthodontics, we specialize in providing high-quality orthodontic products designed to meet the needs of dental professionals. From brackets and wires to elastics and pliers, our extensive product range combines durability with precision, ensuring reliable solutions for orthodontic treatments. Committed to supporting dental practices, we offer competitive pricing, exceptional customer service, and innovative products that help create confident smiles.
                   </p>
                 </div>
                 <hr className="w-100 clearfix d-md-none" />

@@ -17,7 +17,7 @@ const CartCard = ({ cartItemsArray, handleQtyDec, handleQtyInc }) => {
                 <tbody>
                     {cartItemsArray.map(item => (
                         <tr key={item._id}>
-                            <td><img src={`http://localhost:5000/images/${item.image}`} alt={item.name} className='cart-item-img' /></td>
+                            <td><img src={`https://millenium-orthodontics.onrender.com/images/${item.image}`} alt={item.name} className='cart-item-img' /></td>
                             <td style={{ textTransform: "capitalize" }}>{item.name}</td>
                             <td>₹{item.price.toFixed(2)}</td>
                             <td>{item.qty}</td>
