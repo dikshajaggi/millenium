@@ -1,6 +1,0 @@
--> header
--> footer
--> categories
--> product cards
--> categories filtering
--> search
