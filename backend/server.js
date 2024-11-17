@@ -19,7 +19,7 @@ connect(process.env.MONGODB_URI, {
   .catch(err => console.log(err));
 
 app.use(express.json());
-app.use(cors("http://localhost:3000"));
+app.use(cors("https://milleniumorthodontics.netlify.app/"));
 
 app.use("/images", express.static("uploads"))
 app.use('/api/user', userRouter);
