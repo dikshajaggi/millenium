@@ -1,7 +1,7 @@
 import axios from "axios"
 
 // const baseUrl = "https://millenium-orthodontics.onrender.com"
-const baseUrl = "https://millenium-orthodontics.onrender.com"
+const baseUrl = "http://localhost:5000"
 
 
 // -----------------auth---------------------------------------
