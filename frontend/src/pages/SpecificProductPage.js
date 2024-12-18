@@ -39,7 +39,7 @@ const SpecificProductPage = () => {
         <div className='single-pro-main'>
             <div className='single-pro-div1'>
                 <div className='image-container'>
-                    <img src={`process.env.REACT_APP_BASE_URL/images/${image}`} alt="productimg" />
+                    <img src={`${process.env.REACT_APP_BASE_URL}/images/${image}`} alt="productimg" />
                 </div>
             </div>
             <div className='single-pro-div2'>
