@@ -26,10 +26,10 @@ const Footer = () => {
               <div className="row">
                 <div className="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
                   <h6 className="text-uppercase mb-4 font-weight-bold">
-                    Millenium Orthodontics
+                    Dwarka Orthodontics
                   </h6>
                   <p>
-                  At Millenium Orthodontics, we specialize in providing high-quality orthodontic products designed to meet the needs of dental professionals. From brackets and wires to elastics and pliers, our extensive product range combines durability with precision, ensuring reliable solutions for orthodontic treatments. Committed to supporting dental practices, we offer competitive pricing, exceptional customer service, and innovative products that help create confident smiles.
+                    At Dwarka Orthodontics, we specialize in providing high-quality orthodontic products designed to meet the needs of dental professionals. From brackets and wires to elastics and pliers, our extensive product range combines durability with precision, ensuring reliable solutions for orthodontic treatments. Committed to supporting dental practices, we offer competitive pricing, exceptional customer service, and innovative products that help create confident smiles.
                   </p>
                 </div>
                 <hr className="w-100 clearfix d-md-none" />
@@ -73,7 +73,7 @@ const Footer = () => {
             className="text-center p-3"
             style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}
           >
-            Copyright © 2024  Millenium Orthodontics, All Rights Reserved
+            Copyright © 2024  Dwarka Orthodontics, All Rights Reserved
           </div>
         </footer>
       </div>
