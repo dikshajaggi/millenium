@@ -32,3 +32,20 @@ $primary-color: #2B97A4;
   max-width: 100%;
   flex-direction: column;
 }
+
+#carouselExample {
+  height: auto;
+  overflow: hidden;
+}
+
+.carousel-inner {
+  height: 100%;
+}
+
+.carousel-item {
+  height: 100%;
+}
+
+.carousel-image {
+  object-fit: cover;
+}

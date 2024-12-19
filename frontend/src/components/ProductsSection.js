@@ -17,7 +17,7 @@ const ProductsSection = ({ category }) => {
 
     return (
         <div className='products-catwise-wrapper'>
-            <h4 style={{ textTransform: "capitalize" }}>{cat}</h4>
+            <div className='category-heading-label'>{cat}</div>
             <div className="products-section-wrapper" >
                 {products
                     .filter((item) => item.category === category) // Filter items based on the category

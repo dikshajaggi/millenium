@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import { Outlet, useLocation } from 'react-router-dom';
 import "./styles.scss"
 import { useState } from 'react';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   const routes = ["/login", "/signup", "/contact", "/about", "/blog", "/terms_conditions"]
@@ -13,6 +14,7 @@ function App() {
   const location = useLocation()
   return (
     <div className="app">
+      <ScrollToTop />
       <Header />
       {routes.includes(location.pathname) ? null : <Categories category={category} setCategory={setCategory} />}
       <div className='main'>
