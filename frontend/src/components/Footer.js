@@ -1,7 +1,7 @@
 import React from 'react'
 import "./styles.scss"
-import facebook from "../assests/icons/facebook.png"
 import instagram from "../assests/icons/instagram.png"
+import { WhatsappIcon, FacebookIcon } from "react-share";
 import { Link } from 'react-router-dom'
 // import { Link } from 'react-router-dom'
 
@@ -14,6 +14,10 @@ const Footer = () => {
     { id: 4, cat_id: "orthodontic_pliers", name: "Orthodontic Pliers" },
     { id: 5, cat_id: "miscellaneous", name: "Miscellaneous" }
   ]
+  const whatsappUrl = `https://wa.me/8700758871?text=Hello!`;
+  const fbPageUrl = "https://www.facebook.com/your_page_username"; 
+  const instaPageUrl = "https://www.instagram.com/your_instagram_username";
+
   return (
     <>
       <div className="container-fluid">
@@ -51,20 +55,21 @@ const Footer = () => {
                 </div>
                 <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
                   <h6 className="text-uppercase mb-4 font-weight-bold">Follow us</h6>
-                  <a
-                    className="btn btn-floating m-1"
-                    href="#!"
-                    role="button"
-                  >
-                    <img src={instagram} alt="instagram" style={{ height: "35px" }} />
-                  </a>
-                  <a
-                    className="btn btn-floating m-1"
-                    href="#!"
-                    role="button"
-                  >
-                    <img src={facebook} alt="facebook" style={{ height: "35px" }} />
-                  </a>
+                 <div className='follow-icons'>
+                    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+                      <WhatsappIcon size={32} round={true} />
+                    </a>
+                    <a href={fbPageUrl} target="_blank" rel="noopener noreferrer">
+                      <FacebookIcon size={32} round={true} />
+                    </a>
+                    <a href={instaPageUrl} target="_blank" rel="noopener noreferrer">
+                      <img
+                        src={instagram}
+                        alt="Visit Instagram Page"
+                        style={{ width: 32, height: 32 }}
+                      />
+                    </a>
+                 </div>
                 </div>
               </div>
             </section>

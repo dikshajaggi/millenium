@@ -6,8 +6,8 @@ import "./styles.scss";
 import { categoryWiseProducts } from '../apis';
 import ProductCard from '../components/ProductCard';
 
-// import bracketsBanner from "../assests/background/bracketsBanner.png"
-// import bracketsBannerMob from "../assests/background/bracketsBannerMob.png"
+import bracketsBanner from "../assests/background/bracketsBanner.png"
+import bracketsBannerMob from "../assests/background/bracketsBannerMob.png"
 
 import wiresBanner from "../assests/background/wiresBanner.png"
 import wiresBannerMob from "../assests/background/wiresBannerMob.png"
@@ -33,7 +33,7 @@ const SpecificCategory = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   const categoryBanners = {
-    // brackets: { desktop: bracketsBanner, mobile: bracketsBannerMob },
+    brackets: { desktop: bracketsBanner, mobile: bracketsBannerMob },
     wires_and_springs: { desktop: wiresBanner, mobile: wiresBannerMob },
     orthodontic_pliers: { desktop: pliersBanner, mobile: pliersBannerMob },
     bands_and_tubes: { desktop: bandsBanner, mobile: bandsBannerMob },
