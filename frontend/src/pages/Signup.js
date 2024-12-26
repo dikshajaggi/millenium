@@ -28,10 +28,13 @@ const Signup = ({ onSubmit }) => {
     try {
       const response = await signup(values)
       console.log(response, "response")
-      setToken(response.data.token)
-      localStorage.setItem("token", response.data.token)
-      navigate("/")
+      if(response.status === 201){
+        setToken(response.data.token)
+        localStorage.setItem("token", response.data.token)
+        navigate("/")
+      }
     } catch (error) {
+      alert(error.response.data.message);
       // Handle signup error
       console.error("Signup failed:", error);
     }
