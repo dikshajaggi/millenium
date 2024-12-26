@@ -14,9 +14,13 @@ const Footer = () => {
     { id: 4, cat_id: "orthodontic_pliers", name: "Orthodontic Pliers" },
     { id: 5, cat_id: "miscellaneous", name: "Miscellaneous" }
   ]
-  const whatsappUrl = `https://wa.me/8700758871?text=Hello!`;
-  const fbPageUrl = "https://www.facebook.com/your_page_username"; 
-  const instaPageUrl = "https://www.instagram.com/your_instagram_username";
+const phoneNumber = "918700758871"; // replace with your WhatsApp number
+const message = "Hello"; // replace with the desired message
+const whatsappUrl = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
+  ? `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
+  : `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+  const fbPageUrl = "https://www.facebook.com/millenium.orthodontics"; 
+  const instaPageUrl = "https://www.instagram.com/millenium_ortho?igsh=MWV6bTNobTBtN2xheQ==";
 
   return (
     <>
