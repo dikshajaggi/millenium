@@ -45,18 +45,18 @@ const MainLayout = () => {
         <ProductsSection category="elastomerics" />
 
         {isMobile ? <div id="carouselExample" className="carousel slide" data-bs-interval="2500" data-bs-ride="carousel" style={{ margin: "25px 0" }}>
-            <div className="carousel-inner">
-              <div className="carousel-item active">
-                <img src={shipping} className="d-block w-100 carousel-image" alt="banner" />
-              </div>
-              <div className="carousel-item">
-                <img src={products1k} className="d-block w-100 carousel-image" alt="banner" />
-              </div>
-              <div className="carousel-item">
-                <img src={satisfaction} className="d-block w-100 carousel-image" alt="banner" />
-              </div>
+          <div className="carousel-inner">
+            <div className="carousel-item active">
+              <img src={shipping} className="d-block w-100 carousel-image" alt="banner" />
             </div>
-          </div> : ( 
+            <div className="carousel-item">
+              <img src={products1k} className="d-block w-100 carousel-image" alt="banner" />
+            </div>
+            <div className="carousel-item">
+              <img src={satisfaction} className="d-block w-100 carousel-image" alt="banner" />
+            </div>
+          </div>
+        </div> : (
           <img src={adv1} className="d-block w-100" alt="advertisement banner" />
         )}
 
