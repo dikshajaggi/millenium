@@ -1,0 +1,6 @@
+export const currentDate = "Sat Feb 03 2025"
+export const companyName = "Dwarka Orthodontics"
+export const contactAddress = "Dwarka, New Delhi, India"
+export const contactEmail = "intmillenium@gmail.com"
+export const contactNumber = "9811704446"
+export const companyWebsiteUrl = "https://dwarkaorthodontics.com/"

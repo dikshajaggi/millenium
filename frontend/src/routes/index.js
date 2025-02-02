@@ -5,13 +5,13 @@ import MainLayout from "../MainLayout";
 import Signup from "../pages/Signup";
 import Blog from "../pages/footer/Blog";
 import Contact from "../pages/footer/Contact";
-import TnC from "../pages/footer/TnC";
 import About from "../pages/footer/About";
 import Cart from "../pages/Cart"
 import Offers from "../pages/Offers"
 import SpecificProductPage from "../pages/SpecificProductPage";
 import PlaceOrder from "../pages/PlaceOrder";
 import SpecificCategory from "../pages/SpecificCategory";
+import TermsConditions from "../pages/footer/TermsConditions";
 
 export const router = createBrowserRouter([
     {
@@ -56,8 +56,8 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/terms_conditions",
-                element: <TnC />
-            }, 
+                element: <TermsConditions />
+            },
             {
                 path: "/contact",
                 element: <Contact />
