@@ -46,6 +46,16 @@
   font-size: 28px;
 }
 
+.follow-icons-support {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.follow-icons-support-a {
+  margin-right: 4px;
+}
+
 .height100 {
   height: 100%;
 }

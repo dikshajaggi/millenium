@@ -4,6 +4,7 @@ import instagram from "../assests/icons/instagram.png"
 import { WhatsappIcon, FacebookIcon } from "react-share";
 import { Link } from 'react-router-dom'
 // import { Link } from 'react-router-dom'
+import { whatsappUrl, fbPageUrl, instaPageUrl } from "../assests/static"
 
 const Footer = () => {
   const categories = [
@@ -14,13 +15,13 @@ const Footer = () => {
     { id: 4, cat_id: "orthodontic_pliers", name: "Orthodontic Pliers" },
     { id: 5, cat_id: "miscellaneous", name: "Miscellaneous" }
   ]
-const phoneNumber = "918700758871"; // replace with your WhatsApp number
-const message = "Hello"; // replace with the desired message
-const whatsappUrl = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
-  ? `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
-  : `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
-  const fbPageUrl = "https://www.facebook.com/millenium.orthodontics"; 
-  const instaPageUrl = "https://www.instagram.com/millenium_ortho?igsh=MWV6bTNobTBtN2xheQ==";
+
+  const footerPages = [
+    { id: 1, url: "/about", name: "About" },
+    { id: 2, url: "/terms_conditions", name: "Terms & Conditions" },
+    { id: 3, url: "/privacy_policy", name: "Privacy Policy" },
+    { id: 4, url: "/support", name: "Support" }
+  ]
 
   return (
     <>
@@ -50,6 +51,15 @@ const whatsappUrl = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
                   })}
                 </div>
                 <hr className="w-100 clearfix d-md-none" />
+                <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                  <h6 className="text-uppercase mb-4 font-weight-bold">Products</h6>
+                  {footerPages.map(item => {
+                    return (<Link className='style-link' style={{ color: "#ffffff" }} to={item.url} key={item.id} >
+                      <p className='footer-products'>{item.name}</p>
+                    </Link>)
+                  })}
+                </div>
+                <hr className="w-100 clearfix d-md-none" />
                 <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
                   <h6 className="text-uppercase mb-4 font-weight-bold">Contact</h6>
                   <p><i className="fas fa-home mr-3"></i> Dwarka, New Delhi, India</p>
@@ -59,7 +69,7 @@ const whatsappUrl = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
                 </div>
                 <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
                   <h6 className="text-uppercase mb-4 font-weight-bold">Follow us</h6>
-                 <div className='follow-icons'>
+                  <div className='follow-icons'>
                     <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
                       <WhatsappIcon size={32} round={true} />
                     </a>
@@ -73,7 +83,7 @@ const whatsappUrl = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
                         style={{ width: 32, height: 32 }}
                       />
                     </a>
-                 </div>
+                  </div>
                 </div>
               </div>
             </section>

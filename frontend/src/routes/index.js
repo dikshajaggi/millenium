@@ -3,8 +3,6 @@ import App from "../App";
 import Login from "../pages/Login";
 import MainLayout from "../MainLayout";
 import Signup from "../pages/Signup";
-import Blog from "../pages/footer/Blog";
-import Contact from "../pages/footer/Contact";
 import About from "../pages/footer/About";
 import Cart from "../pages/Cart"
 import Offers from "../pages/Offers"
@@ -12,6 +10,8 @@ import SpecificProductPage from "../pages/SpecificProductPage";
 import PlaceOrder from "../pages/PlaceOrder";
 import SpecificCategory from "../pages/SpecificCategory";
 import TermsConditions from "../pages/footer/TermsConditions";
+import PrivacyPolicy from "../pages/footer/PrivacyPolicy";
+import Support from "../pages/footer/Support";
 
 export const router = createBrowserRouter([
     {
@@ -59,12 +59,12 @@ export const router = createBrowserRouter([
                 element: <TermsConditions />
             },
             {
-                path: "/contact",
-                element: <Contact />
+                path: "/support",
+                element: <Support />
             },
             {
-                path: "/blog",
-                element: <Blog />
+                path: "/privacy_policy",
+                element: <PrivacyPolicy />
             }
         ]
     }
