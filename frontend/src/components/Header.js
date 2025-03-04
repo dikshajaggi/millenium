@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { MainContext } from '../context/MainContext'
 import Search from './Search'
 import logo from "../assests/dwarkaorthologo.png"
+import { useAuth0 } from '@auth0/auth0-react'
 
 const Header = () => {
   const navigate = useNavigate()
@@ -12,6 +13,8 @@ const Header = () => {
   const { token, setToken } = useContext(MainContext)
   console.log(location, "loc", params)
   const routes = ["brackets", "bands_and_tubes", "wires_and_springs", "miscellaneous", "orthodontic_pliers", "elastomerics"]
+  const { loginWithRedirect, logout , isAuthenticated, user} = useAuth0();
+  console.log(user, "user")
 
   const handleLogout = () => {
     localStorage.removeItem("token")
@@ -37,11 +40,12 @@ const Header = () => {
             <li className="nav-item text-capitalize">
               <Link to="/cart" className="nav-link">Cart</Link>
             </li>
-            {!token ? <li className="nav-item text-capitalize">
-              <Link to="/login" className="nav-link">Login</Link>
+            {!isAuthenticated ? <li className="nav-item text-capitalize">
+              {/* <Link to="/login" className="nav-link">Login</Link> */}
+              <button onClick={() => loginWithRedirect()}>Log In</button>
             </li> : <>
-              <li className="nav-item text-capitalize nav-link">Welcome</li>
-              <li className="nav-item text-capitalize nav-link" style={{ cursor: 'pointer' }} onClick={handleLogout}>Logout</li>
+              <li className="nav-item text-capitalize nav-link">Welcome {user.nickname} </li>
+              <button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>Log Out</button>
             </>
             }
           </ul>
