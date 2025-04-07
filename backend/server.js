@@ -10,7 +10,7 @@ import categoryRouter from './routes/category.js';
 import searchRouter from './routes/search.js';
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8000;
 
 connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,

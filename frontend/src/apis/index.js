@@ -1,7 +1,7 @@
 import axios from "axios"
 
 // const baseUrl = "https://millenium-orthodontics.onrender.com"
-const baseUrl = process.env.REACT_APP_BASE_URL
+const baseUrl = process.env.REACT_APP_BASE_URL || "http://localhost:8000"
 
 console.log(baseUrl, "baseee")
 // -----------------auth---------------------------------------
@@ -59,5 +59,15 @@ export const searchAll = async (searchQuery) => {
 
 export const searchCategoryWise = async (searchQuery, category) => {
     const response = await axios.get(`${baseUrl}/api/search/category`, { params: { productName: searchQuery, category: category } })
+    return response
+}
+
+export const requestOtp = async (email) => {
+    const response = await axios.post(`${baseUrl}/api/user/request-otp`, { email });
+    return response
+}
+
+export const verifyOtp = async (data) => {
+    const response = await axios.post(`${baseUrl}/api/user/verify-otp`, data);
     return response
 }
