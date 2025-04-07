@@ -1,7 +1,7 @@
 import axios from "axios"
 
 // const baseUrl = "https://millenium-orthodontics.onrender.com"
-const baseUrl = process.env.REACT_APP_BASE_URL
+const baseUrl = process.env.REACT_APP_BASE_URL || "http://localhost:5000"
 
 console.log(baseUrl, "baseee")
 // -----------------auth---------------------------------------
@@ -26,10 +26,19 @@ export const getCart = async (config) => {
     return products
 }
 
-export const addingToCart = async (id, config) => {
-    const response = await axios.post(`${baseUrl}/api/cart/add`, { itemid: id }, config)
-    return response
-}
+export const addingToCart = async (id, token) => {
+    try {
+        const response = await axios.post(
+            `${baseUrl}/api/cart/add`,
+            { itemid: id }, // Request body
+            { headers: { Authorization: `Bearer ${token}` } } // Headers (sent separately)
+        );
+        return response.data;
+    } catch (error) {
+        console.error("Error in addingToCart:", error);
+        throw error;
+    }
+};
 
 export const removingFromCart = async (id, config) => {
     const response = await axios.post(`${baseUrl}/api/cart/remove`, { itemid: id }, config)

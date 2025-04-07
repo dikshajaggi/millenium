@@ -1,9 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useReducer, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { MainContext } from '../context/MainContext';
 import { useDispatch, useSelector } from 'react-redux';
 import { handleAddToCart, handleQtyDec } from '../utils/AddRemoveCartItems';
 import LoginModal from '../components/LoginModal';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const SpecificProductPage = () => {
     const dispatch = useDispatch();
@@ -11,13 +12,15 @@ const SpecificProductPage = () => {
     const params = useParams();
     const cartItems = useSelector((state) => state.cart.cartItems);
     const [showModal, setShowModal] = useState(false);
+    const { user} = useAuth0();
+
 
     const onLoginRequired = () => {
-        setShowModal(true);
+        if(!user) setShowModal(true);
     };
 
     useEffect(() => {
-        console.log(cartItems, "cartItems check");
+        console.log(cartItems, "cartItems check", user);
     }, [cartItems]);
 
     // Ensure the products array is not undefined or empty
@@ -50,7 +53,7 @@ const SpecificProductPage = () => {
                     <h6 className='single-pro-price-h6' style={{ marginLeft: "4px" }}>{price}</h6>
                 </div>
                 <LoginModal show={showModal} onClose={() => setShowModal(false)} />
-                {currentQty === 0 ? (
+                {!user ? (
                     <button className='single-pro-btn' onClick={() => handleAddToCart(_id, dispatch, onLoginRequired)}>Add to Cart</button>
                 ) : (
                     <div className='qty-inc-dec'>

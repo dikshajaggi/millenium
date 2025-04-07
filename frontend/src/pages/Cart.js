@@ -7,11 +7,14 @@ import { MainContext } from '../context/MainContext';
 import { removeFromCart, addToCart } from '../redux/cartSlice';
 import CartCard from '../components/CartCard';
 import emptycart from "../assests/images/emptycart.png"
+import { useAuth0 } from '@auth0/auth0-react';
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const { products } = useContext(MainContext);
   const dispatch = useDispatch();
+  const {user} = useAuth0();
+
 
   // Convert cartItems object to an array for easier processing
   const cartItemsArray = cartItems ? Object.keys(cartItems).map(id => {
@@ -35,7 +38,7 @@ const Cart = () => {
 
   return (
     <div className='cart-wrapper'>
-      {cartItemsArray.length === 0 ? (
+      {!user && cartItemsArray.length === 0 ? (
         <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
           <h4>Your cart is empty</h4>
           <img src={emptycart} alt="" style={{ marginTop: "20px", height: "250px" }} />

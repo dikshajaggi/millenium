@@ -2,18 +2,23 @@ import { addToCart, removeFromCart } from '../redux/cartSlice';
 import { addingToCart, removingFromCart } from '../apis';
 
 export const handleAddToCart = async (_id, dispatch, onLoginRequired) => {
-    // First check if the user is logged in
-    const token = localStorage.getItem("token")
-    if (token) {
-        dispatch(addToCart({ id: _id }));
-        if (token) {
-            await addingToCart(_id, { headers: { token } });
-        }
-    } else {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
         if (onLoginRequired) onLoginRequired();
+        return;
     }
 
+    try {
+        dispatch(addToCart({ id: _id })); // Update Redux store
+
+        // Pass token directly to API function
+        await addingToCart(_id, token);
+    } catch (error) {
+        console.error("Error adding item to cart:", error);
+    }
 };
+
 
 export const handleQtyDec = async (_id, currentQty, dispatch) => {
     const token = localStorage.getItem("token")

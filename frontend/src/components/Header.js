@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import "../styles.scss"
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { MainContext } from '../context/MainContext'
@@ -13,14 +13,14 @@ const Header = () => {
   const { token, setToken } = useContext(MainContext)
   console.log(location, "loc", params)
   const routes = ["brackets", "bands_and_tubes", "wires_and_springs", "miscellaneous", "orthodontic_pliers", "elastomerics"]
-  const { loginWithRedirect, logout , isAuthenticated, user} = useAuth0();
+  const { loginWithRedirect, logout , isAuthenticated, user, getAccessTokenSilently} = useAuth0();
   console.log(user, "user")
 
-  const handleLogout = () => {
-    localStorage.removeItem("token")
-    setToken("")
-    navigate("/")
-  }
+  // const handleLogout = () => {
+  //   localStorage.removeItem("token")
+  //   setToken("")
+  //   navigate("/")
+  // }
 
   return (
     <nav className="navbar sticky-top navbar-expand-lg bg-body-tertiary">
