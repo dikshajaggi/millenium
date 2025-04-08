@@ -1,12 +1,10 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useCallback, useState } from 'react'
 import { debounce } from "lodash"
 import { handleInputBlur, handleInputChange, handleInputFocus, handleResultClick } from '../utils/SearchBar'
 import { searchAll } from '../apis'
 import { useNavigate } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
 const Search = () => {
   const [value, setValue] = useState("")
@@ -23,36 +21,38 @@ const Search = () => {
   const handleSearch = useCallback(debounce(search, 300), [])
 
   return (
-    <>
-      <div className="position-relative mainSearch">
-        <form className="d-flex mx-auto" role="search" onSubmit={(e) => e.preventDefault()}>
-          <input
-            className="form-control me-2 search-width"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-            value={value}
-            onChange={(e) => handleInputChange(e, setValue, setResults, setShowResults, handleSearch)}
-            onFocus={() => handleInputFocus(results, setShowResults)}
-            onBlur={() => handleInputBlur(setShowResults)}
-          />
-          <span className="position-absolute search-icon-main">
-            <FontAwesomeIcon icon={faSearch} />
-          </span>
-        </form>
-        {showResults && results.length > 0 && (
-          <div className="search-results position-absolute w-100 bg-white border rounded shadow-sm" style={{ top: '45px' }}>
-            {results.map((result, index) => (
-              <div key={index} className="p-2 border-bottom textStyle" onMouseDown={() => handleResultClick(result, setShowResults, navigate)}>
-                {result.name}
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-      {/*  onMouseDown instead of onClick: onMouseDown triggers before the input onBlur event, so it ensures that the click is registered before the dropdown closes.
- */}
-    </>
+    <div className="relative w-full max-w-xl">
+      <form onSubmit={(e) => e.preventDefault()} className="relative">
+        <input
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+          value={value}
+          onChange={(e) => handleInputChange(e, setValue, setResults, setShowResults, handleSearch)}
+          onFocus={() => handleInputFocus(results, setShowResults)}
+          onBlur={() => handleInputBlur(setShowResults)}
+          className="w-full pl-10 pr-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm text-gray-700 placeholder-gray-400"
+        />
+        <FontAwesomeIcon
+          icon={faSearch}
+          className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400 text-sm"
+        />
+      </form>
+
+      {showResults && results.length > 0 && (
+        <div className="absolute z-10 mt-1 w-full bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-y-auto">
+          {results.map((result, index) => (
+            <div
+              key={index}
+              onMouseDown={() => handleResultClick(result, setShowResults, navigate)}
+              className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-sm text-gray-800"
+            >
+              {result.name}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
   )
 }
 

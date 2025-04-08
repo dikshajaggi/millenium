@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState } from 'react';
 import { MainContext } from '../context/MainContext';
 import { useSelector } from 'react-redux';
 import { placeorder } from '../apis';
@@ -8,79 +8,84 @@ import CartTotal from '../components/CartTotal';
 import { calculateCartTotal } from '../utils/CartTotalCalc';
 
 const PlaceOrder = () => {
-    const navigate = useNavigate();
-    const { products, token, setOrderPlaced } = useContext(MainContext);
-    console.log(token, "token checkkk")
-    const cartItems = useSelector((state) => state.cart.cartItems);
-    const [data, setData] = useState({
-        firstName: "",
-        lastName: "",
-        email: "",
-        street: "",
-        city: "",
-        state: "",
-        pincode: "",
-        phone: ""
-    });
+  const navigate = useNavigate();
+  const { products, token, setOrderPlaced } = useContext(MainContext);
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  const [data, setData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    street: "",
+    city: "",
+    state: "",
+    pincode: "",
+    phone: ""
+  });
 
-    const cartItemsArray =cartItems ? Object.keys(cartItems)
+  const cartItemsArray = cartItems
+    ? Object.keys(cartItems)
         .map(id => {
-            const product = products.find(product => product._id === id);
-            if (product) {
-                return { ...product, qty: cartItems[id] };
-            }
-            return null;
+          const product = products.find(product => product._id === id);
+          return product ? { ...product, qty: cartItems[id] } : null;
         })
-        .filter(item => item !== null) : [];
+        .filter(item => item !== null)
+    : [];
 
-    const placeOrder = async () => {
-        // Check if all required fields are filled
-        if (
-            data.firstName !== "" &&
-            data.lastName !== "" &&
-            data.email !== "" &&
-            data.street !== "" &&
-            data.city !== "" &&
-            data.state !== "" &&
-            data.pincode !== "" &&
-            data.phone !== ""
-        ) {
-            // Check if the cartItems object is not empty
-            if (Object.keys(cartItems).length > 0) {
-                const { finalAmount } = calculateCartTotal(cartItemsArray)
-                const orderData = {
-                    address: data,
-                    items: cartItemsArray,
-                    amount: finalAmount
-                };
+  const placeOrder = async () => {
+    const {
+      firstName, lastName, email, street,
+      city, state, pincode, phone
+    } = data;
 
-                try {
-                    const response = await placeorder(orderData, { headers: { token: token } });
-                    console.log(response, "res check");
+    if (
+      firstName && lastName && email && street &&
+      city && state && pincode && phone
+    ) {
+      if (Object.keys(cartItems).length > 0) {
+        const { finalAmount } = calculateCartTotal(cartItemsArray);
+        const orderData = {
+          address: data,
+          items: cartItemsArray,
+          amount: finalAmount
+        };
 
-                    if (response.data.success) {
-                        setOrderPlaced(true);
-                        alert("Order placed successfully");
-                        navigate("/");
-                    } else alert("Failed to place order. Please try again.")
-                } catch (error) {
-                    console.error("Error placing order:", error);
-                    alert("Failed to place order. Please try again.");
-                }
-            } else {
-                alert("Cart is empty");
-            }
-        } else {
-            alert("Please fill all the fields");
+        try {
+          const response = await placeorder(orderData, {
+            headers: { token }
+          });
+
+          if (response.data.success) {
+            setOrderPlaced(true);
+            alert("Order placed successfully");
+            navigate("/");
+          } else {
+            alert("Failed to place order. Please try again.");
+          }
+        } catch (error) {
+          console.error("Error placing order:", error);
+          alert("Failed to place order. Please try again.");
         }
-    };
+      } else {
+        alert("Cart is empty");
+      }
+    } else {
+      alert("Please fill all the fields");
+    }
+  };
 
-    return (
-        <div className="checkout-container">
-            <PlaceOrderForm data={data} setData={setData} />
-            <CartTotal cartItemsArray={cartItemsArray} placeOrder={placeOrder} />
-        </div>
-    );
-}
+  return (
+    <div className="flex flex-col lg:flex-row gap-6 px-4 sm:px-6 md:px-10 py-6 max-w-7xl mx-auto">
+      {/* Left: Form */}
+      <div className="w-full lg:w-2/3 bg-white p-4 sm:p-6 rounded-lg shadow">
+        <PlaceOrderForm data={data} setData={setData} />
+      </div>
+
+      {/* Right: Cart Summary */}
+      <div className="w-full lg:w-1/3 bg-white p-4 sm:p-6 rounded-lg shadow h-fit">
+        <CartTotal cartItemsArray={cartItemsArray} placeOrder={placeOrder} />
+      </div>
+    </div>
+  );
+};
 
 export default PlaceOrder;

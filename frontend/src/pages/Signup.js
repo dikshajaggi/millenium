@@ -2,22 +2,20 @@ import React, { useContext, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
-import "./styles.scss";
-import hide from "../assests/images/hide.png";
-import show from "../assests/images/visible.png";
-import { requestOtp, verifyOtp } from "../apis"; // New API functions
+import { requestOtp, verifyOtp } from "../apis";
 import { MainContext } from "../context/MainContext";
+import { Eye, EyeOff } from "lucide-react";
+
 
 const SignupSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Email is required"),
   name: Yup.string().required("Name is required"),
-  password: Yup.string().min(8, "Password must be 8+ characters").required("Password is required"),
+  password: Yup.string().min(8, "Password must be at least 8 characters").required("Password is required"),
 });
 
 const Signup = () => {
   const { setToken } = useContext(MainContext);
   const navigate = useNavigate();
-
   const [showPassword, setShowPassword] = useState(false);
   const [otp, setOtp] = useState("");
   const [formData, setFormData] = useState(null);
@@ -52,52 +50,99 @@ const Signup = () => {
   };
 
   return (
-    <Formik
-      initialValues={{ email: "", name: "", password: "" }}
-      validationSchema={SignupSchema}
-      onSubmit={handleRequestOtp}
-    >
-      <div className="d-flex justify-content-center align-items-center minheight">
-        <Form className="d-flex flex-column justify-content-evenly align-items-center border formheight">
-          <div className="divWidth">
-            <label htmlFor="email">Email:</label>
-            <Field type="email" id="email" name="email" />
-            <ErrorMessage name="email" component="div" className="text-danger" />
-          </div>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-4">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl p-8 sm:p-10">
+        <h2 className="text-3xl font-bold text-center text-gray-800 mb-4">Create an Account 🚀</h2>
+        <p className="text-center text-gray-500 mb-6">Start your journey with us</p>
 
-          <div className="divWidth">
-            <label htmlFor="name">Name:</label>
-            <Field type="text" id="name" name="name" />
-            <ErrorMessage name="name" component="div" className="text-danger" />
-          </div>
-
-          <div className="divWidth">
-            <label htmlFor="password">Password:</label>
-            <Field type={showPassword ? "text" : "password"} id="password" name="password" />
-            <button type="button" onClick={togglePasswordVisibility} className="pass-visibility">
-              <img src={showPassword ? hide : show} alt="show/hide pass" className="pass-visibility-img" />
-            </button>
-            <ErrorMessage name="password" component="div" className="text-danger" />
-          </div>
-
-          {!isOtpSent && (
-            <button type="submit" className="btn buttons btn-sm">Send OTP</button>
-          )}
-
-          {isOtpSent && (
-            <>
-              <div className="divWidth">
-                <label>Enter OTP:</label>
-                <input value={otp} onChange={(e) => setOtp(e.target.value)} />
+        <Formik
+          initialValues={{ email: "", name: "", password: "" }}
+          validationSchema={SignupSchema}
+          onSubmit={handleRequestOtp}
+        >
+          {() => (
+            <Form className="space-y-5">
+              {/* Email */}
+              <div>
+                <label htmlFor="email" className="block text-sm font-semibold text-gray-700">Email</label>
+                <Field
+                  type="email"
+                  name="email"
+                  id="email"
+                  className="mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <ErrorMessage name="email" component="div" className="text-red-500 text-sm mt-1" />
               </div>
-              <button type="button" className="btn buttons btn-sm" onClick={handleVerifyOtp}>
-                Verify & Signup
-              </button>
-            </>
+
+              {/* Name */}
+              <div>
+                <label htmlFor="name" className="block text-sm font-semibold text-gray-700">Name</label>
+                <Field
+                  type="text"
+                  name="name"
+                  id="name"
+                  className="mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <ErrorMessage name="name" component="div" className="text-red-500 text-sm mt-1" />
+              </div>
+
+              {/* Password */}
+              <div className="relative">
+                <label htmlFor="password" className="block text-sm font-semibold text-gray-700">Password</label>
+                <Field
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  id="password"
+                  className="mt-1 w-full px-4 py-2 border rounded-lg pr-12 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <button
+                  type="button"
+                  onClick={togglePasswordVisibility}
+                  className="absolute right-3 top-9 text-gray-500 hover:text-gray-700"
+                >
+                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                </button>
+
+                <ErrorMessage name="password" component="div" className="text-red-500 text-sm mt-1" />
+              </div>
+
+              {/* OTP */}
+              {isOtpSent && (
+                <>
+                  <div>
+                    <label htmlFor="otp" className="block text-sm font-semibold text-gray-700">Enter OTP</label>
+                    <input
+                      type="text"
+                      id="otp"
+                      value={otp}
+                      onChange={(e) => setOtp(e.target.value)}
+                      className="mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                    />
+                  </div>
+                  <button
+                    type="button"
+                    onClick={handleVerifyOtp}
+                    className="w-full py-2 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition duration-200"
+                  >
+                    Verify & Sign Up
+                  </button>
+                </>
+              )}
+
+              {/* Send OTP */}
+              {!isOtpSent && (
+                <button
+                  type="submit"
+                  className="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition duration-200"
+                >
+                  Send OTP
+                </button>
+              )}
+            </Form>
           )}
-        </Form>
+        </Formik>
       </div>
-    </Formik>
+    </div>
   );
 };
 

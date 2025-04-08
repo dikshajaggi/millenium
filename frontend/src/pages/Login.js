@@ -1,114 +1,108 @@
-// LoginForm.js
-import React, {useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
-import "./styles.scss";
-import hide from "../assests/images/hide.png";
-import show from "../assests/images/visible.png";
 import { login } from "../apis";
 import { MainContext } from "../context/MainContext";
+import { Eye, EyeOff } from "lucide-react";
+
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().required("Email is required"),
   password: Yup.string().required("Password is required"),
 });
 
-const Login = ({ onSubmit }) => {
-  const {setToken} = useContext(MainContext)
+const Login = () => {
+  const { setToken } = useContext(MainContext);
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
+  const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
   const handleLogin = async (values) => {
-    console.log(values, "login");
-    try{
-      const response = await login(values)
-      console.log(response, "response")
-      if(response.data.success){
-        setToken(response.data.token)
-        localStorage.setItem("token", response.data.token)
-        navigate("/")
+    try {
+      const response = await login(values);
+      if (response.data.success) {
+        setToken(response.data.token);
+        localStorage.setItem("token", response.data.token);
+        navigate("/");
       } else {
-        alert(response.data.message)
+        alert(response.data.message);
       }
     } catch (error) {
-      // Handle login error
       console.error("Login failed:", error);
     }
   };
 
   return (
-    <>
+    <div className="min-h-screen bg-gradient-to-tr from-blue-50 to-blue-100 flex items-center justify-center px-4">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl p-8 sm:p-10">
+        <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Welcome Back 👋</h2>
+        <p className="text-center text-gray-500 mb-6">Login to continue shopping with us</p>
+
         <Formik
-          initialValues={{ username: "", password: "" }}
+          initialValues={{ email: "", password: "" }}
           validationSchema={LoginSchema}
           onSubmit={handleLogin}
         >
-          <div className="d-flex justify-content-center align-items-center minheight">
-            <Form className="d-flex flex-column justify-content-evenly align-items-center border formheight">
-              <div className="text-capitalize">
-                <div className="d-flex justify-content-between align-items-center divWidth">
-                  <label htmlFor="email" className="mr-10">
-                    Email:
-                  </label>
-                  <Field type="email" id="email" name="email" />
-                </div>
-                <ErrorMessage
+          {() => (
+            <Form className="space-y-5">
+              {/* Email Field */}
+              <div>
+                <label htmlFor="email" className="block text-sm font-semibold text-gray-700">
+                  Email
+                </label>
+                <Field
+                  type="email"
                   name="email"
-                  component="div"
-                  className="text-danger"
+                  id="email"
+                  className="mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-400"
                 />
+                <ErrorMessage name="email" component="div" className="text-sm text-red-500 mt-1" />
               </div>
 
-              <div className="text-capitalize">
-                <div className="d-flex justify-content-between align-items-center divWidth">
-                  <label htmlFor="password">Password:</label>
-                  <Field
-                    type={showPassword ? "text" : "password"}
-                    id="password"
-                    name="password"
-                  />
-                </div>
+              {/* Password Field */}
+              <div className="relative">
+                <label htmlFor="password" className="block text-sm font-semibold text-gray-700">
+                  Password
+                </label>
+                <Field
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  id="password"
+                  className="mt-1 w-full px-4 py-2 border rounded-lg pr-12 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-400"
+                />
                 <button
                   type="button"
                   onClick={togglePasswordVisibility}
-                  className="pass-visibility"
+                  className="absolute right-3 top-9 text-gray-500 hover:text-gray-700"
                 >
-                  <img
-                    src={showPassword ? hide : show}
-                    className="pass-visibility-img"
-                    alt="show/hide pass"
-                  />
+                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </button>
-                <ErrorMessage
-                  name="password"
-                  component="div"
-                  className="text-danger"
-                />
+
+                <ErrorMessage name="password" component="div" className="text-sm text-red-500 mt-1" />
               </div>
 
-              <div className="text-capitalize">
-                <button className="btn buttons btn-sm" type="submit">
-                  Login
-                </button>
-              </div>
-              <div className="text-capitalize">
-                not registred?
-                <Link to="/signup" className="linkclass">
-                  {" "}
-                  <button className="btn buttons btn-sm" type="submit">
-                    Signup
-                  </button>
+              {/* Submit Button */}
+              <button
+                type="submit"
+                className="w-full py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-all duration-200"
+              >
+                Login
+              </button>
+
+              {/* Link to Sign Up */}
+              <p className="text-center text-sm text-gray-600 mt-3">
+                Don't have an account?{" "}
+                <Link to="/signup" className="text-blue-600 hover:underline font-medium">
+                  Sign up
                 </Link>
-              </div>
+              </p>
             </Form>
-          </div>
+          )}
         </Formik>
-    </>
+      </div>
+    </div>
   );
 };
 

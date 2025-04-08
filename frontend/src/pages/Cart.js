@@ -1,27 +1,24 @@
 import React, { useContext } from 'react';
-import "./styles.scss";
 import { useSelector, useDispatch } from 'react-redux';
 import CartTotal from '../components/CartTotal';
-import CartCartMobileLayout from "../components/CartCardMobileLayout"
 import { MainContext } from '../context/MainContext';
 import { removeFromCart, addToCart } from '../redux/cartSlice';
 import CartCard from '../components/CartCard';
-import emptycart from "../assests/images/emptycart.png"
+import emptycart from "../assests/images/emptycart.png";
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const { products } = useContext(MainContext);
   const dispatch = useDispatch();
 
-  // Convert cartItems object to an array for easier processing
-  const cartItemsArray = cartItems ? Object.keys(cartItems).map(id => {
-    const product = products.find(product => product._id === id);
-    if (product) {
-      return { ...product, qty: cartItems[id] };
-    }
-    return null;
-  }).filter(item => item !== null) : [];
-
+  const cartItemsArray = cartItems
+    ? Object.keys(cartItems)
+        .map(id => {
+          const product = products.find(product => product._id === id);
+          return product ? { ...product, qty: cartItems[id] } : null;
+        })
+        .filter(item => item !== null)
+    : [];
 
   const handleQtyInc = (id) => {
     dispatch(addToCart({ id }));
@@ -34,19 +31,19 @@ const Cart = () => {
   };
 
   return (
-    <div className='cart-wrapper'>
+    <div className="min-h-screen px-4 py-8">
       {cartItemsArray.length === 0 ? (
-        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-          <h4>Your cart is empty</h4>
-          <img src={emptycart} alt="" style={{ marginTop: "20px", height: "250px" }} />
+        <div className="flex flex-col items-center justify-center text-center">
+          <h4 className="text-xl font-semibold text-gray-600">Your cart is empty</h4>
+          <img src={emptycart} alt="Empty Cart" className="mt-6 h-64 w-auto object-contain" />
         </div>
       ) : (
         <>
-          <CartCard cartItemsArray={cartItemsArray} handleQtyDec={handleQtyDec} handleQtyInc={handleQtyInc} />
-
-          {/* Mobile Card Layout */}
-          <CartCartMobileLayout cartItemsArray={cartItemsArray} handleQtyDec={handleQtyDec} handleQtyInc={handleQtyInc} />
-
+          <CartCard
+            cartItemsArray={cartItemsArray}
+            handleQtyDec={handleQtyDec}
+            handleQtyInc={handleQtyInc}
+          />
           <CartTotal cartItemsArray={cartItemsArray} />
         </>
       )}
