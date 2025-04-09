@@ -69,7 +69,7 @@ const Signup = () => {
                   type="email"
                   name="email"
                   id="email"
-                  className="mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#2D3092]"
                 />
                 <ErrorMessage name="email" component="div" className="text-red-500 text-sm mt-1" />
               </div>
@@ -81,7 +81,7 @@ const Signup = () => {
                   type="text"
                   name="name"
                   id="name"
-                  className="mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#2D3092]"
                 />
                 <ErrorMessage name="name" component="div" className="text-red-500 text-sm mt-1" />
               </div>
@@ -93,7 +93,7 @@ const Signup = () => {
                   type={showPassword ? "text" : "password"}
                   name="password"
                   id="password"
-                  className="mt-1 w-full px-4 py-2 border rounded-lg pr-12 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="mt-1 w-full px-4 py-2 border rounded-lg pr-12 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#2D3092]"
                 />
                 <button
                   type="button"
@@ -133,7 +133,7 @@ const Signup = () => {
               {!isOtpSent && (
                 <button
                   type="submit"
-                  className="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition duration-200"
+                  className="w-full py-2 bg-[#2D3092] hover:bg-opacity-80 text-white font-semibold rounded-lg transition duration-200"
                 >
                   Send OTP
                 </button>

@@ -86,7 +86,7 @@ const Login = () => {
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-all duration-200"
+                className="w-full py-2 bg-[#2D3092] text-white font-semibold rounded-lg hover:bg-opacity-80 transition-all duration-200"
               >
                 Login
               </button>
@@ -94,7 +94,7 @@ const Login = () => {
               {/* Link to Sign Up */}
               <p className="text-center text-sm text-gray-600 mt-3">
                 Don't have an account?{" "}
-                <Link to="/signup" className="text-blue-600 hover:underline font-medium">
+                <Link to="/signup" className="text-[#2D3092] hover:underline font-medium no-underline">
                   Sign up
                 </Link>
               </p>

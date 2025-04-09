@@ -22,13 +22,13 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-neutral-800 text-white pt-10 pb-6 mt-10">
+    <footer className="bg-[#2D3092] text-white pt-10 pb-6 mt-10">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="grid md:grid-cols-5 sm:grid-cols-2 gap-8 text-sm">
+        <div className="grid md:grid-cols-5 sm:grid-cols-2 gap-8 text-sm md:text-base">
           {/* Company */}
           <div className="col-span-2">
-            <h2 className="text-lg font-semibold mb-4">Dwarka Orthodontics</h2>
-            <p className="text-gray-300">
+            <h4 className="font-semibold mb-4">Dwarka Orthodontics</h4>
+            <p className="text-gray-300 font-semibold" >
               We provide high-quality orthodontic products tailored for dental professionals.
               From brackets to pliers, we deliver reliability and innovation.
               From brackets and wires to elastics and pliers, our extensive product range combines durability with precision, ensuring reliable solutions for 
@@ -39,12 +39,12 @@ const Footer = () => {
 
           {/* Product Links */}
           <div>
-            <h3 className="font-semibold mb-4">Products</h3>
+            <h4 className="font-semibold mb-4">Products</h4>
             {categories.map((item) => (
               <Link
                 key={item.id}
                 to={`/category/${item.cat_id}`}
-                className="block text-gray-400 hover:text-white transition"
+                className="block text-gray-300 hover:text-white transition no-underline font-semibold"
               >
                 {item.name}
               </Link>
@@ -53,12 +53,12 @@ const Footer = () => {
 
           {/* Footer Pages */}
           <div>
-            <h3 className="font-semibold mb-4">Pages</h3>
+            <h4 className="font-semibold mb-4">Pages</h4>
             {footerPages.map((item) => (
               <Link
                 key={item.id}
                 to={item.url}
-                className="block text-gray-400 hover:text-white transition"
+                className="block text-gray-300 hover:text-white transition no-underline font-semibold"
               >
                 {item.name}
               </Link>
@@ -67,13 +67,13 @@ const Footer = () => {
 
           {/* Contact & Socials */}
           <div>
-            <h3 className="font-semibold mb-4">Contact</h3>
-            <p className="text-gray-300 mb-1">Dwarka, New Delhi, India</p>
-            <p className="text-gray-300 mb-1">intmillenium@gmail.com</p>
-            <p className="text-gray-300 mb-1">+91 9811704446</p>
-            <p className="text-gray-300 mb-4">+91 8920570339</p>
+            <h4 className="font-semibold mb-4">Contact</h4>
+            <p className="text-gray-300 font-semibold mb-1">Dwarka, New Delhi, India</p>
+            <p className="text-gray-300 font-semibold mb-1">intmillenium@gmail.com</p>
+            <p className="text-gray-300 font-semibold mb-1">+91 9811704446</p>
+            <p className="text-gray-300 font-semibold mb-4">+91 8920570339</p>
 
-            <div className="flex gap-3 items-center">
+            <div className="flex gap-3 items-center no-underline">
               <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
                 <WhatsappIcon size={32} round />
               </a>
@@ -91,7 +91,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-8 border-t border-gray-700 pt-4 text-center text-gray-400 text-xs">
+        <div className="mt-8 border-t border-gray-700 pt-4 text-center text-gray-400 text-sm md:text-base">
           © 2025 Dwarka Orthodontics. All Rights Reserved.
         </div>
       </div>

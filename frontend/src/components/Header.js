@@ -20,7 +20,7 @@ const Header = () => {
   const routes = ["brackets", "bands_and_tubes", "wires_and_springs", "miscellaneous", "orthodontic_pliers", "elastomerics"];
   const showSearch = !(
     routes.includes(params.category) ||
-    ["/contact", "/terms_conditions", "/about", "/blog", "/cart", "/place-order"].includes(location.pathname)
+    ["/contact", "/terms_conditions", "/about", "/blog", "/cart", "/place-order", "/login", "/signup"].includes(location.pathname)
   );
 
   return (
@@ -41,17 +41,17 @@ const Header = () => {
         </div>
 
         {/* Right: Navigation */}
-        <div className="flex flex-wrap gap-4 justify-center md:justify-end items-center w-full md:w-1/3 text-gray-700 text-sm sm:text-base">
-          <Link to="/offers" className="flex items-center gap-1 hover:text-primary transition">
+        <div className="flex flex-wrap gap-4 justify-center md:justify-end items-center w-full md:w-1/3 text-gray-700 text-sm sm:text-base md:text-lg ">
+          <Link to="/offers" className="no-underline flex items-center gap-1 text-black hover:text-[#2D3092] transition">
             <Gift size={18} /> <span>Offers</span>
           </Link>
 
-          <Link to="/cart" className="flex items-center gap-1 hover:text-primary transition">
+          <Link to="/cart" className="no-underline flex items-center gap-1 text-black hover:text-[#2D3092] transition">
             <ShoppingCart size={18} /> <span>Cart</span>
           </Link>
 
           {!token ? (
-            <Link to="/login" className="flex items-center gap-1 hover:text-primary transition">
+            <Link to="/login" className="no-underline flex items-center gap-1 text-black hover:text-[#2D3092] transition">
               <LogIn size={18} /> <span>Login</span>
             </Link>
           ) : (

@@ -38,7 +38,7 @@ const SpecificProductPage = () => {
       <div className="w-full md:w-1/2 flex justify-center">
         <div className="w-full max-w-md border rounded-lg shadow-md bg-white p-4">
           <img
-            src={`${process.env.REACT_APP_BASE_URL}/images/${image}`}
+            src={`http://localhost:8000/images/${image}`}
             alt={name}
             className="w-full h-auto rounded-lg object-contain"
           />
@@ -61,7 +61,7 @@ const SpecificProductPage = () => {
         {/* Cart Actions */}
         {currentQty === 0 ? (
           <button
-            className="mt-4 w-full md:w-1/2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition"
+            className="mt-4 w-full md:w-1/2 bg-[#2D3092] hover:bg-opacity-90 text-white font-semibold py-2 px-4 rounded-lg transition"
             onClick={() => handleAddToCart(_id, dispatch, onLoginRequired)}
           >
             Add to Cart

@@ -49,7 +49,7 @@ const MainLayout = () => {
         <ProductsSection category="brackets" />
         <ProductsSection category="bands_and_tubes" />
 
-        <div className="bg-blue-500 relative overflow-hidden py-10 px-4 sm:px-6 lg:px-8 text-center">
+        <div className="bg-[#0094DA] relative overflow-hidden py-10 px-4 sm:px-6 lg:px-8 text-center">
           {/* Hexagon background pattern can be added here with absolute positioned SVGs or background-image */}
           <div className="max-w-7xl mx-auto">
             <h2 className="text-white text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">

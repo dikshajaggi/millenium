@@ -31,15 +31,15 @@ const Categories = ({ category, setCategory }) => {
             key={item.id}
             to={`/category/${item.cat_id}`}
             onClick={() => handleCategoryClick(item.name)}
-            className="min-w-[90px] md:min-w-0"
+            className="min-w-[90px] md:min-w-0 no-underline"
           >
             <div className="flex flex-col items-center justify-center text-center">
               <img
                 src={categoryIcon}
                 alt="category"
-                className="w-10 h-10 sm:w-12 sm:h-12 object-contain mb-1"
+                className="w-10 h-10 sm:w-14 sm:h-14 object-contain mt-2"
               />
-              <span className={`text-sm sm:text-base ${category === item.name ? 'text-blue-600 font-medium' : 'text-gray-700'}`}>
+              <span className={`text-sm sm:text-base md:text-lg font-semibold ${category === item.name ? 'text-[#0094DA]' : 'text-gray-700'}`}>
                 {item.name}
               </span>
             </div>

@@ -1,36 +1,45 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { categoryWiseProducts } from '../apis';
 import ProductCard from '../components/ProductCard';
 
-// Banner imports
-import bracketsBanner from '../assests/background/bracketsBanner.png';
-import bracketsBannerMob from '../assests/background/bracketsBannerMob.png';
-import wiresBanner from '../assests/background/wiresBanner.png';
-import wiresBannerMob from '../assests/background/wiresBannerMob.png';
-import bandsBanner from '../assests/background/bandsBanner.png';
-import bandsBannerMob from '../assests/background/bandsBannerMob.png';
-import elastomericsBanner from '../assests/background/elastomericsBanner.png';
-import elastomericsBannerMob from '../assests/background/elastomericsBannerMob.png';
-import miscBanner from '../assests/background/miscBanner.png';
-import miscBannerMob from '../assests/background/miscBannerMob.png';
-import pliersBanner from '../assests/background/pliersBanner.png';
-import pliersBannerMob from '../assests/background/pliersBannerMob.png';
+const categoryBanners = {
+  brackets: {
+    title: 'Explore our premium',
+    highlight: 'Brackets',
+    description: 'High-quality orthodontic brackets that ensure comfort and reliability for professionals.',
+  },
+  wires_and_springs: {
+    title: 'Top-grade',
+    highlight: 'Wires & Springs',
+    description: 'Durable and flexible wires & springs for efficient orthodontic treatment.'
+  },
+  bands_and_tubes: {
+    title: 'Reliable',
+    highlight: 'Bands & Tubes',
+    description: 'Sturdy bands and tubes built for performance and patient comfort.',
+  },
+  orthodontic_pliers: {
+    title: 'Precision tools:',
+    highlight: 'Orthodontic Pliers',
+    description: 'Get the best results with our finely crafted orthodontic pliers.'
+  },
+  elastomerics: {
+    title: 'Elastic solutions:',
+    highlight: 'Elastomerics',
+    description: 'Elastic materials that adapt and perform with consistency.'
+  },
+  miscellaneous: {
+    title: 'Explore',
+    highlight: 'Miscellaneous Tools',
+    description: 'Supportive tools and items to complete your orthodontic kit.'
+  }
+};
 
 const SpecificCategory = () => {
   const params = useParams();
   const [route, setRoute] = useState(params.category);
   const [products, setProducts] = useState([]);
-  const [isMobile, setIsMobile] = useState(false);
-
-  const categoryBanners = {
-    brackets: { desktop: bracketsBanner, mobile: bracketsBannerMob },
-    wires_and_springs: { desktop: wiresBanner, mobile: wiresBannerMob },
-    orthodontic_pliers: { desktop: pliersBanner, mobile: pliersBannerMob },
-    bands_and_tubes: { desktop: bandsBanner, mobile: bandsBannerMob },
-    elastomerics: { desktop: elastomericsBanner, mobile: elastomericsBannerMob },
-    miscellaneous: { desktop: miscBanner, mobile: miscBannerMob }
-  };
 
   useEffect(() => {
     const formattedStr = params.category.replace(/_/g, ' ').replace(/ and /gi, ' & ');
@@ -42,46 +51,34 @@ const SpecificCategory = () => {
     };
 
     fetchProducts();
-
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-
-    return () => window.removeEventListener('resize', handleResize);
   }, [params.category]);
 
-  const bannerImage = categoryBanners[params.category]
-    ? isMobile
-      ? categoryBanners[params.category].mobile
-      : categoryBanners[params.category].desktop
-    : '';
+  const banner = categoryBanners[params.category];
 
   return (
-    <div className="min-h-screen bg-white py-6">
+    <div className="min-h-screen bg-white py-6 px-14">
       <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6 text-center capitalize">
         {route}
       </h1>
 
-      {bannerImage && (
-        <div className="w-full max-h-72 mb-8">
-          <img
-            src={bannerImage}
-            alt={`${route} banner`}
-            className="w-full h-full object-cover rounded-lg shadow-md"
-          />
+      {banner && (
+        <div className="bg-gradient-to-r from-[#E4E4FF] to-white rounded-xl shadow-md px-6 py-10 mb-10 grid md:grid-cols-2 items-center">
+            <div>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-grey-800 mb-3">
+                {banner.title} <span className="text-[#2D3092]">{banner.highlight}</span>
+              </h2>
+              <p className="text-gray-600 text-base sm:text-lg mb-4 font-semibold">{banner.description}</p>
+            </div>
+            <div className="flex justify-center">
+              <img src="{bracketsImage}" alt="Brackets" className="h-40 md:h-56 object-contain" />
+            </div>  
         </div>
       )}
-
-      <div className="flex flex-wrap justify-center mt-20">
+      <div className="flex flex-wrap justify-center gap-6">
         {products.map((item, index) => (
           <ProductCard key={item.id || index} data={item} />
         ))}
       </div>
-
-
     </div>
   );
 };

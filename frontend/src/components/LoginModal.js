@@ -18,7 +18,7 @@ const LoginModal = ({ show, onClose }) => {
         <p className="text-gray-600 text-sm sm:text-base">Proceed to login to add items to your cart.</p>
         <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mt-4">
           <button
-            className="px-4 py-2 sm:px-6 sm:py-2.5 rounded-md bg-teal-600 text-white text-sm sm:text-base font-medium hover:bg-teal-700 transition"
+            className="px-4 py-2 sm:px-6 sm:py-2.5 rounded-md bg-[#2D3092] text-white text-sm sm:text-base font-medium hover:bg-opacity-80 transition"
             onClick={handleLoginClick}
           >
             Login
