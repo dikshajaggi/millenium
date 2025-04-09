@@ -91,6 +91,12 @@ const Login = () => {
                 Login
               </button>
 
+              <div className="text-right mt-2">
+                <Link to="/forgot-password" className="text-sm text-[#2D3092] hover:underline font-medium no-underline">
+                  Forgot Password?
+                </Link>
+              </div>
+
               {/* Link to Sign Up */}
               <p className="text-center text-sm text-gray-600 mt-3">
                 Don't have an account?{" "}

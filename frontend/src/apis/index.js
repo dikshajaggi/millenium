@@ -71,3 +71,14 @@ export const verifyOtp = async (data) => {
     const response = await axios.post(`${baseUrl}/api/user/verify-otp`, data);
     return response
 }
+
+export const verifyResetOtp = async (data) => {
+    const response = await axios.post(`${baseUrl}/api/user/verify-reset-otp`, data);
+    return response
+}
+
+export const resetPassword = async (data) => {
+    const response = await axios.post(`${baseUrl}/api/user/reset-pass`, data);
+    return response
+}
+

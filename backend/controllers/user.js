@@ -159,3 +159,49 @@ export const verifyOtp = async (req, res) => {
         return res.status(500).json({ success: false, message: "Internal server error" });
     }
 };
+
+
+export const verifyResetOtp = async (req, res) => {
+    const { email, otp } = req.body;
+  
+    try {
+      const record = await otpModel.findOne({ email });
+  
+      if (!record || String(record.otp) !== String(otp)) {
+        return res.status(400).json({ success: false, message: "Invalid OTP" });
+      }
+  
+      if (record.expiresAt < new Date()) {
+        return res.status(400).json({ success: false, message: "OTP expired" });
+      }
+  
+      // OTP verified successfully
+      return res.status(200).json({ success: true, message: "OTP verified" });
+    } catch (err) {
+      console.error("OTP verification failed:", err);
+      return res.status(500).json({ success: false, message: "Something went wrong" });
+    }
+  };
+  
+
+
+export const resetPassword = async (req, res) => {
+    const { email, newPassword } = req.body;
+    console.log(email, newPassword, "email, newPassword")
+    try {
+      const user = await userModel.findOne({ email });
+      if (!user) return res.status(404).json({ success: false, message: "User not found" });
+  
+      const salt = await bcrypt.genSalt(10);
+      const hashedPass = await bcrypt.hash(newPassword, salt);
+      await userModel.updateOne({ email }, { password: hashedPass });
+  
+      await otpModel.deleteOne({ email }); // clean up
+  
+      res.json({ success: true, message: "Password reset successful" });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ success: false, message: "Failed to reset password" });
+    }
+  };
+  

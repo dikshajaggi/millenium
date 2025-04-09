@@ -20,10 +20,12 @@ const Signup = () => {
   const [otp, setOtp] = useState("");
   const [formData, setFormData] = useState(null);
   const [isOtpSent, setIsOtpSent] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
   const handleRequestOtp = async (values) => {
+    setLoading(true)
     try {
       const res = await requestOtp(values.email);
       if (res.data.success) {
@@ -33,10 +35,13 @@ const Signup = () => {
       }
     } catch (err) {
       alert(err.response?.data?.message || "Failed to send OTP");
+    } finally {
+      setLoading(false); // hide loader
     }
   };
 
   const handleVerifyOtp = async () => {
+    setLoading(true)
     try {
       const res = await verifyOtp({ ...formData, otp });
       if (res.status === 201) {
@@ -46,6 +51,8 @@ const Signup = () => {
       }
     } catch (err) {
       alert(err.response?.data?.message || "OTP verification failed");
+    } finally {
+      setLoading(false); // hide loader
     }
   };
 
@@ -130,9 +137,19 @@ const Signup = () => {
               )}
 
               {/* Send OTP */}
-              {!isOtpSent && (
+              {loading && (
+                <>
+                <svg className="animate-spin h-5 w-5 mr-2 text-white" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
+                </svg>
+                Please wait...
+                </>
+                )}
+              {(!loading && !isOtpSent) && (
                 <button
                   type="submit"
+                  disabled={loading}
                   className="w-full py-2 bg-[#2D3092] hover:bg-opacity-80 text-white font-semibold rounded-lg transition duration-200"
                 >
                   Send OTP

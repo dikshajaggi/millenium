@@ -20,7 +20,7 @@ const Header = () => {
   const routes = ["brackets", "bands_and_tubes", "wires_and_springs", "miscellaneous", "orthodontic_pliers", "elastomerics"];
   const showSearch = !(
     routes.includes(params.category) ||
-    ["/contact", "/terms_conditions", "/about", "/blog", "/cart", "/place-order", "/login", "/signup"].includes(location.pathname)
+    ["/contact", "/terms_conditions", "/about", "/blog", "/cart", "/place-order", "/login", "/signup", "/forgot-password"].includes(location.pathname)
   );
 
   return (

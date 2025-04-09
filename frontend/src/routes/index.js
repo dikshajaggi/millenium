@@ -12,6 +12,7 @@ import SpecificCategory from "../pages/SpecificCategory";
 import TermsConditions from "../pages/footer/TermsConditions";
 import PrivacyPolicy from "../pages/footer/PrivacyPolicy";
 import Support from "../pages/footer/Support";
+import ForgotPassword from "../pages/ForgotPassword";
 
 export const router = createBrowserRouter([
     {
@@ -65,6 +66,10 @@ export const router = createBrowserRouter([
             {
                 path: "/privacy_policy",
                 element: <PrivacyPolicy />
+            },
+            {
+                path: '/forgot-password',
+                element: <ForgotPassword />
             }
         ]
     }

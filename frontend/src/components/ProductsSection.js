@@ -14,8 +14,8 @@ const ProductsSection = ({ category }) => {
   }, [category]);
 
   return (
-    <div className="w-full px-4 sm:px-8 py-8">
-      <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold bg-[#2D3092] mb-6 capitalize text-[#ffffff] p-2">
+    <div className="w-full px-4 sm:px-1 py-8">
+      <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold bg-gradient-to-r from-[#2D3092] to-white mb-6 capitalize text-[#ffffff] p-2">
         {cat}
       </h2>
 

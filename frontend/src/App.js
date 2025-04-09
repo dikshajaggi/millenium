@@ -9,7 +9,7 @@ import { useState } from 'react';
 import ScrollToTop from './components/ScrollToTop';
 
 function App() {
-  const routes = ["/login", "/signup", "/contact", "/about", "/blog", "/terms_conditions"]
+  const routes = ["/login", "/signup", "/contact", "/about", "/blog", "/terms_conditions", "/forgot-password"]
   const [category, setCategory] = useState("all")
   const location = useLocation()
   return (
