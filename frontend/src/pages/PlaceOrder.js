@@ -11,6 +11,8 @@ const PlaceOrder = () => {
   const navigate = useNavigate();
   const { products, token, setOrderPlaced } = useContext(MainContext);
   const cartItems = useSelector((state) => state.cart.cartItems);
+  const [loading, setLoading] = useState(false);
+
   const [data, setData] = useState({
     firstName: "",
     lastName: "",
@@ -50,10 +52,11 @@ const PlaceOrder = () => {
         };
 
         try {
+          setLoading(true); // Show loader
           const response = await placeorder(orderData, {
             headers: { token }
           });
-
+          setLoading(false); // Hide loader
           if (response.data.success) {
             setOrderPlaced(true);
             alert("Order placed successfully");
@@ -72,6 +75,15 @@ const PlaceOrder = () => {
       alert("Please fill all the fields");
     }
   };
+
+  if (loading) {
+    return (
+      <div className="fixed inset-0 bg-white bg-opacity-70 flex flex-col items-center justify-center z-50">
+        <div className="loader mb-4 border-4 border-gray-300 border-t-blue-500 rounded-full w-12 h-12 animate-spin"></div>
+        <p className="text-lg font-semibold text-gray-800">Placing order, please wait...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col lg:flex-row gap-6 px-4 sm:px-6 md:px-10 py-6 max-w-7xl mx-auto">

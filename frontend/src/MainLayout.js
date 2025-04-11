@@ -2,8 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import ProductsSection from './components/ProductsSection';
 import Banner from './components/Banner';
-import mainbanner from "./assests/background/mainbanner.png";
-import trustmob from "./assests/background/trustmob.png";
 import { BadgePercent, Truck, ShieldCheck } from 'lucide-react';
 
 const offers = [

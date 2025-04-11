@@ -2,7 +2,6 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import validator from "validator";
 import userModel from "../models/user.js";
-import dns from "dns";
 import nodemailer from "nodemailer";
 import otpModel from "../models/otp.js";
 
