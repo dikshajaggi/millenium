@@ -59,7 +59,7 @@ const PlaceOrder = () => {
           setLoading(false); // Hide loader
           if (response.data.success) {
             setOrderPlaced(true);
-            alert("Order placed successfully");
+            alert("Order placed successfully. You will receive a confirmation mail on your registered email id");
             navigate("/");
           } else {
             alert("Failed to place order. Please try again.");

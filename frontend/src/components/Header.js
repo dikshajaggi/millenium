@@ -15,6 +15,7 @@ const Header = () => {
     localStorage.removeItem("token");
     setToken("");
     navigate("/");
+    window.location.reload();
   };
 
   const routes = ["brackets", "bands_and_tubes", "wires_and_springs", "miscellaneous", "orthodontic_pliers", "elastomerics"];
