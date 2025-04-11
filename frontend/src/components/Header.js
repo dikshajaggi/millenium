@@ -31,7 +31,7 @@ const Header = () => {
         {/* Left: Logo + Search */}
         <div className="flex flex-col sm:flex-row items-center gap-4 w-full md:w-2/3">
           <Link to="/" className="flex-shrink-0">
-            <img src={logo} alt="Logo" className="h-14 md:h-16 object-contain" />
+            <img src={logo} alt="Logo" className="h-14 md:h-16 object-contain" onContextMenu={(e) => e.preventDefault()} />
           </Link>
 
           {showSearch && (
