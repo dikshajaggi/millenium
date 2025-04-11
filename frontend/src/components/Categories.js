@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react'
 import categoryIcon from "../assests/icons/braces.png"
 import { Link, useLocation } from 'react-router-dom'
