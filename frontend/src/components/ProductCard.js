@@ -10,6 +10,7 @@ const ProductCard = ({ data }) => {
             src={`http://localhost:8000/images/${data.image}`} 
             alt={data.name} 
             className="object-contain h-full max-w-full"
+            onContextMenu={(e) => e.preventDefault()}
           />
         </div>
         <div className="p-2">

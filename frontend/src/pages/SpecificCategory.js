@@ -2,36 +2,49 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { categoryWiseProducts } from '../apis';
 import ProductCard from '../components/ProductCard';
+import faceMaskBanner from "../assests/facemask.png";
+import pliers from "../assests/pliers.png";
+import brackets from "../assests/brackets.png"
+import wires from "../assests/wires.png";
+import bandstubes from "../assests/bandstubes.png"
+import elastomerics from "../assests/elastomerics.png"
+
 
 const categoryBanners = {
   brackets: {
     title: 'Explore our premium',
     highlight: 'Brackets',
+    image: brackets,
     description: 'High-quality orthodontic brackets that ensure comfort and reliability for professionals.',
   },
   wires_and_springs: {
     title: 'Top-grade',
     highlight: 'Wires & Springs',
+    image: wires,
     description: 'Durable and flexible wires & springs for efficient orthodontic treatment.'
   },
   bands_and_tubes: {
     title: 'Reliable',
     highlight: 'Bands & Tubes',
+    image: bandstubes,
     description: 'Sturdy bands and tubes built for performance and patient comfort.',
   },
   orthodontic_pliers: {
     title: 'Precision tools:',
     highlight: 'Orthodontic Pliers',
+    image: pliers,
     description: 'Get the best results with our finely crafted orthodontic pliers.'
   },
   elastomerics: {
     title: 'Elastic solutions:',
     highlight: 'Elastomerics',
+    image: elastomerics,
     description: 'Elastic materials that adapt and perform with consistency.'
   },
   miscellaneous: {
     title: 'Explore',
     highlight: 'Miscellaneous Tools',
+    image: faceMaskBanner,
     description: 'Supportive tools and items to complete your orthodontic kit.'
   }
 };
@@ -70,7 +83,7 @@ const SpecificCategory = () => {
               <p className="text-gray-600 text-base sm:text-lg mb-4 font-semibold">{banner.description}</p>
             </div>
             <div className="flex justify-center">
-              <img src="{bracketsImage}" alt="Brackets" className="h-40 md:h-56 object-contain" />
+              <img src={banner.image} alt="Brackets" className="h-40 md:h-56 object-contain" />
             </div>  
         </div>
       )}

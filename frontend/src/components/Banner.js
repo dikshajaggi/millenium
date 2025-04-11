@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import faceMaskBanner from "../assests/facemask.png";
+import pliers from "../assests/pliers.png";
+import brackets from "../assests/brackets.png"
+import wires from "../assests/wires.png";
+import bandstubes from "../assests/bandstubes.png"
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Link } from 'react-router-dom';
@@ -16,10 +20,34 @@ const banners = [
   {
     title: 'Best Deals on Orthodontic Pliers',
     description: 'Get precision and quality with our orthodontic pliers collection. Perfect for dental professionals.',
-    image: faceMaskBanner,
+    image: pliers,
     link: '/category/orthodontic_pliers',
     buttonText: 'Explore Collection',
     highlight: 'Orthodontic Pliers',
+  },
+  {
+    title: 'Premium Orthodontic Brackets',
+    description: 'Enhance treatment outcomes with our high-quality dental brackets. Reliable, durable, and designed for precision.',
+    image: brackets,
+    link: '/category/brackets',
+    buttonText: 'Shop Brackets',
+    highlight: 'Orthodontic Brackets',
+  },
+  {
+    highlight: 'Wires & Springs',
+    title: 'Top-grade Wires & Springs',
+    image: wires,
+    description: 'Durable and flexible wires & springs for efficient orthodontic treatment.',
+    link: '/category/wires_and_springs',
+    buttonText: 'Shop Wires & Springs',
+  },
+  {
+    title: 'Reliable Bands & Tubes',
+    highlight: 'Bands & Tubes',
+    image: bandstubes,
+    description: 'Sturdy bands and tubes built for performance and patient comfort.',
+    link: '/category/bands_and_tubes',
+    buttonText: 'Explore Bands & Tubes',
   },
 ];
 
@@ -64,6 +92,7 @@ const Banner = () => {
                 src={banner.image}
                 alt={banner.highlight}
                 className="h-full object-contain rounded-md"
+                onContextMenu={(e) => e.preventDefault()}
               />
             </div>
           </div>

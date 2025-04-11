@@ -41,6 +41,7 @@ const SpecificProductPage = () => {
             src={`http://localhost:8000/images/${image}`}
             alt={name}
             className="w-full h-auto rounded-lg object-contain"
+            onContextMenu={(e) => e.preventDefault()}
           />
         </div>
       </div>
