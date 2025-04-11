@@ -34,7 +34,7 @@ const Cart = () => {
     <div className="min-h-screen px-4 py-8">
       {cartItemsArray.length === 0 ? (
         <div className="flex flex-col items-center justify-center text-center">
-          <h4 className="text-xl font-semibold text-gray-600">Your cart is empty</h4>
+          <h4 className="text-3xl font-bold text-gray-900 mb-6 text-center">Your cart is empty</h4>
           <img src={emptycart} alt="Empty Cart" className="mt-6 h-64 w-auto object-contain" />
         </div>
       ) : (
