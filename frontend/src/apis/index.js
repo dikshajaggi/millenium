@@ -1,8 +1,8 @@
 import axios from "axios"
 
 // const baseUrl = "https://millenium-orthodontics.onrender.com"
-// const baseUrl = process.env.REACT_APP_BASE_URL || "http://localhost:8000"
-const baseUrl = "http://localhost:8000"
+const baseUrl = process.env.REACT_APP_BASE_URL || "http://localhost:8000"
+// const baseUrl = "http://localhost:8000"
 
 console.log(baseUrl, "baseee")
 // -----------------auth---------------------------------------
