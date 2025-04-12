@@ -38,7 +38,7 @@ const SpecificProductPage = () => {
       <div className="w-full md:w-1/2 flex justify-center">
         <div className="w-full max-w-md border rounded-lg shadow-md bg-white p-4">
           <img
-            src={`http://localhost:8000/images/${image}`}
+            src={`${process.env.REACT_APP_BASE_URL}/images/${image}`}
             alt={name}
             className="w-full h-auto rounded-lg object-contain"
             onContextMenu={(e) => e.preventDefault()}

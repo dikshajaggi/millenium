@@ -21,7 +21,7 @@ const CartCard = ({ cartItemsArray, handleQtyDec, handleQtyInc }) => {
               <tr key={item._id} className="border-b">
                 <td className="p-4 border">
                   <img
-                    src={`http://localhost:8000/images/${item.image}`}
+                    src={`${process.env.REACT_APP_BASE_URL}/images/${item.image}`}
                     alt={item.name}
                     className="w-14 h-14 object-cover"
                   />
@@ -58,7 +58,7 @@ const CartCard = ({ cartItemsArray, handleQtyDec, handleQtyInc }) => {
         {cartItemsArray.map(item => (
           <div key={item._id} className="border rounded-lg p-4 shadow-sm flex flex-col sm:flex-row sm:items-center sm:space-x-4">
             <img
-              src={`http://localhost:8000/images/${item.image}`}
+              src={`${process.env.REACT_APP_BASE_URL}/images/${item.image}`}
               alt={item.name}
               className="w-24 h-24 object-cover mx-auto sm:mx-0"
             />
