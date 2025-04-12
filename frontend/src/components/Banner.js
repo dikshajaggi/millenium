@@ -11,14 +11,6 @@ import { Link } from 'react-router-dom';
 
 const banners = [
   {
-    title: 'Blessings on Hanuman Jayanti    ',
-    highlight: 'May Hanuman Ji Protect Your Smile',
-    description: 'Wishing you strength, courage, and a confident smile this Hanuman Jayanti. Celebrate with blessings and good health.',
-    link: '/', // You can link to homepage or any festive collection if relevant
-    buttonText: 'Celebrate With Us',
-    image: hanumanji
-  },
-  {
     title: 'Special Offer on Face Masks',
     description: 'Protect yourself and your loved ones with top-quality face masks. Grab discounts while they last!',
     image: faceMaskBanner,

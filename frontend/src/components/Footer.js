@@ -31,8 +31,8 @@ const Footer = () => {
             <p className="text-gray-300 font-semibold" >
               We provide high-quality orthodontic products tailored for dental professionals.
               From brackets to pliers, we deliver reliability and innovation.
-              From brackets and wires to elastics and pliers, our extensive product range combines durability with precision, ensuring reliable solutions for 
-              orthodontic treatments. Committed to supporting dental practices, 
+              From brackets and wires to elastics and pliers, our extensive product range combines durability with precision, ensuring reliable solutions for
+              orthodontic treatments. Committed to supporting dental practices,
               we offer competitive pricing, exceptional customer service, and innovative products that help create confident smiles.
             </p>
           </div>
@@ -69,7 +69,7 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Contact</h4>
             <p className="text-gray-300 font-semibold mb-1">Dwarka, New Delhi, India</p>
-            <p className="text-gray-300 font-semibold mb-1">intmillenium@gmail.com</p>
+            <p className="text-gray-300 font-semibold mb-1">info@dwarkaorthodontics.com</p>
             <p className="text-gray-300 font-semibold mb-1">+91 9811704446</p>
             <p className="text-gray-300 font-semibold mb-4">+91 8920570339</p>
 

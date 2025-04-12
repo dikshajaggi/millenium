@@ -111,6 +111,7 @@ export const requestOtp = async (req, res) => {
         console.log(transporter, "transportertransporter")
 
         await transporter.sendMail({
+            from: "info@dwarkaorthodontics.com",
             to: email,
             subject: "Your OTP",
             html: `<h3>Your OTP is: ${otp}</h3>`,
