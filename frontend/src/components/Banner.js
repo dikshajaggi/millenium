@@ -79,7 +79,8 @@ const Banner = () => {
         autoPlay
         interval={5000}
         showStatus={false}
-        showArrows={false}
+        showArrows={true}
+        swipeable={false}
       >
         {banners.map((banner, index) => (
           <div key={index} className="grid md:grid-cols-2 items-center gap-6 px-4 py-10 sm:px-6 md:px-12 bg-gradient-to-r from-white to-indigo-50 rounded-xl shadow-lg">
