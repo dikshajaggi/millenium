@@ -4,11 +4,20 @@ import pliers from "../assests/pliers.png";
 import brackets from "../assests/brackets.png"
 import wires from "../assests/wires.png";
 import bandstubes from "../assests/bandstubes.png"
+import hanumanji from "../assests/hanumanji.jpg"
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Link } from 'react-router-dom';
 
 const banners = [
+  {
+    title: 'Blessings on Hanuman Jayanti    ',
+    highlight: 'May Hanuman Ji Protect Your Smile',
+    description: 'Wishing you strength, courage, and a confident smile this Hanuman Jayanti. Celebrate with blessings and good health.',
+    link: '/', // You can link to homepage or any festive collection if relevant
+    buttonText: 'Celebrate With Us',
+    image: hanumanji
+  },
   {
     title: 'Special Offer on Face Masks',
     description: 'Protect yourself and your loved ones with top-quality face masks. Grab discounts while they last!',
@@ -68,7 +77,7 @@ const Banner = () => {
         showThumbs={true}
         infiniteLoop
         autoPlay
-        interval={2000}
+        interval={5000}
         showStatus={false}
         showArrows={false}
       >
@@ -83,7 +92,7 @@ const Banner = () => {
               <p className="text-gray-600 mb-6 text-base sm:text-lg">
                 {banner.description}
               </p>
-              <Link to = {banner.link} className="no-underline inline-block bg-[#2D3092] hover:bg-indigo-700 text-white font-semibold px-6 py-3 rounded-full transition "> {banner.buttonText}</Link>
+              <Link to={banner.link} className="no-underline inline-block bg-[#2D3092] hover:bg-indigo-700 text-white font-semibold px-6 py-3 rounded-full transition "> {banner.buttonText}</Link>
             </div>
 
             {/* Image Section */}

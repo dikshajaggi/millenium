@@ -14,13 +14,13 @@ export const login = async (req, res) => {
             // 404 Not Found: User not found
             return res.status(404).json({ success: false, message: "User doesn't exist" });
         }
-        
+
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
             // 401 Unauthorized: Invalid credentials
             return res.status(401).json({ success: false, message: "Invalid credentials" });
         }
-        
+
         const token = createToken(user._id);
         // 200 OK: Successful login
         return res.status(200).json({ success: true, token });
@@ -88,13 +88,23 @@ export const requestOtp = async (req, res) => {
             { email },
             { otp, expiresAt },
             { upsert: true, new: true }
-          );
+        );
         // ✅ Replace this with your actual SMTP credentials
+        // const transporter = nodemailer.createTransport({
+        //     service: "gmail",
+        //     auth: {
+        //         user: "diksha2000may@gmail.com", // your Gmail
+        //         pass: "kplqxveeqlkeybpj", // app password
+        //     },
+        // });
+
         const transporter = nodemailer.createTransport({
-            service: "gmail",
+            host: "smtp.hostinger.com",
+            port: 465, // Use 587 if 465 doesn't work
+            secure: true, // true for port 465, false for 587
             auth: {
-                user: "diksha2000may@gmail.com", // your Gmail
-                pass: "kplqxveeqlkeybpj", // app password
+                user: "info@dwarkaorthodontics.com", // your Hostinger email
+                pass: process.env.HOSTINGER_APP_PASS, // the password you set for that email
             },
         });
 
@@ -127,18 +137,18 @@ export const verifyOtp = async (req, res) => {
     if (!record || String(record.otp) !== String(req.body.otp)) {
         return res.status(400).json({ success: false, message: "Invalid OTP" });
     }
-  
+
     if (record.expiresAt < new Date()) {
         return res.status(400).json({ success: false, message: "OTP expired" });
     }
-  
-  // Proceed with user creation
-  await otpModel.deleteOne({ email }); // Optional: clean up
+
+    // Proceed with user creation
+    await otpModel.deleteOne({ email }); // Optional: clean up
 
     const domain = email.split("@")[1];
-        if (!allowedDomains.includes(domain)) {
-            return res.status(400).json({ success: false, message: "Only Gmail, Yahoo, or Ymail addresses are allowed" });
-        }
+    if (!allowedDomains.includes(domain)) {
+        return res.status(400).json({ success: false, message: "Only Gmail, Yahoo, or Ymail addresses are allowed" });
+    }
 
     if (password.length < 8) {
         return res.status(400).json({ success: false, message: "Weak password" });
@@ -162,45 +172,44 @@ export const verifyOtp = async (req, res) => {
 
 export const verifyResetOtp = async (req, res) => {
     const { email, otp } = req.body;
-  
+
     try {
-      const record = await otpModel.findOne({ email });
-  
-      if (!record || String(record.otp) !== String(otp)) {
-        return res.status(400).json({ success: false, message: "Invalid OTP" });
-      }
-  
-      if (record.expiresAt < new Date()) {
-        return res.status(400).json({ success: false, message: "OTP expired" });
-      }
-  
-      // OTP verified successfully
-      return res.status(200).json({ success: true, message: "OTP verified" });
+        const record = await otpModel.findOne({ email });
+
+        if (!record || String(record.otp) !== String(otp)) {
+            return res.status(400).json({ success: false, message: "Invalid OTP" });
+        }
+
+        if (record.expiresAt < new Date()) {
+            return res.status(400).json({ success: false, message: "OTP expired" });
+        }
+
+        // OTP verified successfully
+        return res.status(200).json({ success: true, message: "OTP verified" });
     } catch (err) {
-      console.error("OTP verification failed:", err);
-      return res.status(500).json({ success: false, message: "Something went wrong" });
+        console.error("OTP verification failed:", err);
+        return res.status(500).json({ success: false, message: "Something went wrong" });
     }
-  };
-  
+};
+
 
 
 export const resetPassword = async (req, res) => {
     const { email, newPassword } = req.body;
     console.log(email, newPassword, "email, newPassword")
     try {
-      const user = await userModel.findOne({ email });
-      if (!user) return res.status(404).json({ success: false, message: "User not found" });
-  
-      const salt = await bcrypt.genSalt(10);
-      const hashedPass = await bcrypt.hash(newPassword, salt);
-      await userModel.updateOne({ email }, { password: hashedPass });
-  
-      await otpModel.deleteOne({ email }); // clean up
-  
-      res.json({ success: true, message: "Password reset successful" });
+        const user = await userModel.findOne({ email });
+        if (!user) return res.status(404).json({ success: false, message: "User not found" });
+
+        const salt = await bcrypt.genSalt(10);
+        const hashedPass = await bcrypt.hash(newPassword, salt);
+        await userModel.updateOne({ email }, { password: hashedPass });
+
+        await otpModel.deleteOne({ email }); // clean up
+
+        res.json({ success: true, message: "Password reset successful" });
     } catch (err) {
-      console.error(err);
-      res.status(500).json({ success: false, message: "Failed to reset password" });
+        console.error(err);
+        res.status(500).json({ success: false, message: "Failed to reset password" });
     }
-  };
-  
+};
