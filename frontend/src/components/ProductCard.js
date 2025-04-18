@@ -13,8 +13,9 @@ const ProductCard = ({ data }) => {
             onContextMenu={(e) => e.preventDefault()}
           />
         </div>
-        <div className="p-2">
-          <h6 className="text-sm font-medium text-center text-gray-800 truncate md:text-lg">{data.name}</h6>
+        <div className="p-2 text-center">
+          <h6 className="text-sm font-medium text-gray-800 truncate md:text-lg">{data.name}</h6>
+          <p className="text-sm md:text-base text-gray-600 mt-1 font-semibold">₹{data.price}</p>
         </div>
       </div>
     </Link>
